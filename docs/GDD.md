@@ -1,138 +1,415 @@
 # Documento de diseño — Estrella y el Castillo de los Números
 
-Este documento manda. Si un capítulo de experto dice otra cosa, manda lo de aquí. Los capítulos amplían; no reabren lo cerrado.
+Este archivo es el diseño. Si un capítulo viejo, un spec o un prompt dice otra cosa, manda esto. Los capítulos de `docs/expertos/` y las críticas de `docs/criticas/` son el historial de la primera pasada, no una segunda biblia.
 
-Capítulos, que forman parte del diseño:
+Idioma de pantalla: español de España. Una frase, hasta doce palabras, o silencio. No hay preguntas que se contesten con la boca.
 
-- Juego: `docs/expertos/01-videojuegos.md`
-- Relato y bancos de frases: `docs/expertos/02-relato.md`
-- Pedagogía y regla de subida: `docs/expertos/03-pedagogia.md`
-- Matemáticas, tabla M01–M81: `docs/expertos/04-matematicas.md`
-- Salas como juguete: `docs/expertos/05-edutenimiento.md`
+## 1. Qué es
 
-Restricciones de aparato y de producción: `BRIEF.md`.
+Estrella es aprendiz de magia de las luces. En el dibujo parece de unos once años, no de seis y no adulta. Melena a la mandíbula, flequillo recto, sin trenza y sin coleta. Piel `#E2A56B`. Pelo `#4A2E24`. Ojos `#3F2A22`. Boca `#C46A52`. Capa `#C85A32`. Túnica `#F4E2C0`. Broche de tela `#F2C14E` en el cuello, no en el pecho. Sin corona, sin varita, sin Disney.
 
-## Promesa
+Tres caras y ninguna más: curiosa, contenta, pensando. No existe celebrando. Un fallo no le cambia la cara. La pieza que vuelve es la señal de fallo. Hasta que haya tres poses que se distingan a 96 px, no se usa la cara como señal.
 
-Estrella es aprendiz de magia de las luces. No lleva corona ni varita. No se parece a una princesa de película. Su magia no adivina el número: enciende lo que las manos entienden. La niebla ha apagado las luces del castillo. No es un monstruo, no tiene ojos ni voz, y no crece si un día no se juega.
+Su magia no adivina. La lámpara se enciende cuando las manos hacen el gesto. Escribir el número, si aparece, es después de la luz.
 
-Cada sala es un juguete. La cuenta va dentro del gesto. Escribir el número, si aparece, es la comprobación, después de la luz. No hay cuatro opciones ni un único sitio que brille.
+La niebla es una cortina crema `#E7DCC8`, sin ojos, sin voz y sin cuerpo. No crece si no se juega. No se nombra miedo, monstruo, oscuridad ni peligro.
 
-Público: 6 a 7 años, con techo hasta 10 en el mismo castillo. La edad no sube de nivel. Una niña de 9 años con el diez todavía frágil ve las piezas.
+El castillo solo gana luz. No hay vidas, reloj en pantalla, marcador, estrellas vacías ni sonido de error.
 
-## Ocho reglas
+## 2. Aparato y coordenadas
 
-1. El castillo solo gana luz. Una sala encendida no se apaga por fallar, por salir ni por no volver.
-2. No hay vidas, cronómetro en pantalla, estrellas vacías, sonido de error ni marcador.
-3. Toda sesión que ella termina acaba en un acierto que hace con las manos. Estrella no coloca la última pieza por ella.
-4. Se enciende un método moviendo piezas. Adivinar no cuenta.
-5. Dos fallos en el borde saltan al cierre. No hay un tercero. El acertijo de esa sesión puede esperar. La sala de acertijos no se cierra nunca.
-6. La torre se decora por llegar al cierre jugando, no por hacerlo perfecto. Lo colocado no se quita.
-7. Ante un fallo, Estrella está curiosa, contenta o pensando. Nunca decepcionada, enfadada ni triste.
-8. Un paso nuevo solo si el anterior está firme. Firme es acertar sola, en otro día, sin ejemplo al lado y sin duda.
+Fire 7, 1024×600, horizontal bloqueado. Si el sistema pide vertical, el juego no gira: sigue en horizontal, letterbox, piezas sin rotar.
 
-## Aparato
+Área útil: x 48–976, y 24–552. Los 48 px de abajo no llevan nada que se toque.
 
-Fire 7 (2022), KFQUWI. Fire OS 8.3.3.8, Android 11, API 30. MT8168, Mali-G52, 2 GB de RAM. Pantalla 1024×600; en horizontal, con la barra, unos 1024×552. 60 Hz. Acelerómetro sí, giroscopio no. Disco justo: el juego cabe holgado por debajo de 40 MB si puede, y nunca pasa de 80. Sin permiso de internet. Godot 4.7.2, renderer Compatibility, solo arm64, pantalla completa. Botones y piezas de unos 96 px, aire de 24 px. Una frase de hasta 12 palabras. El texto se ve aunque haya voz.
+Origen arriba a la izquierda. Un rectángulo es `x, y, w, h` en píxeles de ese viewport.
 
-## Salas
+Un dedo. El segundo dedo no suelta la pieza del primero, no pulsa atrás y no abre una sala. Se ignora.
 
-Una sola pantalla de mapa, el Patio. No se camina. No se dibujan huecos vacíos de salas cerradas. Lo que no se puede elegir no aparece como botón prohibido.
+Soltar vale si el centro de la pieza queda a 36 px o menos del centro del hueco. Ningún hueco se preilumina. No hay botón de listo.
 
-| Sala | Verbo | Objeto | Qué enseña | Qué no hace |
-|---|---|---|---|---|
-| Piedras de luz | anidar | nido de diez huecos y piedras | descomposición, valor de posición, hacer el 10 | el algoritmo en columnas |
-| Espejo | voltear | espejo y dos montones | conmutativa de la suma | una resta |
-| Círculo | enlazar | tres montones y una cinta | asociativa de la suma, tres números pequeños | una resta; no se abre junto al Espejo |
-| Pergamino | deslizar | varillas de unidades, decenas y centenas | alinear, llevada, préstamo | la llevada antes de que hacer dieces sea fácil |
-| Mercado | cambiar | monedas y un precio | euros y céntimos como cambio de 10 por 1 | billetes; comprar de verdad |
-| Jardín | plantar | macetas iguales | grupos del 2, del 5 y del 10 | otras tablas |
-| Tesoro | repartir | cofre y cuencos, nunca niños rivales | reparto justo | llamar fallo a la sobra |
-| Acertijos | ensartar | cordón, cuentas, bandejas | lógica, desde el día 1 | esconder una resta difícil |
-| Torre | colocar | adornos | ninguna cuenta | medir el saber |
+Un toque quieto, sin mover 24 px, no es un intento. La piedra no parece un botón: es irregular, el botón es un arco. Si no se distingue, no se publica esa pieza.
 
-Frases de primera visita, literales, en el capítulo de relato. No se improvisan.
+Sin audio o con el mute, el acierto no espera a la campanada. Bastan el pulso de 1,2 s y el texto 4 s.
 
-## Sesión
+## 3. Reloj interno
 
-Unos siete minutos. El reloj no se dibuja y no corta un arrastre a medias. Se acorta entre turnos.
+No se dibuja. No corta un arrastre.
 
-1. Una cuenta que ya sabe. Los tropiezos de aquí no cuentan para el corte. Se ayuda hasta el acierto.
-2. La idea de hoy, unos veinte segundos, en manos de Estrella. Ella la repite arrastrando. Sin vídeo.
-3. Tres intentos del borde, o cuatro solo si van sin fallos y sin cansancio. Al segundo fallo se salta al cierre.
-4. Un acertijo, si no hubo corte. Un tropiezo aquí no baja la aritmética.
-5. Cierre con una que puede hacer. Luego un adorno, a elegir entre dos, los dos válidos.
+- Tiempo de juego: desde el primer toque de pieza hasta el último, sin el patio.
+- A los 420 s entre turnos no se abre otro ítem de borde.
+- A los 480 s, al soltar la pieza que ya tiene en la mano, se entra en el cierre. Si a los 400 s sigue en el collar y la pieza avanza, se respeta la mano hasta la suelta.
+- 20 s sin toque, con la pieza ya presentada y no en la mano: abandono. En la misma sentada se va al cierre. Si la tableta se cerró, se guarda y no se inventa el acierto. No son dos caminos a la vez.
+- Menos de 15 s en una sala sin tocar una pieza no abre sesión y no cuenta como sala evitada.
 
-Si cierra la tableta a medias, se guarda y no se inventa el acierto. Al volver no se reanuda el fallo: se entra por una cuenta que ya sabe. Menos de quince segundos sin tocar una pieza no abre sesión.
+## 4. Sesión
 
-Frase del corte, sin nombrar cansancio ni fallo: «Seguimos con una que ya sabes.»
+Orden, si nada se tuerce:
 
-## Primer jugable
+1. Una que ya sabe. Los tropiezos de aquí no cortan, no bajan y no suben. Se ayuda hasta el acierto.
+2. Idea de hoy, 20 s. Si ella coge una piedra, el modelo cede y ya es su turno. No se dice «espera».
+3. Tres intentos de borde. Cuatro solo si van sin fallos y sin corte. Al segundo fallo se salta al cierre. No hay tercero.
+4. Un acertijo, solo si no hubo corte. No cambia estados de aritmética.
+5. Cierre: una que puede hacer, ella suelta la pieza. Ese acierto no sube de estado.
+6. Un adorno, entre dos, los dos válidos. Lo coloca ella.
 
-Solo esto:
+Frase del corte, la única: «Seguimos con una que ya sabes.»
 
-- Estrella, curiosa o pensando, sin corona ni varita.
-- Torre con un farol que ella coloca.
-- Piedras de luz: hacer el 10. Caja de dos filas de cinco. La décima enciende. Una oncena de más, si el gesto era llenar diez, no enciende.
-- Acertijo: piedra, estrella, piedra, estrella. Ella cuelga la siguiente desde un arcón, no elige entre dos botones.
-- Cierre siempre en un acierto suyo.
-- Registro de duda al soltar: suelta en el sitio, cambia de destino, sostiene mucho, se desdice.
-- Corte a los dos fallos y corte si devuelve piezas, encadena fallos o se va.
-- Hora y postura de la tableta se anotan y no cambian el juego todavía.
+El acierto del cierre lo hace ella. Estrella no coloca la última pieza. No se dice que el acierto es de las dos.
 
-No entra la llevada, ni el euro, ni un problema con historia.
+Menos de 15 s sin toque desde el patio no crea sesión.
 
-Partida de referencia del primer día, si nada se tuerce: ver tres piedras; Estrella cierra un diez; ella repite 7 y 3; borde 8, luego 5, luego 9; collar piedra-estrella; cierre de una que puede; farol a la torre.
+## 5. Primer jugable, pantallas
 
-## Orden de apertura
+Nombre único del objeto: nido. No se dice caja, losa ni cuenco.
 
-El camino de 6 a 7 años no salta puertas. El de 8 a 10 abre el techo del mismo castillo, no otro juego.
+### 5.1 Patio
 
-1. Sentir los números y hacer el 10. M01 a M11 viven en la entrada de Piedras. No son una aduana que impida jugar, pero si fallan el borde baja ahí. El primer jugable es M11 y los amigos del 10 cuando toque, no la llevada.
-2. Hasta 20, amigos del 10, pasar por el 10. Espejo sin el nombre.
-3. Decenas. Pergamino sin llevada.
-4. Llevada, solo si amigos del 10 y pasar por el 10 al sumar están firmes. Frase: «Me llevo una.» No se dice «me llevo dos» con dos sumandos.
-5. Préstamo, además con el puente de resta firme. «Pido prestada una decena.» La decena se rompe en diez unidades y no se devuelve. No se dice «robamos». No se dice «siempre se resta la cifra pequeña de la grande».
-6. Centenas. La misma idea, una columna más.
-7. Mercado. Primero euros enteros, cuando el cambio de diez por uno ya se entiende y la resta pequeña está firme. Céntimos después, cuando cien se entiende como diez dieces. Monedas: 1, 2, 5, 10, 20 y 50 céntimos, y 1 y 2 euros. Sin billetes. Se escribe 1,30 €. Frase fija: «Estas monedas son del juego.» «No se compra de verdad.»
-8. Jardín, luego el signo ×. Tesoro, luego el signo ÷. Círculo cuando sumar ya no da miedo, no antes del mercado en el camino canónico. Sobra al final, sin castigo y sin fracción.
+Tres cosas, 160×160, y ninguna más el primer día.
 
-Tablas solo del 2, del 5 y del 10. No hay tablas del 3, 4, 6, 7, 8 ni 9. No hay negativos, ni millares, ni problemas de más de dos pasos.
+| Cosa | Rectángulo |
+|---|---|
+| Nido (Piedras) | 160, 180, 160, 160 |
+| Collar (Acertijos) | 432, 180, 160, 160 |
+| Torre | 704, 180, 160, 160 |
+| Campana | 880, 24, 96, 96 |
 
-Los 81 micropasos, con ejemplo, error, ayuda y puerta, están en el capítulo de matemáticas. Esa tabla es normativa. Los nombres («conmutativa», «asociativa») no bloquean el paso siguiente.
+La campana es solo ese rectángulo. Pulsación de 1,5 s. No mide 48 px. Un dedo que coge una ventana no la alcanza.
 
-## Algoritmos
+Lo que no está abierto no se dibuja. No hay candado ni hueco gris. Cuando más adelante haya más salas, como máximo cuatro ventanas de 96 px por fila, aire 24 px. Ocho de 96 no caben en una fila y no se prometen.
 
-Locales. Ella no los ve. No se le dice que ha subido ni que ha bajado. Los primeros días el registro observa y no manda la subida ni la bajada. Desde el primer día sí mandan el cierre en acierto, el corte a los dos fallos, el corte por cansancio y enseñar el gesto si duda y falla.
+Con un cierre pendiente, el patio muestra la bandeja de ese cierre o las ventanas, no las dos.
 
-Estados, de menor a mayor: sin ver, aprendiendo, frágil, firme, suelto. Solo se sube uno. Solo se baja uno. El suelo, una vez vista la idea, es aprendiendo. Bajar no quita luces ni adornos.
+### 5.2 Nido
 
-Sube a frágil si acierta sola hoy, moviendo piezas. Sube a firme si lo repite sola en otro día, sin ejemplo y sin duda. Sube a suelto si además el gesto ya va sin piezas de apoyo, a su ritmo, sin adivinanza. Lento y bien puede ser firme. Lento es lento para ella, no comparado con nadie. Acertar con ayuda, el acierto de cierre y el primer acierto del día no suben a firme.
+| Zona | Rectángulo |
+|---|---|
+| Marco del nido | 80, 108, 500, 220 |
+| Hueco columna c, fila r | x = 100 + c×92, y = 128 + r×92, 80×80. c = 0..4, r = 0..1 |
+| Celda del montón c, r | x = 640 + c×96, y = 120 + r×96, 96×96. Dentro, piedra de 72. c = 0..1, r = 0..2. Seis piedras |
+| Estrella | 848, 280, 112, 150 |
+| Banda de frase | 96, 468, 832, 56 |
+| Paño del ejemplo, si está | 80, 24, 200, 72. No se toca. No tapa un hueco de ella |
 
-Duda: suelta a menos de 24 px del origen tras haberla tenido 1 s; cambia de destino; sostiene más de 8 s; se desdice antes de 3 s. Si acierta dudando, el siguiente es parecido y no sube. Si duda y falla, baja un estado y se enseña el gesto. Si ya estaba aprendiendo, se queda y vuelve el ejemplo. Un fallo aislado sin duda no tira un cimiento firme. Si el error es siempre el mismo, no baja por el primer caso: hay una frase para ese error. Si sigue en otro día, no pasa de frágil.
+En su turno hay un solo nido que su dedo llena. El andamio de 7 y 3 son los huecos vacíos, no piedras marcadas. No los dos: si brillan las que hay que mover, se acierta sin mirar el nido.
 
-Cansancio de esta sesión, visible: devuelve piezas, pausas largas que no son un arrastre que avanza, fallos encadenados, se va. Se corta lo nuevo. No se infiere emoción. La hora y la inclinación de la tableta se anotan. No mandan con pocas partidas, ni solas más adelante. No hay giroscopio. No hay cámara ni micrófono.
+El pulso ámbar, 1,2 s, nace en el instante de la suelta válida, en el borde del nido de ella. No convive con otro pulso. Resetear el paño del ejemplo se apaga en 0,4 s, sin ese pulso, para que no parezca que ha roto el castillo.
 
-Qué puede cambiar: el micropaso, el tamaño de los números, si las piezas siguen a la vista, la frase de ayuda, la duración y si hoy hay idea nueva.
+Pieza rechazada: vuelve en 0,4 s, en silencio. El paso de un nido ya encendido al nido del intento siguiente no usa ese retorno.
 
-Qué no puede: quitar luces, poner cronómetro, cerrar acertijos, enseñar un marcador, enviar datos fuera.
+Oncena, la primera vez: silencio, cara curiosa, la piedra vuelve. No hay frase.
 
-## Padre
+### 5.3 Collar
 
-Entra con una pulsación larga en la campana del patio y un PIN local. Lee frases, no notas. Puede poner un techo en frontera de bloque: hasta 20, sin llevada, sin mercado, sin centenas, sin el signo de por. El techo solo frena. No apaga luces, no cierra acertijos, no quita adornos. Puede exportar un resumen a mano.
+Pantalla propia. Fundido. No hay cordón de camino al salir del nido.
 
-## Voz y fallo
+| Zona | Rectángulo |
+|---|---|
+| Cordón | 96, 220, 640, 96 |
+| Gancho i, i = 0..4 | x = 120 + i×120, y = 228, 80×80 |
+| Arcón | 800, 180, 160, 220 |
 
-Una frase, luego silencio. La duda no hereda frases de fallo. El acierto no elogia a la persona. Prohibido: «mal», «incorrecto», «eres un genio», «casi», «date prisa», «esto es fácil», cualquier comparación, cualquier etiqueta de emoción o de inteligencia.
+En el cordón: piedra, estrella, piedra, estrella, hueco. La siguiente es una piedra, colgada desde el arcón. No hay dos botones. No se dice que el hueco pide estrella. No es luz y oscura.
 
-Al volver: «Me alegro de verte.» «Tus luces siguen encendidas.» «No hay que recuperar nada.» No se dice «te echaba de menos» ni «se ha apagado».
+### 5.4 Torre
 
-El listado cerrado de frases está en el capítulo de relato. Si falta un audio, se ve el texto.
+Pared ya completa. Sin ganchos vacíos. El farol se suelta en 704, 180, 160, 160. Ahí se ve entero. Un segundo adorno no se dibuja hasta el día en que se gana. No hay silueta de lo que falta. No hay rejilla y pared libre a la vez: es pared libre.
 
-## Producción
+El farol se gana por un solo hecho: ella ha encendido el cierre con su dedo en esa sentada. También si el borde se saltó. No se gana por no haberse equivocado.
 
-Los generadores corren en el ordenador de desarrollo, nunca en el juego. La cara la fija `assets/personajes/estrella.json`: melena a la mandíbula, flequillo recto, sin trenza, sin coleta. Si un prompt dice trenza, no se usa. Todo lo demás usa esa referencia. Tripo solo para vistas fijas. Sin vídeo dentro del APK. Sin fotos de una niña real. Si falta un dibujo, vale una forma de color del mismo tamaño.
+### 5.5 Padre
 
-## Fuera de producto
+Misma campana. PIN de cuatro cifras que él elige la primera vez. No hay PIN de fábrica. No hay cambio de PIN en esta versión. Olvidarlo no borra luces, estados ni techo. No hay recuperación que vacíe el progreso. La niña sigue jugando. La pantalla del padre queda cerrada.
 
-Multijugador, anuncios, compras, cuentas, diagnóstico, comparación con otros niños, red, 3D en la tableta, Vulkan, vídeo embebido.
+En el primer jugable el padre ve una sola frase, o ninguna: «Esto no es una nota.» Estrella no está en esa pantalla. Ella no dice padre, PIN ni aparato.
+
+## 6. Cuatro finales del primer día
+
+Números, en este orden, si nada se tuerce:
+
+1. Ya sabe: tres piedras, las junta. Un hueco con tres. No es el nido de diez.
+2. Idea: Estrella llena el nido de diez en el paño. Ella repite 7 y 3 en su nido.
+3. Borde: 8, luego 5, luego 9. Cada uno completa diez.
+4. Collar: piedra, estrella, piedra, estrella. Ella cuelga una piedra.
+5. Cierre: nido con nueve, ella pone una.
+6. Farol, entre ámbar y terracota, los dos válidos.
+
+### Si falla dos veces en el borde
+
+El segundo fallo no enciende. Silencio. La pieza vuelve. Frase: «Seguimos con una que ya sabes.» No hay collar. No hay farol todavía. Cierre: el nido de nueve, ella pone una. Después el farol. Entre el segundo fallo y esa luz no hay brillo nuevo ni puerta de premio.
+
+Los fallos de «ya sabe» no cuentan para este corte.
+
+### Si se cansa
+
+Señales que cortan lo nuevo, y no se nombran: tres devoluciones al origen en el mismo intento, fuera de la ventana de 3 s; o tres pausas de 4 s sin toque en el mismo intento; o el segundo fallo. Una devolución no corta. Una pausa no corta.
+
+No se le saca la pieza de la mano. Al soltar, si el corte ya estaba pedido, se va al cierre con la misma frase. El juguete no se bloquea con un cartel.
+
+### Si se va a medias
+
+Se guarda en cada suelta. No se inventa el acierto. Al volver, otra fecha o la misma, no está el borde a medias. Está la cuenta que ya sabe. Lo encendido sigue encendido.
+
+### Día siguiente
+
+Misma entrada, y solo esta: «Me alegro de verte.» «Tus luces siguen encendidas.» «No hay que recuperar nada.» Luego una que ya sabe. No se dice «la cinta sigue» si el adorno fue un farol. No se dice «te echaba de menos» ni «se ha apagado».
+
+Día 2, mismo tablero, otros números: ya sabe, cuatro piedras; idea, 6 y 4; borde, 9, luego 2, luego 8; collar igual; cierre, nueve y una.
+
+Si en quince segundos no toca una pieza, no hay saludo y no hay sesión.
+
+## 7. Voz del primer jugable
+
+Solo estas. Lo demás no se graba todavía. Si falta el fichero, se ve el texto.
+
+| Id | Cuándo | Frase |
+|---|---|---|
+| V01 | Primera llegada, si ha tocado una pieza | Hola. Soy Estrella. |
+| V02 | Después, una vez | Mi magia no adivina. |
+| V03 | Entrar al nido | Aquí las piedras se juntan y se separan. |
+| V04 | Corte | Seguimos con una que ya sabes. |
+| V05 | Volver otro día | Me alegro de verte. |
+| V06 | Volver otro día | Tus luces siguen encendidas. |
+| V07 | Volver otro día | No hay que recuperar nada. |
+| V08 | Disco lleno, si cabe texto | Seguimos. Hoy no se ha guardado. |
+
+No se dice: mal, incorrecto, eres un genio, casi, date prisa, esto es fácil, otra vez, has pagado, ya sabes hacer el diez, cerramos con una fácil, no pasa nada, ni una frase con ¿. La duda no hereda frase de fallo. El acierto de persona no existe. La oncena, la primera vez, no tiene frase.
+
+Más adelante, cuando esa sala exista, y no antes: «Me llevo una.» «Pido prestada una decena.» «Estas monedas son del juego.» «No se compra de verdad.»
+
+## 8. Luz, fallo, duda
+
+Un intento escribe como máximo una etiqueta: duda, fallo o corte. No las tres.
+
+Duda, y no sube:
+
+- Suelta a menos de 24 px del origen tras tenerla 1 s.
+- Cambia de destino.
+- La pieza está quieta, menos de 24 px, más de 8 s. Eso no es además una pausa ni un lento.
+- Se desdice antes de 3 s. Eso no es una devolución.
+
+Devolución: vuelve al origen después de 3 s, ya había salido. Tres en el mismo intento cortan lo nuevo. Una no corta.
+
+Fallo: suelta, habiendo movido, en un sitio que no enciende. La segunda pieza que el material rechaza en el mismo intento es el fallo. Un método equivocado dejado 3 s, sin desdecirse, es fallo a la primera.
+
+Ayuda usada significa solo esto: el paño del ejemplo está en pantalla, o el tramo es la repetición del modelo, o el cierre está en el peldaño de ejemplo. No hay detección de otro dedo de otra persona.
+
+Andamio, sin anunciarlo:
+
+- Aprendiendo: ejemplo al lado.
+- Frágil: piezas a la vista, ejemplo ausente.
+- Firme: ejemplo ausente.
+- Suelto: sin piezas de apoyo.
+
+## 9. Algoritmos
+
+Locales. Ella no los ve. No se le dice que ha subido ni que ha bajado. La edad no es una entrada. No hay campo de edad.
+
+### 9.1 Observación
+
+Las tres primeras sesiones completas solo observan. No se sube a frágil, ni a firme, ni a suelto, y no se baja. Sin ver pasa a aprendiendo si ella arrastra el modelo. Al terminar las tres, esos aciertos no se aplican. Se empieza a contar en la sesión 4.
+
+Desde la sesión 1 sí mandan el cierre en acierto, el corte a los dos fallos del borde y el corte por cansancio. Enseñar el gesto si duda y falla es ayuda, no un juicio, y también manda desde el día 1.
+
+### 9.2 Estados
+
+Sin ver, aprendiendo, frágil, firme, suelto. El estado vive en el id del micropaso, no en la sala. M12 firme no marca M13 firme. Solo se sube uno. Solo se baja uno. El suelo, una vez vista la idea, es aprendiendo. Bajar no quita luces ni adornos.
+
+Otro día es otra fecha local, no 24 horas.
+
+Sube:
+
+- A aprendiendo: arrastra el modelo.
+- A frágil: acierta sola, hoy, moviendo piezas, sin ayuda y sin duda. No vale el cierre ni la repetición del modelo.
+- A firme: 3 ítems distintos del banco de ese id, ninguno igual al ejemplo, en al menos 2 fechas, como máximo 2 ítems por fecha, sin ayuda, sin duda y sin ser cierre. Si el banco tiene discriminador, uno de los 3 es ese. Un mismo ítem no es más de la mitad de los aciertos que alimentan la subida. Un acierto solo de hace más de 14 fechas no sirve para subir. No baja el estado y no apaga luces.
+- A suelto: ya firme, sin piezas de apoyo, en 2 fechas distintas de la fecha en que pasó a firme, sin adivinanza, y con el tiempo de manipulación menor o igual que su mediana. Hacen falta 6 aciertos sola de ese id. Si no hay 6, suelto es imposible.
+
+El primer acierto sola de ese id en esa fecha no sube a firme ni a suelto. El tramo «ya sabe» no consume ese cupo.
+
+Lento no existe hasta esos 6 aciertos. Lento es tiempo con la pieza en movimiento mayor que 1,5 veces la mediana de esos 6. Lento no impide frágil ni firme. Lento impide suelto. «Despacio no sube de nivel» no se implementa.
+
+Baja:
+
+- Como máximo una bajada por id y fecha.
+- Si duda y falla: baja uno y se enseña el gesto. Si ya estaba aprendiendo, se queda y vuelve el ejemplo.
+- El segundo fallo con duda del borde corta y enseña el gesto, y no baja otra vez.
+- Suelto no llega a frágil en la misma fecha.
+- El primer fallo sin duda de la prueba de suelto no baja. Si es con duda, baja uno y la prueba no se repite esa fecha.
+- Un fallo aislado sin duda no tira un cimiento firme.
+
+El cierre, la repetición del modelo y el acertijo no cambian ningún estado de aritmética.
+
+### 9.3 Error sistemático
+
+Mismo `error_id` en 2 ítems distintos y 2 fechas, y solo si el discriminador de esa familia ya se ha visto. Hasta entonces no hay frase y no hay techo. El techo, si llega, baja como máximo un estado por fecha. Mientras esté puesto, el sucesor no se abre.
+
+32−17 no separa errores. El discriminador es 32−15: bien 17, girar 23, olvidar el descuento 27. Sin el discriminador no se elige frase.
+
+### 9.4 Qué toca
+
+Cada sesión, desde la cuarta:
+
+- Ya sabe: el id firme o frágil cuyo acierto sola es el más antiguo. Uno.
+- Borde: el id en aprendiendo o frágil con predecesores firmes, el más antiguo. Si no hay, el siguiente sin ver cuyo predecesor está firme.
+- Repaso: va dentro de «ya sabe», no es un tramo extra.
+- Acertijo: uno cuyo cimiento de compañía está al menos en aprendiendo, y que no esconda una cuenta por encima del borde.
+
+Parecido, si acertó dudando: el mismo id, otro ítem. Cada tercer parecido es el discriminador, si existe.
+
+Un paso nuevo solo si cada predecesor está firme. Los predecesores se declaran en el id. No es «el número anterior». Los nombres no bloquean. Los acertijos no tienen arista hacia la aritmética.
+
+No se abre un bloque el mismo día en que se nombra la conmutativa.
+
+### 9.5 Qué puede cambiar y qué no
+
+Pueden cambiar: el id, el tamaño de los números dentro de ese id, si el ejemplo está, la frase de ayuda de ese `error_id`, si hoy hay idea nueva, y la duración al cortar.
+
+No pueden: quitar luces, poner cronómetro, cerrar acertijos, enseñar un marcador, enviar datos fuera, usar la hora, usar la inclinación, usar la edad.
+
+La hora y la inclinación se anotan y no son argumentos de ninguna función. No salen en frases ni en el resumen. No se llaman sentada, acostada, noche ni tumbada.
+
+### 9.6 Sala evitada
+
+Solo si era elegible y, en 3 de las últimas 5 sesiones abiertas, no se entró. Antes, silencio. La ventana no lleva marca. La frase del padre, si cabe en el cupo de dos, es: «La sala sigue abierta.» No dice «no ha entrado».
+
+## 10. Telemetría
+
+Un aparato, una jugadora. No se distingue a otra persona. No hay cámara ni micrófono. No sale del aparato.
+
+Se guarda en cada suelta y en cada cambio de estado, en `user://progreso.json`. Si no cabe en disco: no se inventa el acierto, no hay sonido de error, y si cabe texto se ve V08. Lo que ya estaba guardado no se toca.
+
+### 10.1 Evento de intento
+
+```
+{
+  "id": "M23",
+  "item": "7+3",
+  "fecha": "2026-11-06",
+  "t0": 0,
+  "primer_toque_ms": 0,
+  "moviendo_ms": 0,
+  "pausas_4s": 0,
+  "etiqueta": "duda|fallo|corte|acierto|nada",
+  "sola": true,
+  "ejemplo": false,
+  "cierre": false,
+  "duda": [],
+  "devoluciones": 0,
+  "error_id": "",
+  "tilt": "plana|de_pie|encima|desconocida"
+}
+```
+
+`duda` es una lista de: `origen`, `destino`, `quieta`, `desdice`. Como máximo una etiqueta de juicio.
+
+Tiempos separados, no sumados en un «lento»: hasta el primer toque; con desplazamiento de al menos 24 px; pausas sin toque de al menos 4 s.
+
+### 10.2 Inclinación
+
+Una muestra por segundo, mediana de cinco, al empezar la sesión y si el cubo cambia. No es la postura del cuerpo.
+
+- `plana`: el eje que sale de la pantalla es el mayor y la pantalla mira hacia arriba.
+- `encima`: ese mismo eje es el mayor y la pantalla mira hacia abajo.
+- `de_pie`: el mayor está en el plano de la pantalla.
+- `desconocida`: magnitud menor de 5, o ruido.
+
+No cambia sala, tiempo ni frase.
+
+### 10.3 Sesión
+
+Hora local de inicio. Duración de juego, definida arriba. Salas abiertas. Sala propuesta y no entrada. Cierre pendiente, sí o no. Farol ganado, sí o no. Techos del padre. Estados por id. Fecha del último acierto sola por id. Contador de sesiones completas.
+
+Eso es el plan que decide la vuelta. Si no está en el guardado, no se usa al abrir: se entra por una que ya sabe y no hay cierre pendiente.
+
+### 10.4 Padre
+
+Como máximo dos frases, en este orden, y solo si el hecho es de las sesiones ya contadas, no de la observación:
+
+1. Si un sucesor no se abre por un error sistemático: «Seguimos con el gesto de antes.»
+2. Si una sala se evita, según la regla: «La sala sigue abierta.»
+3. Si no hay nada de eso: «Esto no es una nota.»
+
+No aparecen: dudado, despacio, lento, siempre, frustrada, no ha entrado, retrasada, noche, tumbada, ni un número.
+
+Techos, cinco, y solo estos. Ponerlos frena. Quitarlos no salta cimientos.
+
+| Techo | Qué esconde |
+|---|---|
+| Hasta 20 | Decenas, centenas, llevada, préstamo |
+| Sin llevada | Llevada y préstamo |
+| Sin mercado | Mercado, masa, capacidad, billetes |
+| Sin centenas | Tres cifras y céntimos que exigen el cien |
+| Sin signo de por | Los signos × y ÷. No esconde los grupos ni el reparto con piezas |
+
+«Sin mercado» no esconde acertijos ni el círculo. El círculo no espera al mercado.
+
+## 11. Currículo
+
+1º de Primaria, primer ciclo LOMLOE, recortado a lo que este castillo enseña con las manos. Lo que no entra se dice aquí, no se deja implícito.
+
+No entran: millares, fracciones, negativos, tablas del 3, 4, 6, 7, 8 y 9, cuarto de hora, conversiones de unidades, media, probabilidad, gráfica con ejes, billetes de 20, 50 y 100, grado, simetría, porcentaje. El cuarto de hora no entra. Los meses de memoria no entran.
+
+Billetes de 5 y de 10 solo en el techo, como papel de juego que se cambia por monedas. Frase de monedas, también ahí: «Estas monedas son del juego.» «No se compra de verdad.»
+
+### 11.1 Números y operaciones
+
+El mapa M01–M81 del capítulo de matemáticas sigue vigente en ejemplos, errores y discriminadores, con estas puertas y no otras:
+
+- Llevada (M41) espera a M23, M24 y M25 firmes. No el mismo día en que se nombra la conmutativa.
+- Préstamo (M44) espera además a M26 y a un pergamino sin salto (M38, M39 o M40) firme.
+- Centenas esperan a las decenas.
+- Céntimos que exigen el cien esperan a la centena. Los euros enteros no.
+- Círculo (M65) espera a que sumar dentro del 10 esté firme. No espera al mercado.
+- Signos × y ÷ después del gesto. Grupos del 2, del 5 y del 10. No se nombra la conmutativa de la multiplicación.
+- Sobra (M81) es techo. No es un fallo. No se parte la piedra.
+
+Estimación, hasta 20, en Acertijos: señala el montón que parece mayor y luego empareja. Si la fila larga engaña, el empareje manda. No es una resta.
+
+Igual y no igual: dos bandejas. El igual no es una flecha. Un símbolo tapa un montón; ella iguala el otro lado y luego se destapa. Eso es el dato desconocido. No es una ecuación escrita.
+
+### 11.2 Medida, espacio, datos y tiempo
+
+Viven en Acertijos o en el Mercado, como juguetes. No hay esfera de doce números, ni regla con centímetros, ni ejes.
+
+| Tema | Dónde | Gesto | No es |
+|---|---|---|---|
+| Longitud | Acertijos, cuando ya compara montones | Dos cintas alineadas por un extremo. Señala la que sobresale. Más tarde, cubrir una cinta con piezas iguales y contarlas | Las varillas del pergamino. El centímetro el primer día |
+| Masa | Mercado, sin esperar a la centena | Balanza. Cuelga piezas hasta nivelar. Baja el lado que pesa más | La tableta no pesa |
+| Capacidad | Mercado, misma puerta | Llenar con vasos iguales y contar vasos. Cabe más el que necesita más vasos | La caja de diez no es un litro |
+| Hora | Acertijos, cuando cuente hasta 12 | Dos piezas gordas: la larga al 12 o al 6, la corta a la hora. En punto y y media | Cronómetro, cuenta atrás, reloj del patio |
+| Ayer, hoy, mañana | Acertijos | Tres fichas en una tira. Coloca la de hoy | El calendario entero |
+| Semana | Techo | Tira de siete, después de las tres fichas | Los meses |
+| Figuras planas | Acertijos | Aparta círculo, cuadrado, triángulo y rectángulo. Luego recorre el borde con el dedo | Contar lados para que la luz espere un nombre. La sala Círculo no vale |
+| Cuerpos | Acertijos | Empuja. La esfera y el cilindro cruzan una raya. El cubo se queda | 3D, giroscopio |
+| Posición | Acertijos, escena fija | Suelta la pieza a la izquierda, a la derecha, delante, detrás, cerca o lejos de Estrella. La izquierda es la de Estrella, marcada | La columna de las unidades. Caminar por el patio |
+| Instrucciones | Acertijos | Ordena dos o tres losas: coge, pon, enciende. El dedo recorre la buena sin pisar la mala | Un lenguaje de programación |
+| Recuento | Acertijos, contar hasta 10 firme | Un palito por objeto. El quinto cruza el grupo. Lee cuántos hay de cada clase | El mismo gesto que contar piedras del nido |
+| Pictograma | Acertijos, otro día | Apila una figura igual por objeto. Señala dónde hay más y lo comprueba emparejando | Sus aciertos, sus luces, sus días. Si la columna mide el saber, se tira |
+
+Metro, kilo y litro son el nombre de después, cuando el gesto ya se ve. No hay conversiones.
+
+### 11.3 Problemas con historia
+
+Cuando la cuenta ya se hace con las manos. Un paso, con dibujo, y el juguete de esa sala. Dos pasos, techo, con los dos momentos dibujados. No hay «tenía algunas». No hay tres pasos.
+
+## 12. Salas que vienen después
+
+Misma pantalla útil. Cada una es una pantalla, no un pasillo.
+
+**Espejo.** Un solo gesto: cruzar los dos montones. Origen 160, 200, 200, 160. Destino 560, 200, 200, 160. No hay un segundo gesto de borde de paño. Solo sumas. Si aparece una resta, no se cruza y no es un fallo trampa: no se ofrece.
+
+**Círculo.** Tres montones, 160×140, en 96, 200; 400, 200; 704, 200. La cinta se suelta en la zona entre dos, no «alrededor». Se ve qué dos quedaron enlazados. Rodear con el dedo no es el gesto. Solo sumas, total como máximo 12, sumandos de 1 a 5.
+
+**Pergamino.** Tres varillas, x 200, 420 y 640, y 140, 80×280. La cuenta soltada en la varilla de al lado vuelve. El salto es una estrella con lengüeta que ella arrastra a la varilla siguiente, un salto, no dos a la vez con dos sumandos. En el préstamo, las diez sueltas se ven en 200, 80, 400, 80, o ese día no se enseña el préstamo. «Me llevo una» es una decena que salta. No se dice «me llevo dos». La decena rota no se devuelve.
+
+**Mercado, primer día de la sala.** Paño 96, 200, 280, 160. Monedas de 1 y de 2 en 420, 200, 280, 160. Cesto 740, 200, 160, 160. Se cubre un precio de 2 con una de 2 o con dos de 1. La de más vuelve a un sitio visible. Las diez monedas de céntimo no entran hasta que quepan con el paño, sin desplazar. Balanza y vasos son otra visita, no el mismo día que el primer euro.
+
+**Jardín.** Como máximo cinco macetas de 120×100 en una fila, semilla de 48 dentro, bolsa 800, 300, 140, 120. La semilla de más se saca con el dedo. Diez semillas de 96 en una maceta no es una respuesta. Diez grupos se cuentan en la recta, no se plantan todos a 96 px.
+
+**Tesoro.** Tres cuencos de 180×140. La gema de arriba se mueve a otro cuenco. La victoria no es la altura si las gemas no se cogen. No hay niños rivales. La sobra, en el techo, se queda en un cofre pequeño y no es un fallo.
+
+**Torre, más adelante.** Los adornos que no caben enteros a 96 px pasan a un arcón. El arcón no muestra siluetas vacías. No hay rareza por partida perfecta.
+
+## 13. Fuera
+
+Multijugador, anuncios, compras, cuentas, diagnóstico, comparación, red, 3D en la tableta, vídeo en el APK, Vulkan, PIN de fábrica, cambio de PIN, recuperación que borre el progreso, preguntas orales, marcador disfrazado de pictograma, reloj de sesión, y cualquier frase que elogie a la persona o nombre una emoción de ella.
