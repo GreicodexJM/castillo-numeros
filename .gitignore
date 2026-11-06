@@ -1,0 +1,11 @@
+.godot/
+*.import
+export_presets.cfg
+*.translation
+.DS_Store
+*.ogg
+*.wav
+*.mp3
+!assets/**/*.ogg
+.env
+*.key
