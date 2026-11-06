@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img">
+  <title>Pieza</title>
+  <desc>Piedra de luz de 96 por 96. El canto y el corte la distinguen del botón.</desc>
+  <path d="M48 8 C66 8 82 22 86 40 C90 58 80 76 64 84 L36 86 C16 82 6 64 8 44 C10 24 28 8 48 8 Z" fill="#F2E2A0" stroke="#2C2416" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M32 30 L54 24 L50 46 L28 42 Z" fill="#FFF8E8" stroke="#2C2416" stroke-width="3" stroke-linejoin="round"/>
+</svg>

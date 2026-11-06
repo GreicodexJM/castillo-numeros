@@ -131,7 +131,7 @@ El listado cerrado de frases está en el capítulo de relato. Si falta un audio,
 
 ## Producción
 
-Los generadores corren en el ordenador de desarrollo, nunca en el juego. Primero se fija la cara de Estrella. Todo lo demás usa esa referencia. Tripo solo para vistas fijas. Sin vídeo dentro del APK. Sin fotos de una niña real. Si falta un dibujo, vale una forma de color del mismo tamaño.
+Los generadores corren en el ordenador de desarrollo, nunca en el juego. La cara la fija `assets/personajes/estrella.json`: melena a la mandíbula, flequillo recto, sin trenza, sin coleta. Si un prompt dice trenza, no se usa. Todo lo demás usa esa referencia. Tripo solo para vistas fijas. Sin vídeo dentro del APK. Sin fotos de una niña real. Si falta un dibujo, vale una forma de color del mismo tamaño.
 
 ## Fuera de producto
 

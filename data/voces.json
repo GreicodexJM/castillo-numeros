@@ -1,0 +1,2511 @@
+{
+  "juego": "Estrella y el Castillo de los Números",
+  "idioma": "es-ES",
+  "personaje": "Estrella",
+  "tono": "cálida, clara y lenta",
+  "motor": "ElevenLabs",
+  "generacion": "ordenador de desarrollo, nunca en la tableta",
+  "si_falta_audio": "se muestra el texto",
+  "una_frase_por_id": true,
+  "frases": [
+    {
+      "id": "bienvenida.hola",
+      "situacion": "bienvenida",
+      "texto": "Hola. Soy Estrella.",
+      "palabras": 3
+    },
+    {
+      "id": "bienvenida.magia",
+      "situacion": "bienvenida",
+      "texto": "Aprendo magia de las luces.",
+      "palabras": 5
+    },
+    {
+      "id": "bienvenida.niebla_suave",
+      "situacion": "bienvenida",
+      "texto": "Esta niebla es suave.",
+      "palabras": 4
+    },
+    {
+      "id": "bienvenida.cortina",
+      "situacion": "bienvenida",
+      "texto": "Parece una cortina clara.",
+      "palabras": 4
+    },
+    {
+      "id": "bienvenida.lamparas_apagadas",
+      "situacion": "bienvenida",
+      "texto": "Ha dejado las lámparas apagadas.",
+      "palabras": 5
+    },
+    {
+      "id": "bienvenida.se_queda",
+      "situacion": "bienvenida",
+      "texto": "Si entendemos una, se queda encendida.",
+      "palabras": 6
+    },
+    {
+      "id": "bienvenida.irte",
+      "situacion": "bienvenida",
+      "texto": "Puedes irte cuando quieras.",
+      "palabras": 4
+    },
+    {
+      "id": "bienvenida.guarda",
+      "situacion": "bienvenida",
+      "texto": "El castillo guarda lo que hagamos.",
+      "palabras": 6
+    },
+    {
+      "id": "bienvenida.aprendiendo",
+      "situacion": "bienvenida",
+      "texto": "Yo también estoy aprendiendo.",
+      "palabras": 4
+    },
+    {
+      "id": "bienvenida.juntas",
+      "situacion": "bienvenida",
+      "texto": "Lo miramos juntas.",
+      "palabras": 3
+    },
+    {
+      "id": "bienvenida.no_adivina",
+      "situacion": "bienvenida",
+      "texto": "Mi magia no adivina.",
+      "palabras": 4
+    },
+    {
+      "id": "bienvenida.enciende",
+      "situacion": "bienvenida",
+      "texto": "Enciende lo que entendemos.",
+      "palabras": 4
+    },
+    {
+      "id": "bienvenida.torre",
+      "situacion": "bienvenida",
+      "texto": "Esta es la torre.",
+      "palabras": 4
+    },
+    {
+      "id": "bienvenida.ya_esta_bien",
+      "situacion": "bienvenida",
+      "texto": "Ya está bien así.",
+      "palabras": 4
+    },
+    {
+      "id": "bienvenida.algo_bonito",
+      "situacion": "bienvenida",
+      "texto": "Si jugamos, le ponemos algo bonito.",
+      "palabras": 6
+    },
+    {
+      "id": "bienvenida.no_perfecto",
+      "situacion": "bienvenida",
+      "texto": "No hace falta hacerlo perfecto.",
+      "palabras": 5
+    },
+    {
+      "id": "bienvenida.jugar_cuenta",
+      "situacion": "bienvenida",
+      "texto": "Jugar ya cuenta.",
+      "palabras": 3
+    },
+    {
+      "id": "bienvenida.hoy_piedras",
+      "situacion": "bienvenida",
+      "texto": "Hoy entramos en las Piedras de luz.",
+      "palabras": 7
+    },
+    {
+      "id": "bienvenida.lampara_diez",
+      "situacion": "bienvenida",
+      "texto": "Hay una lámpara que quiere un diez.",
+      "palabras": 7
+    },
+    {
+      "id": "bienvenida.diez_especial",
+      "situacion": "bienvenida",
+      "texto": "El diez es un grupo especial.",
+      "palabras": 6
+    },
+    {
+      "id": "bienvenida.puerta",
+      "situacion": "bienvenida",
+      "texto": "La puerta se ve.",
+      "palabras": 4
+    },
+    {
+      "id": "bienvenida.duerme",
+      "situacion": "bienvenida",
+      "texto": "La lámpara de dentro aún duerme.",
+      "palabras": 6
+    },
+    {
+      "id": "bienvenida.no_castigada",
+      "situacion": "bienvenida",
+      "texto": "No está castigada. Espera su momento.",
+      "palabras": 6
+    },
+    {
+      "id": "bienvenida.hoy_toca",
+      "situacion": "bienvenida",
+      "texto": "Hoy toca esta luz.",
+      "palabras": 4
+    },
+    {
+      "id": "bienvenida.esperan",
+      "situacion": "bienvenida",
+      "texto": "Las otras esperan, dormidas.",
+      "palabras": 4
+    },
+    {
+      "id": "sala.piedras_1",
+      "situacion": "sala",
+      "texto": "Aquí las piedras se juntan y se separan.",
+      "palabras": 8
+    },
+    {
+      "id": "sala.piedras_2",
+      "situacion": "sala",
+      "texto": "Si ves cómo está hecho el número, la lámpara se enciende.",
+      "palabras": 11
+    },
+    {
+      "id": "sala.espejo_1",
+      "situacion": "sala",
+      "texto": "En el espejo, el montón se puede poner al revés.",
+      "palabras": 10
+    },
+    {
+      "id": "sala.espejo_2",
+      "situacion": "sala",
+      "texto": "Siete y dos es lo mismo que dos y siete.",
+      "palabras": 10
+    },
+    {
+      "id": "sala.espejo_solo_suma",
+      "situacion": "sala",
+      "texto": "El espejo es solo para sumar.",
+      "palabras": 6
+    },
+    {
+      "id": "sala.espejo_resta",
+      "situacion": "sala",
+      "texto": "En la resta, el orden sí importa.",
+      "palabras": 7
+    },
+    {
+      "id": "sala.circulo_1",
+      "situacion": "sala",
+      "texto": "En el círculo hay tres montones pequeños.",
+      "palabras": 7
+    },
+    {
+      "id": "sala.circulo_2",
+      "situacion": "sala",
+      "texto": "Juntas dos, y luego el otro. La suma es la misma.",
+      "palabras": 11
+    },
+    {
+      "id": "sala.circulo_solo_suma",
+      "situacion": "sala",
+      "texto": "El círculo también es solo para sumar.",
+      "palabras": 7
+    },
+    {
+      "id": "sala.circulo_abrazo",
+      "situacion": "sala",
+      "texto": "Tres números pequeños. Los abrazamos de dos en dos.",
+      "palabras": 9
+    },
+    {
+      "id": "sala.pergamino_1",
+      "situacion": "sala",
+      "texto": "En el pergamino, cada cifra va en su columna.",
+      "palabras": 9
+    },
+    {
+      "id": "sala.pergamino_2",
+      "situacion": "sala",
+      "texto": "Unidades con unidades. Decenas con decenas.",
+      "palabras": 6
+    },
+    {
+      "id": "sala.mercado_1",
+      "situacion": "sala",
+      "texto": "En el mercado hay monedas grandes y monedas pequeñas.",
+      "palabras": 9
+    },
+    {
+      "id": "sala.mercado_2",
+      "situacion": "sala",
+      "texto": "Las grandes son euros. Las pequeñas llegan después.",
+      "palabras": 8
+    },
+    {
+      "id": "sala.monedas_juego",
+      "situacion": "sala",
+      "texto": "Estas monedas son del juego.",
+      "palabras": 5,
+      "literal_gdd": true
+    },
+    {
+      "id": "sala.no_compra",
+      "situacion": "sala",
+      "texto": "No se compra de verdad.",
+      "palabras": 5,
+      "literal_gdd": true
+    },
+    {
+      "id": "sala.jardin_1",
+      "situacion": "sala",
+      "texto": "En el jardín, las flores van en grupos iguales.",
+      "palabras": 9
+    },
+    {
+      "id": "sala.jardin_2",
+      "situacion": "sala",
+      "texto": "Dos grupos de cinco son diez flores.",
+      "palabras": 7
+    },
+    {
+      "id": "sala.tesoro_1",
+      "situacion": "sala",
+      "texto": "En el tesoro se reparte a partes iguales. Cada cofre recibe lo mismo.",
+      "palabras": 13
+    },
+    {
+      "id": "sala.tesoro_2",
+      "situacion": "sala",
+      "texto": "Si sobra una pieza, se queda en la mesa, y no pasa nada.",
+      "palabras": 13
+    },
+    {
+      "id": "sala.acertijos_1",
+      "situacion": "sala",
+      "texto": "En los acertijos se mira qué sigue, qué sobra o qué pesa igual.",
+      "palabras": 13
+    },
+    {
+      "id": "sala.acertijos_2",
+      "situacion": "sala",
+      "texto": "Es un juego de mirar, con piezas grandes.",
+      "palabras": 8
+    },
+    {
+      "id": "sala.hoy_mercado",
+      "situacion": "sala",
+      "texto": "Hoy entramos en el mercado.",
+      "palabras": 5
+    },
+    {
+      "id": "sala.pergamino_conocido",
+      "situacion": "sala",
+      "texto": "El pergamino ya lo conoces.",
+      "palabras": 5
+    },
+    {
+      "id": "sala.columnas_tambien",
+      "situacion": "sala",
+      "texto": "Las columnas, también.",
+      "palabras": 3
+    },
+    {
+      "id": "sala.luz_nueva",
+      "situacion": "sala",
+      "texto": "Hoy hay una luz nueva.",
+      "palabras": 5
+    },
+    {
+      "id": "sala.estrellita_pequena",
+      "situacion": "sala",
+      "texto": "Pequeña. Una estrellita.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.visto_diez",
+      "situacion": "idea de hoy",
+      "texto": "He visto cómo se hace un diez.",
+      "palabras": 7
+    },
+    {
+      "id": "idea.despacio",
+      "situacion": "idea de hoy",
+      "texto": "Te lo enseño despacio.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.ocho_cuenco",
+      "situacion": "idea de hoy",
+      "texto": "Ocho piedras en el cuenco.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.anado_dos",
+      "situacion": "idea de hoy",
+      "texto": "Añado dos.",
+      "palabras": 2
+    },
+    {
+      "id": "idea.ocho_y_dos",
+      "situacion": "idea de hoy",
+      "texto": "Ocho y dos son diez.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.brillan",
+      "situacion": "idea de hoy",
+      "texto": "Cuando el diez se cierra, las piedras brillan.",
+      "palabras": 8
+    },
+    {
+      "id": "idea.ahora_tu",
+      "situacion": "idea de hoy",
+      "texto": "Ahora tú.",
+      "palabras": 2
+    },
+    {
+      "id": "idea.arrastra_dos",
+      "situacion": "idea de hoy",
+      "texto": "Arrastra el dos junto al ocho.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.manos",
+      "situacion": "idea de hoy",
+      "texto": "La lámpara quiere ver las manos.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.pieza_viaja",
+      "situacion": "idea de hoy",
+      "texto": "Si la pieza no viaja, no se acuerda.",
+      "palabras": 8
+    },
+    {
+      "id": "idea.moverlas",
+      "situacion": "idea de hoy",
+      "texto": "Vamos a moverlas de verdad.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.mira_unidades",
+      "situacion": "idea de hoy",
+      "texto": "Mira las unidades.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.cinco_y_cinco_son_diez",
+      "situacion": "idea de hoy",
+      "texto": "Cinco y cinco son diez.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.diez_no_se_quedan",
+      "situacion": "idea de hoy",
+      "texto": "Diez unidades no se quedan aquí.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.se_hacen_decena",
+      "situacion": "idea de hoy",
+      "texto": "Se hacen una decena.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.estrellita_salta",
+      "situacion": "idea de hoy",
+      "texto": "La estrellita salta a la otra columna.",
+      "palabras": 7
+    },
+    {
+      "id": "idea.me_llevo_una",
+      "situacion": "idea de hoy",
+      "texto": "Me llevo una.",
+      "palabras": 3,
+      "literal_gdd": true
+    },
+    {
+      "id": "idea.no_queda_ninguna",
+      "situacion": "idea de hoy",
+      "texto": "En las unidades no queda ninguna.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.cero_cabe",
+      "situacion": "idea de hoy",
+      "texto": "El cero cabe.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.diez_saltaron",
+      "situacion": "idea de hoy",
+      "texto": "Significa que las diez ya saltaron.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.no_lo_digas",
+      "situacion": "idea de hoy",
+      "texto": "No hace falta que lo digas.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.manos_dicen",
+      "situacion": "idea de hoy",
+      "texto": "Las manos lo dicen.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.grupo_diez",
+      "situacion": "idea de hoy",
+      "texto": "Haz el grupo de diez.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.luego_salta",
+      "situacion": "idea de hoy",
+      "texto": "Luego salta la estrellita.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.solo_al_sumar",
+      "situacion": "idea de hoy",
+      "texto": "Hoy la estrellita solo salta al sumar.",
+      "palabras": 7
+    },
+    {
+      "id": "idea.romper_otro_dia",
+      "situacion": "idea de hoy",
+      "texto": "Romper una decena llega otro día.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.se_llama_llevada",
+      "situacion": "idea de hoy",
+      "texto": "Esto se llama llevada.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.salto_que_haces",
+      "situacion": "idea de hoy",
+      "texto": "Es el salto que ya haces.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.ocho_y_cinco",
+      "situacion": "idea de hoy",
+      "texto": "Ocho y cinco.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.ocho_quiere_diez",
+      "situacion": "idea de hoy",
+      "texto": "El ocho quiere llegar a diez.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.le_caben_dos",
+      "situacion": "idea de hoy",
+      "texto": "Le caben dos.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.sobran_tres",
+      "situacion": "idea de hoy",
+      "texto": "Sobran tres.",
+      "palabras": 2
+    },
+    {
+      "id": "idea.diez_y_tres",
+      "situacion": "idea de hoy",
+      "texto": "Diez y tres son trece.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.ocho_cinco_es_diez_tres",
+      "situacion": "idea de hoy",
+      "texto": "Ocho y cinco es lo mismo que diez y tres.",
+      "palabras": 10
+    },
+    {
+      "id": "idea.unidad_no_llega",
+      "situacion": "idea de hoy",
+      "texto": "En la resta, a veces la unidad no llega.",
+      "palabras": 9
+    },
+    {
+      "id": "idea.pido_prestada",
+      "situacion": "idea de hoy",
+      "texto": "Pido prestada una decena.",
+      "palabras": 4,
+      "literal_gdd": true
+    },
+    {
+      "id": "idea.se_rompe",
+      "situacion": "idea de hoy",
+      "texto": "Esa decena se rompe en diez unidades.",
+      "palabras": 7
+    },
+    {
+      "id": "idea.no_se_pierde",
+      "situacion": "idea de hoy",
+      "texto": "No se pierde.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.cambia_forma",
+      "situacion": "idea de hoy",
+      "texto": "Se cambia de forma.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.caben_decenas",
+      "situacion": "idea de hoy",
+      "texto": "Ya caben las decenas.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.columna_mas",
+      "situacion": "idea de hoy",
+      "texto": "Ahora hay una columna más.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.son_centenas",
+      "situacion": "idea de hoy",
+      "texto": "Esta columna son las centenas.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.diez_decenas",
+      "situacion": "idea de hoy",
+      "texto": "Diez decenas hacen una centena.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.salta_igual",
+      "situacion": "idea de hoy",
+      "texto": "La estrellita salta igual que antes.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.cien_decenas",
+      "situacion": "idea de hoy",
+      "texto": "Cien es diez decenas.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.tambien_centena",
+      "situacion": "idea de hoy",
+      "texto": "También es una centena.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.lazo_un_euro",
+      "situacion": "idea de hoy",
+      "texto": "Este lazo cuesta un euro.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.moneda_grande",
+      "situacion": "idea de hoy",
+      "texto": "Una moneda grande.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.un_euro",
+      "situacion": "idea de hoy",
+      "texto": "Un euro.",
+      "palabras": 2
+    },
+    {
+      "id": "idea.pongo_platillo",
+      "situacion": "idea de hoy",
+      "texto": "Mira cómo lo pongo en el platillo.",
+      "palabras": 7
+    },
+    {
+      "id": "idea.arrastra_euro",
+      "situacion": "idea de hoy",
+      "texto": "Arrastra un euro al platillo.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.monedas_pequenas",
+      "situacion": "idea de hoy",
+      "texto": "Hoy sí salen las monedas pequeñas.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.centimos",
+      "situacion": "idea de hoy",
+      "texto": "Se llaman céntimos.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.diez_de_diez",
+      "situacion": "idea de hoy",
+      "texto": "Diez monedas de diez céntimos hacen un euro.",
+      "palabras": 8
+    },
+    {
+      "id": "idea.mismo_salto",
+      "situacion": "idea de hoy",
+      "texto": "Es el mismo salto de siempre.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.diez_de_estas",
+      "situacion": "idea de hoy",
+      "texto": "Diez de estas hacen una de aquellas.",
+      "palabras": 7
+    },
+    {
+      "id": "idea.diez_de_diez_corto",
+      "situacion": "idea de hoy",
+      "texto": "Diez de diez.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.se_cambian",
+      "situacion": "idea de hoy",
+      "texto": "Se cambian por esta moneda grande.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.sin_signo",
+      "situacion": "idea de hoy",
+      "texto": "No hace falta el signo todavía.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.manos_grupos",
+      "situacion": "idea de hoy",
+      "texto": "Las manos hacen los grupos.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.signo_por",
+      "situacion": "idea de hoy",
+      "texto": "Este signo se llama por.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.signo_cuando",
+      "situacion": "idea de hoy",
+      "texto": "Llega cuando los grupos ya se ven.",
+      "palabras": 7
+    },
+    {
+      "id": "idea.repartimos",
+      "situacion": "idea de hoy",
+      "texto": "Repartimos a partes iguales.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.cada_cofre",
+      "situacion": "idea de hoy",
+      "texto": "Cada cofre recibe lo mismo.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.signo_dividir",
+      "situacion": "idea de hoy",
+      "texto": "Este signo, dividir, llega después.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.sobra_una_mesa",
+      "situacion": "idea de hoy",
+      "texto": "Si sobra una, se queda en la mesa.",
+      "palabras": 8
+    },
+    {
+      "id": "idea.no_castigo",
+      "situacion": "idea de hoy",
+      "texto": "No es un castigo.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.siete_izquierda",
+      "situacion": "idea de hoy",
+      "texto": "Mira. Yo pongo el siete a la izquierda.",
+      "palabras": 8
+    },
+    {
+      "id": "idea.paso_derecha",
+      "situacion": "idea de hoy",
+      "texto": "Luego lo paso a la derecha.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.monton_mismo",
+      "situacion": "idea de hoy",
+      "texto": "El montón es el mismo.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.cambia_orden",
+      "situacion": "idea de hoy",
+      "texto": "Cambia el orden.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.numeros_largos",
+      "situacion": "idea de hoy",
+      "texto": "Los números son más largos.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.gesto_mismo",
+      "situacion": "idea de hoy",
+      "texto": "El gesto es el mismo.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.mismo_castillo",
+      "situacion": "idea de hoy",
+      "texto": "No hay otro castillo para los mayores.",
+      "palabras": 7
+    },
+    {
+      "id": "idea.mas_columnas",
+      "situacion": "idea de hoy",
+      "texto": "Hay más columnas, y el mismo cuidado.",
+      "palabras": 7
+    },
+    {
+      "id": "idea.nombre_largo",
+      "situacion": "idea de hoy",
+      "texto": "Este truco tiene un nombre largo.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.conmutativa",
+      "situacion": "idea de hoy",
+      "texto": "Conmutativa.",
+      "palabras": 1
+    },
+    {
+      "id": "idea.significa_esto",
+      "situacion": "idea de hoy",
+      "texto": "Significa esto.",
+      "palabras": 2
+    },
+    {
+      "id": "idea.al_reves",
+      "situacion": "idea de hoy",
+      "texto": "Al revés, la suma es la misma.",
+      "palabras": 7
+    },
+    {
+      "id": "idea.asociativa",
+      "situacion": "idea de hoy",
+      "texto": "Este otro nombre es asociativa.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.da_igual",
+      "situacion": "idea de hoy",
+      "texto": "Da igual qué dos juntes primero.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.suma_misma",
+      "situacion": "idea de hoy",
+      "texto": "La suma es la misma.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.nombre_pesa",
+      "situacion": "idea de hoy",
+      "texto": "Si el nombre pesa, lo dejamos.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.manos_saben",
+      "situacion": "idea de hoy",
+      "texto": "Tus manos ya lo saben.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.tabla_nombre",
+      "situacion": "idea de hoy",
+      "texto": "Esta tabla ya tiene nombre.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.tabla_dos",
+      "situacion": "idea de hoy",
+      "texto": "La del dos.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.tabla_cuenta",
+      "situacion": "idea de hoy",
+      "texto": "Dos, cuatro, seis, ocho, diez.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.sobra_una",
+      "situacion": "idea de hoy",
+      "texto": "Sobra una.",
+      "palabras": 2
+    },
+    {
+      "id": "idea.se_queda_mesa",
+      "situacion": "idea de hoy",
+      "texto": "Se queda en la mesa.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.se_dice",
+      "situacion": "idea de hoy",
+      "texto": "Se dice, y ya está.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.historia_cinco",
+      "situacion": "idea de hoy",
+      "texto": "Estrella tiene cinco piedras.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.historia_dos",
+      "situacion": "idea de hoy",
+      "texto": "Encuentra dos más.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.juntalas",
+      "situacion": "idea de hoy",
+      "texto": "Júntalas.",
+      "palabras": 1
+    },
+    {
+      "id": "idea.cuantas_hay",
+      "situacion": "idea de hoy",
+      "texto": "¿Cuántas hay?",
+      "palabras": 2
+    },
+    {
+      "id": "idea.primer_paso",
+      "situacion": "idea de hoy",
+      "texto": "Primero este paso.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.dibujo",
+      "situacion": "idea de hoy",
+      "texto": "Con el dibujo delante.",
+      "palabras": 4
+    },
+    {
+      "id": "idea.luego_otro",
+      "situacion": "idea de hoy",
+      "texto": "Luego el otro.",
+      "palabras": 3
+    },
+    {
+      "id": "idea.no_los_dos",
+      "situacion": "idea de hoy",
+      "texto": "No los dos a la vez.",
+      "palabras": 6
+    },
+    {
+      "id": "idea.centimos_otro_dia",
+      "situacion": "idea de hoy",
+      "texto": "Las monedas pequeñas son céntimos.",
+      "palabras": 5
+    },
+    {
+      "id": "idea.otro_dia",
+      "situacion": "idea de hoy",
+      "texto": "Otro día.",
+      "palabras": 2
+    },
+    {
+      "id": "cuenta.mira_tres",
+      "situacion": "cuenta que ya sabe",
+      "texto": "Mira estas tres.",
+      "palabras": 3
+    },
+    {
+      "id": "cuenta.de_un_golpe",
+      "situacion": "cuenta que ya sabe",
+      "texto": "Se ven de un golpe.",
+      "palabras": 5
+    },
+    {
+      "id": "cuenta.arrastra_cuenco",
+      "situacion": "cuenta que ya sabe",
+      "texto": "Arrástralas al cuenco.",
+      "palabras": 3
+    },
+    {
+      "id": "cuenta.mira_monedas",
+      "situacion": "cuenta que ya sabe",
+      "texto": "Mira estas tres monedas.",
+      "palabras": 4
+    },
+    {
+      "id": "cuenta.arrastra_platillo",
+      "situacion": "cuenta que ya sabe",
+      "texto": "Arrástralas al platillo.",
+      "palabras": 3
+    },
+    {
+      "id": "cuenta.tres_y_cuatro",
+      "situacion": "cuenta que ya sabe",
+      "texto": "Tres y cuatro.",
+      "palabras": 3
+    },
+    {
+      "id": "cuenta.dos_unidades",
+      "situacion": "cuenta que ya sabe",
+      "texto": "Las dos en las unidades.",
+      "palabras": 5
+    },
+    {
+      "id": "cuenta.arrastra_cuatro",
+      "situacion": "cuenta que ya sabe",
+      "texto": "Arrastra el cuatro debajo del tres.",
+      "palabras": 6
+    },
+    {
+      "id": "duda.d01",
+      "situacion": "duda",
+      "texto": "La tienes en la mano. Puedes mirarla un poco más.",
+      "palabras": 10,
+      "banco": "D01"
+    },
+    {
+      "id": "duda.d02",
+      "situacion": "duda",
+      "texto": "No hay prisa. La piedra espera.",
+      "palabras": 6,
+      "banco": "D02"
+    },
+    {
+      "id": "duda.d03",
+      "situacion": "duda",
+      "texto": "Si la sueltas ahí, no pasa nada. Sigue en la mesa.",
+      "palabras": 11,
+      "banco": "D03"
+    },
+    {
+      "id": "duda.d04",
+      "situacion": "duda",
+      "texto": "Has cambiado de bandeja. Se pueden mirar las dos.",
+      "palabras": 9,
+      "banco": "D04"
+    },
+    {
+      "id": "duda.d05",
+      "situacion": "duda",
+      "texto": "La miras un rato. Yo también.",
+      "palabras": 6,
+      "banco": "D05"
+    },
+    {
+      "id": "duda.d06",
+      "situacion": "duda",
+      "texto": "Puedes devolverla. Elegir otra también es jugar.",
+      "palabras": 7,
+      "banco": "D06"
+    },
+    {
+      "id": "duda.d07",
+      "situacion": "duda",
+      "texto": "El diez no se va. Lo miramos despacito.",
+      "palabras": 8,
+      "banco": "D07"
+    },
+    {
+      "id": "duda.d08",
+      "situacion": "duda",
+      "texto": "Sostenerla es mirar. La mueves cuando quieras.",
+      "palabras": 7,
+      "banco": "D08"
+    },
+    {
+      "id": "duda.d09",
+      "situacion": "duda",
+      "texto": "¿Probamos con la de dos? Tú la eliges.",
+      "palabras": 8,
+      "banco": "D09"
+    },
+    {
+      "id": "duda.d10",
+      "situacion": "duda",
+      "texto": "Si te desdices, la luz no se apaga.",
+      "palabras": 8,
+      "banco": "D10"
+    },
+    {
+      "id": "duda.d11",
+      "situacion": "duda",
+      "texto": "Esta columna espera. Primero miramos las unidades.",
+      "palabras": 7,
+      "banco": "D11"
+    },
+    {
+      "id": "duda.d12",
+      "situacion": "duda",
+      "texto": "Parar un momento está bien. Seguimos cuando quieras.",
+      "palabras": 8,
+      "banco": "D12"
+    },
+    {
+      "id": "fallo.f01",
+      "situacion": "fallo concreto",
+      "texto": "Esas dos aún no hacen diez. Mira cuántas faltan.",
+      "palabras": 9,
+      "banco": "F01"
+    },
+    {
+      "id": "fallo.f02",
+      "situacion": "fallo concreto",
+      "texto": "El ocho está en el cuenco. A diez le faltan dos.",
+      "palabras": 11,
+      "banco": "F02"
+    },
+    {
+      "id": "fallo.f03",
+      "situacion": "fallo concreto",
+      "texto": "Esta piedra se ha quedado en la mesa. Su amiga la espera.",
+      "palabras": 12,
+      "banco": "F03"
+    },
+    {
+      "id": "fallo.f04",
+      "situacion": "fallo concreto",
+      "texto": "Hay más de nueve unidades. Diez saltan a las decenas.",
+      "palabras": 10,
+      "banco": "F04"
+    },
+    {
+      "id": "fallo.f05",
+      "situacion": "fallo concreto",
+      "texto": "La estrellita sigue en su columna. Primero haz un grupo de diez.",
+      "palabras": 12,
+      "banco": "F05"
+    },
+    {
+      "id": "fallo.f06",
+      "situacion": "fallo concreto",
+      "texto": "Esas monedas no cubren el precio. Hace falta una más.",
+      "palabras": 10,
+      "banco": "F06"
+    },
+    {
+      "id": "fallo.f07",
+      "situacion": "fallo concreto",
+      "texto": "La decena ha caído con las unidades. Cada una en su columna.",
+      "palabras": 12,
+      "banco": "F07"
+    },
+    {
+      "id": "fallo.f08",
+      "situacion": "fallo concreto",
+      "texto": "El hueco pide estrella. El ritmo es piedra, estrella.",
+      "palabras": 9,
+      "banco": "F08"
+    },
+    {
+      "id": "fallo.f09",
+      "situacion": "fallo concreto",
+      "texto": "Esos grupos no tienen las mismas flores. Vamos a dejarlos iguales.",
+      "palabras": 11,
+      "banco": "F09"
+    },
+    {
+      "id": "fallo.f10",
+      "situacion": "fallo concreto",
+      "texto": "Un cofre tiene de más. Pasamos una pieza al otro.",
+      "palabras": 10,
+      "banco": "F10"
+    },
+    {
+      "id": "fallo.f11",
+      "situacion": "fallo concreto",
+      "texto": "Siete y dos son nueve. Para el diez falta una.",
+      "palabras": 10,
+      "banco": "F11"
+    },
+    {
+      "id": "fallo.f12",
+      "situacion": "fallo concreto",
+      "texto": "Has soltado un cinco. Esta bandeja espera un dos.",
+      "palabras": 9,
+      "banco": "F12"
+    },
+    {
+      "id": "fallo.son_nueve",
+      "situacion": "fallo concreto",
+      "texto": "Son nueve. Falta una.",
+      "palabras": 4,
+      "literal_gdd": true
+    },
+    {
+      "id": "fallo.falta_cuenco",
+      "situacion": "fallo concreto",
+      "texto": "Falta una en el cuenco.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.esta_mesa",
+      "situacion": "fallo concreto",
+      "texto": "Está en la mesa.",
+      "palabras": 4
+    },
+    {
+      "id": "fallo.ocho_cuenco",
+      "situacion": "fallo concreto",
+      "texto": "El ocho está en el cuenco.",
+      "palabras": 6
+    },
+    {
+      "id": "fallo.faltan_dos",
+      "situacion": "fallo concreto",
+      "texto": "A diez le faltan dos.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.siete_y_dos",
+      "situacion": "fallo concreto",
+      "texto": "Siete y dos son nueve.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.falta_una",
+      "situacion": "fallo concreto",
+      "texto": "Para el diez falta una.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.nueve_esta",
+      "situacion": "fallo concreto",
+      "texto": "El nueve está.",
+      "palabras": 3
+    },
+    {
+      "id": "fallo.falta_una_diez",
+      "situacion": "fallo concreto",
+      "texto": "A diez le falta una.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.son_seis",
+      "situacion": "fallo concreto",
+      "texto": "Son seis.",
+      "palabras": 2
+    },
+    {
+      "id": "fallo.faltan_cuatro",
+      "situacion": "fallo concreto",
+      "texto": "Para el diez faltan cuatro.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.hueco_estrella",
+      "situacion": "fallo concreto",
+      "texto": "El hueco pide estrella.",
+      "palabras": 4
+    },
+    {
+      "id": "fallo.mas_de_nueve",
+      "situacion": "fallo concreto",
+      "texto": "Hay más de nueve unidades.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.diez_saltan",
+      "situacion": "fallo concreto",
+      "texto": "Diez saltan a las decenas.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.cuatro_con_tres",
+      "situacion": "fallo concreto",
+      "texto": "El cuatro va con el tres.",
+      "palabras": 6
+    },
+    {
+      "id": "fallo.son_unidades",
+      "situacion": "fallo concreto",
+      "texto": "Los dos son unidades.",
+      "palabras": 4
+    },
+    {
+      "id": "fallo.ya_son_diez_sobra",
+      "situacion": "fallo concreto",
+      "texto": "Estas unidades ya son diez, y te sobra una.",
+      "palabras": 9
+    },
+    {
+      "id": "fallo.estrellita_se_lleva",
+      "situacion": "fallo concreto",
+      "texto": "La estrellita se lleva el diez.",
+      "palabras": 6
+    },
+    {
+      "id": "fallo.nueve_y_uno",
+      "situacion": "fallo concreto",
+      "texto": "El nueve y el uno ya son diez.",
+      "palabras": 8
+    },
+    {
+      "id": "fallo.no_se_queda",
+      "situacion": "fallo concreto",
+      "texto": "Ese diez no se queda abajo.",
+      "palabras": 6
+    },
+    {
+      "id": "fallo.pasan_de_nueve",
+      "situacion": "fallo concreto",
+      "texto": "Seis y siete pasan de nueve.",
+      "palabras": 6
+    },
+    {
+      "id": "fallo.resto_se_queda",
+      "situacion": "fallo concreto",
+      "texto": "Diez saltan. El resto se queda.",
+      "palabras": 6
+    },
+    {
+      "id": "fallo.estrellita_junta",
+      "situacion": "fallo concreto",
+      "texto": "La estrellita se junta con la decena de arriba.",
+      "palabras": 9
+    },
+    {
+      "id": "fallo.una_y_una",
+      "situacion": "fallo concreto",
+      "texto": "Una y una son dos.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.moneda_un_euro",
+      "situacion": "fallo concreto",
+      "texto": "Esta es la de un euro.",
+      "palabras": 6
+    },
+    {
+      "id": "fallo.lazo_pide_una",
+      "situacion": "fallo concreto",
+      "texto": "El lazo pide una.",
+      "palabras": 4
+    },
+    {
+      "id": "fallo.dos_euros_espera",
+      "situacion": "fallo concreto",
+      "texto": "La de dos euros espera en la mesa.",
+      "palabras": 8
+    },
+    {
+      "id": "fallo.un_euro_platillo",
+      "situacion": "fallo concreto",
+      "texto": "Hay un euro en el platillo.",
+      "palabras": 6
+    },
+    {
+      "id": "fallo.farolillo_pide_dos",
+      "situacion": "fallo concreto",
+      "texto": "El farolillo pide dos.",
+      "palabras": 4
+    },
+    {
+      "id": "fallo.platillo_de_mas",
+      "situacion": "fallo concreto",
+      "texto": "El platillo tiene de más.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.precio_dos",
+      "situacion": "fallo concreto",
+      "texto": "El precio es dos.",
+      "palabras": 4
+    },
+    {
+      "id": "fallo.devolver_una",
+      "situacion": "fallo concreto",
+      "texto": "Puedes devolver una.",
+      "palabras": 3
+    },
+    {
+      "id": "fallo.aun_no_cuatro",
+      "situacion": "fallo concreto",
+      "texto": "Aún no son cuatro.",
+      "palabras": 4
+    },
+    {
+      "id": "fallo.cuenta_despacio",
+      "situacion": "fallo concreto",
+      "texto": "Cuenta las monedas de euro, despacio.",
+      "palabras": 6
+    },
+    {
+      "id": "fallo.aun_no_diez",
+      "situacion": "fallo concreto",
+      "texto": "Aún no hay diez monedas de diez.",
+      "palabras": 7
+    },
+    {
+      "id": "fallo.euro_espera",
+      "situacion": "fallo concreto",
+      "texto": "El euro espera a las diez.",
+      "palabras": 6
+    },
+    {
+      "id": "fallo.decena_romperse",
+      "situacion": "fallo concreto",
+      "texto": "La decena prestada tiene que romperse.",
+      "palabras": 6
+    },
+    {
+      "id": "fallo.son_diez_unidades",
+      "situacion": "fallo concreto",
+      "texto": "Son diez unidades.",
+      "palabras": 3
+    },
+    {
+      "id": "fallo.otra_columna",
+      "situacion": "fallo concreto",
+      "texto": "Van a la otra columna.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.es_centena",
+      "situacion": "fallo concreto",
+      "texto": "Esta es una centena.",
+      "palabras": 4
+    },
+    {
+      "id": "fallo.columna_izquierda",
+      "situacion": "fallo concreto",
+      "texto": "Va en la columna de la izquierda.",
+      "palabras": 7
+    },
+    {
+      "id": "fallo.u_d_c",
+      "situacion": "fallo concreto",
+      "texto": "Unidades, decenas, centenas.",
+      "palabras": 3
+    },
+    {
+      "id": "fallo.cofre_de_mas",
+      "situacion": "fallo concreto",
+      "texto": "Un cofre tiene de más.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.pasamos_una",
+      "situacion": "fallo concreto",
+      "texto": "Pasamos una pieza al otro.",
+      "palabras": 5
+    },
+    {
+      "id": "fallo.esta_es_la_de_dos",
+      "situacion": "fallo concreto",
+      "texto": "Esta es la de dos.",
+      "palabras": 5
+    },
+    {
+      "id": "ayuda.ejemplo",
+      "situacion": "ayuda",
+      "texto": "Te dejo el ejemplo al lado.",
+      "palabras": 6
+    },
+    {
+      "id": "ayuda.la_mueves_tu",
+      "situacion": "ayuda",
+      "texto": "La tuya la mueves tú.",
+      "palabras": 5
+    },
+    {
+      "id": "ayuda.tu_la_llevas",
+      "situacion": "ayuda",
+      "texto": "Tú la llevas.",
+      "palabras": 3
+    },
+    {
+      "id": "ayuda.ritmo_al_lado",
+      "situacion": "ayuda",
+      "texto": "Te dejo el ritmo al lado.",
+      "palabras": 6
+    },
+    {
+      "id": "ayuda.tu_pones",
+      "situacion": "ayuda",
+      "texto": "Tú pones la pieza.",
+      "palabras": 4
+    },
+    {
+      "id": "ayuda.mira_salto",
+      "situacion": "ayuda",
+      "texto": "Mira el salto.",
+      "palabras": 3
+    },
+    {
+      "id": "ayuda.piedra_estrella",
+      "situacion": "ayuda",
+      "texto": "Piedra, estrella.",
+      "palabras": 2
+    },
+    {
+      "id": "ayuda.otra_vez_ritmo",
+      "situacion": "ayuda",
+      "texto": "Otra vez: piedra, estrella.",
+      "palabras": 4
+    },
+    {
+      "id": "ayuda.con_cuidado",
+      "situacion": "ayuda",
+      "texto": "Ponla con cuidado. Ahí, en el cuenco.",
+      "palabras": 7
+    },
+    {
+      "id": "acierto.a01",
+      "situacion": "acierto concreto",
+      "texto": "Has juntado ocho y dos. Ya son diez.",
+      "palabras": 8,
+      "banco": "A01"
+    },
+    {
+      "id": "acierto.a02",
+      "situacion": "acierto concreto",
+      "texto": "Tus manos han hecho el grupo. La lámpara se acuerda.",
+      "palabras": 10,
+      "banco": "A02"
+    },
+    {
+      "id": "acierto.a03",
+      "situacion": "acierto concreto",
+      "texto": "Has arrastrado el dos hasta el ocho. Así se completa.",
+      "palabras": 10,
+      "banco": "A03"
+    },
+    {
+      "id": "acierto.a04",
+      "situacion": "acierto concreto",
+      "texto": "Has puesto la estrella en el hueco. El ritmo sigue.",
+      "palabras": 10,
+      "banco": "A04"
+    },
+    {
+      "id": "acierto.a05",
+      "situacion": "acierto concreto",
+      "texto": "La estrellita ha saltado. Te llevas una a las decenas.",
+      "palabras": 10,
+      "banco": "A05"
+    },
+    {
+      "id": "acierto.a06",
+      "situacion": "acierto concreto",
+      "texto": "Has alineado unidades con unidades. Se ve claro.",
+      "palabras": 8,
+      "banco": "A06"
+    },
+    {
+      "id": "acierto.a07",
+      "situacion": "acierto concreto",
+      "texto": "Has pagado un euro con una moneda. El lazo va a la torre.",
+      "palabras": 13,
+      "banco": "A07"
+    },
+    {
+      "id": "acierto.a08",
+      "situacion": "acierto concreto",
+      "texto": "Has hecho dos grupos de cinco. Las flores coinciden.",
+      "palabras": 9,
+      "banco": "A08"
+    },
+    {
+      "id": "acierto.a09",
+      "situacion": "acierto concreto",
+      "texto": "Has dado lo mismo a cada cofre. El reparto queda justo.",
+      "palabras": 11,
+      "banco": "A09"
+    },
+    {
+      "id": "acierto.a11",
+      "situacion": "acierto concreto",
+      "texto": "Has esperado, y luego has soltado la pieza justa.",
+      "palabras": 9,
+      "banco": "A11"
+    },
+    {
+      "id": "acierto.a12",
+      "situacion": "acierto concreto",
+      "texto": "Siete y tres, juntas, hacen diez. Lo has visto.",
+      "palabras": 9,
+      "banco": "A12"
+    },
+    {
+      "id": "acierto.juntado_tres",
+      "situacion": "acierto concreto",
+      "texto": "Has juntado las tres.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.se_ven_claras",
+      "situacion": "acierto concreto",
+      "texto": "Se ven claras.",
+      "palabras": 3
+    },
+    {
+      "id": "acierto.dos_con_ocho",
+      "situacion": "acierto concreto",
+      "texto": "Has puesto el dos con el ocho.",
+      "palabras": 7
+    },
+    {
+      "id": "acierto.ya_son_diez",
+      "situacion": "acierto concreto",
+      "texto": "Ya son diez.",
+      "palabras": 3
+    },
+    {
+      "id": "acierto.lampara_lo_ve",
+      "situacion": "acierto concreto",
+      "texto": "La lámpara lo ve.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.siete_y_tres",
+      "situacion": "acierto concreto",
+      "texto": "Siete y tres.",
+      "palabras": 3
+    },
+    {
+      "id": "acierto.nueve_y_uno",
+      "situacion": "acierto concreto",
+      "texto": "Nueve y uno.",
+      "palabras": 3
+    },
+    {
+      "id": "acierto.seis_y_cuatro",
+      "situacion": "acierto concreto",
+      "texto": "Seis y cuatro.",
+      "palabras": 3
+    },
+    {
+      "id": "acierto.cinco_y_cinco",
+      "situacion": "acierto concreto",
+      "texto": "Cinco y cinco.",
+      "palabras": 3
+    },
+    {
+      "id": "acierto.lampara_calienta",
+      "situacion": "acierto concreto",
+      "texto": "La lámpara ya calienta.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.estrella_hueco",
+      "situacion": "acierto concreto",
+      "texto": "Has puesto la estrella en el hueco.",
+      "palabras": 7
+    },
+    {
+      "id": "acierto.ritmo_sigue",
+      "situacion": "acierto concreto",
+      "texto": "El ritmo sigue.",
+      "palabras": 3
+    },
+    {
+      "id": "acierto.hecho_un_diez",
+      "situacion": "acierto concreto",
+      "texto": "Has hecho un diez.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.alineado",
+      "situacion": "acierto concreto",
+      "texto": "Has alineado unidades con unidades.",
+      "palabras": 5
+    },
+    {
+      "id": "acierto.siete_sin_saltar",
+      "situacion": "acierto concreto",
+      "texto": "Siete. No hace falta saltar.",
+      "palabras": 5
+    },
+    {
+      "id": "acierto.estrellita_saltado",
+      "situacion": "acierto concreto",
+      "texto": "La estrellita ha saltado.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.te_llevas_una",
+      "situacion": "acierto concreto",
+      "texto": "Te llevas una a las decenas.",
+      "palabras": 6
+    },
+    {
+      "id": "acierto.cero_unidades",
+      "situacion": "acierto concreto",
+      "texto": "El cero se queda en las unidades.",
+      "palabras": 7
+    },
+    {
+      "id": "acierto.dejado_el_uno",
+      "situacion": "acierto concreto",
+      "texto": "Has dejado el uno.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.te_llevas_una_corto",
+      "situacion": "acierto concreto",
+      "texto": "Te llevas una.",
+      "palabras": 3
+    },
+    {
+      "id": "acierto.diez_unidades",
+      "situacion": "acierto concreto",
+      "texto": "Diez unidades.",
+      "palabras": 2
+    },
+    {
+      "id": "acierto.abajo_cero",
+      "situacion": "acierto concreto",
+      "texto": "Abajo, cero.",
+      "palabras": 2
+    },
+    {
+      "id": "acierto.saltado_una",
+      "situacion": "acierto concreto",
+      "texto": "Has saltado una.",
+      "palabras": 3
+    },
+    {
+      "id": "acierto.ya_habia_una",
+      "situacion": "acierto concreto",
+      "texto": "En las decenas ya había una.",
+      "palabras": 6
+    },
+    {
+      "id": "acierto.juntas_dos",
+      "situacion": "acierto concreto",
+      "texto": "Juntas, son dos.",
+      "palabras": 3
+    },
+    {
+      "id": "acierto.puesta_corta",
+      "situacion": "acierto concreto",
+      "texto": "Has puesto la corta.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.tres_euros",
+      "situacion": "acierto concreto",
+      "texto": "Has juntado tres euros.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.una_moneda",
+      "situacion": "acierto concreto",
+      "texto": "Una moneda, un euro.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.pagado_una_moneda",
+      "situacion": "acierto concreto",
+      "texto": "Has pagado un euro con una moneda.",
+      "palabras": 7
+    },
+    {
+      "id": "acierto.lazo_torre",
+      "situacion": "acierto concreto",
+      "texto": "El lazo ya se puede ir a la torre.",
+      "palabras": 9
+    },
+    {
+      "id": "acierto.dos_monedas",
+      "situacion": "acierto concreto",
+      "texto": "Dos monedas.",
+      "palabras": 2
+    },
+    {
+      "id": "acierto.dos_euros",
+      "situacion": "acierto concreto",
+      "texto": "Dos euros.",
+      "palabras": 2
+    },
+    {
+      "id": "acierto.armado_dos",
+      "situacion": "acierto concreto",
+      "texto": "Has armado dos euros.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.precio_cubierto",
+      "situacion": "acierto concreto",
+      "texto": "El precio está cubierto.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.armado_cuatro",
+      "situacion": "acierto concreto",
+      "texto": "Has armado cuatro euros.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.se_ve",
+      "situacion": "acierto concreto",
+      "texto": "Se ve en el platillo.",
+      "palabras": 5
+    },
+    {
+      "id": "acierto.tres_de_un_euro",
+      "situacion": "acierto concreto",
+      "texto": "Tres monedas de un euro.",
+      "palabras": 5
+    },
+    {
+      "id": "acierto.tres_euros_nombre",
+      "situacion": "acierto concreto",
+      "texto": "Tres euros.",
+      "palabras": 2
+    },
+    {
+      "id": "acierto.puesta_de_uno",
+      "situacion": "acierto concreto",
+      "texto": "Has puesto la de uno.",
+      "palabras": 5
+    },
+    {
+      "id": "acierto.pesan_igual",
+      "situacion": "acierto concreto",
+      "texto": "Sí. Los dejamos como están.",
+      "palabras": 5
+    },
+    {
+      "id": "acierto.pagado_un_euro",
+      "situacion": "acierto concreto",
+      "texto": "Has pagado un euro.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.lazo_para_torre",
+      "situacion": "acierto concreto",
+      "texto": "El lazo es para la torre.",
+      "palabras": 6
+    },
+    {
+      "id": "acierto.mercado_luz",
+      "situacion": "acierto concreto",
+      "texto": "Hoy el mercado se queda con luz.",
+      "palabras": 7
+    },
+    {
+      "id": "acierto.cambiado_diez",
+      "situacion": "acierto concreto",
+      "texto": "Has cambiado diez por uno.",
+      "palabras": 5
+    },
+    {
+      "id": "acierto.como_pergamino",
+      "situacion": "acierto concreto",
+      "texto": "Como en el pergamino.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.partido_cinco",
+      "situacion": "acierto concreto",
+      "texto": "Has partido el cinco.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.dos_para_diez",
+      "situacion": "acierto concreto",
+      "texto": "Dos para llegar al diez.",
+      "palabras": 5
+    },
+    {
+      "id": "acierto.tres_que_sobran",
+      "situacion": "acierto concreto",
+      "texto": "Tres que sobran.",
+      "palabras": 3
+    },
+    {
+      "id": "acierto.pedido_prestada",
+      "situacion": "acierto concreto",
+      "texto": "Has pedido prestada una decena.",
+      "palabras": 5
+    },
+    {
+      "id": "acierto.diez_unidades_mas",
+      "situacion": "acierto concreto",
+      "texto": "Ya tienes diez unidades más.",
+      "palabras": 5
+    },
+    {
+      "id": "acierto.ahora_restar",
+      "situacion": "acierto concreto",
+      "texto": "Ahora sí se puede restar.",
+      "palabras": 5
+    },
+    {
+      "id": "acierto.lo_mismo_cofre",
+      "situacion": "acierto concreto",
+      "texto": "Has dado lo mismo a cada cofre.",
+      "palabras": 7
+    },
+    {
+      "id": "acierto.reparto_justo",
+      "situacion": "acierto concreto",
+      "texto": "El reparto queda justo.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.dos_primero",
+      "situacion": "acierto concreto",
+      "texto": "Has puesto el dos primero.",
+      "palabras": 5
+    },
+    {
+      "id": "acierto.siete_despues",
+      "situacion": "acierto concreto",
+      "texto": "Y el siete después.",
+      "palabras": 4
+    },
+    {
+      "id": "acierto.sigue_nueve",
+      "situacion": "acierto concreto",
+      "texto": "Sigue siendo nueve.",
+      "palabras": 3
+    },
+    {
+      "id": "cierre.facil",
+      "situacion": "cierre",
+      "texto": "Cerramos con una fácil.",
+      "palabras": 4
+    },
+    {
+      "id": "cierre.arrastra_cinco",
+      "situacion": "cierre",
+      "texto": "Arrastra un cinco junto al otro.",
+      "palabras": 6
+    },
+    {
+      "id": "cierre.dejo_el_mio",
+      "situacion": "cierre",
+      "texto": "Yo dejo el mío al lado.",
+      "palabras": 6
+    },
+    {
+      "id": "cierre.esto_es_diez",
+      "situacion": "cierre",
+      "texto": "Esto es un diez.",
+      "palabras": 4
+    },
+    {
+      "id": "cierre.encima",
+      "situacion": "cierre",
+      "texto": "Lo ponemos encima, para verlo escrito.",
+      "palabras": 6
+    },
+    {
+      "id": "cierre.ficha_diez",
+      "situacion": "cierre",
+      "texto": "Esta ficha dice diez.",
+      "palabras": 4
+    },
+    {
+      "id": "cierre.la_tuya_aqui",
+      "situacion": "cierre",
+      "texto": "La tuya va aquí.",
+      "palabras": 4
+    },
+    {
+      "id": "cierre.elige_cinta",
+      "situacion": "cierre",
+      "texto": "Elige una cinta.",
+      "palabras": 3
+    },
+    {
+      "id": "cierre.las_dos_sirven",
+      "situacion": "cierre",
+      "texto": "Las dos sirven.",
+      "palabras": 3
+    },
+    {
+      "id": "cierre.torre_guarda",
+      "situacion": "cierre",
+      "texto": "La torre la guarda.",
+      "palabras": 4
+    },
+    {
+      "id": "cierre.manana",
+      "situacion": "cierre",
+      "texto": "Mañana sigue aquí.",
+      "palabras": 3
+    },
+    {
+      "id": "cierre.paramos",
+      "situacion": "cierre",
+      "texto": "Cuando quieras, paramos.",
+      "palabras": 3
+    },
+    {
+      "id": "cierre.queda_encendido",
+      "situacion": "cierre",
+      "texto": "Hoy se queda encendido.",
+      "palabras": 4
+    },
+    {
+      "id": "cierre.salto_la_mia",
+      "situacion": "cierre",
+      "texto": "Yo salto la mía al lado.",
+      "palabras": 6
+    },
+    {
+      "id": "cierre.tu_estrellita",
+      "situacion": "cierre",
+      "texto": "Tú haces saltar la estrellita.",
+      "palabras": 5
+    },
+    {
+      "id": "cierre.luz_se_queda",
+      "situacion": "cierre",
+      "texto": "Hoy esa luz se queda.",
+      "palabras": 5
+    },
+    {
+      "id": "cierre.elige_farolillo",
+      "situacion": "cierre",
+      "texto": "Elige un farolillo para la torre.",
+      "palabras": 6
+    },
+    {
+      "id": "cierre.los_dos_sirven",
+      "situacion": "cierre",
+      "texto": "Los dos sirven.",
+      "palabras": 3
+    },
+    {
+      "id": "cierre.torre_lo_guarda",
+      "situacion": "cierre",
+      "texto": "La torre lo guarda.",
+      "palabras": 4
+    },
+    {
+      "id": "cierre.a10",
+      "situacion": "cierre",
+      "texto": "Has jugado hoy. La torre gana una cinta.",
+      "palabras": 8,
+      "banco": "A10"
+    },
+    {
+      "id": "cierre.has_jugado",
+      "situacion": "cierre",
+      "texto": "Has jugado hoy.",
+      "palabras": 3
+    },
+    {
+      "id": "cierre.otra_cinta",
+      "situacion": "cierre",
+      "texto": "La torre puede guardar otra cinta.",
+      "palabras": 6
+    },
+    {
+      "id": "cierre.lazo_cuesta",
+      "situacion": "cierre",
+      "texto": "El lazo cuesta un euro.",
+      "palabras": 5
+    },
+    {
+      "id": "cierre.arrastra_moneda",
+      "situacion": "cierre",
+      "texto": "Arrastra una moneda grande.",
+      "palabras": 4
+    },
+    {
+      "id": "cierre.dejo_la_mia",
+      "situacion": "cierre",
+      "texto": "Yo dejo la mía al lado.",
+      "palabras": 6
+    },
+    {
+      "id": "vuelta.hola",
+      "situacion": "vuelta al día siguiente",
+      "texto": "Hola.",
+      "palabras": 1
+    },
+    {
+      "id": "vuelta.alegro",
+      "situacion": "vuelta al día siguiente",
+      "texto": "Me alegro de verte.",
+      "palabras": 4,
+      "literal_gdd": true
+    },
+    {
+      "id": "vuelta.luces",
+      "situacion": "vuelta al día siguiente",
+      "texto": "Tus luces siguen encendidas.",
+      "palabras": 4,
+      "literal_gdd": true
+    },
+    {
+      "id": "vuelta.nada",
+      "situacion": "vuelta al día siguiente",
+      "texto": "No hay que recuperar nada.",
+      "palabras": 5,
+      "literal_gdd": true
+    },
+    {
+      "id": "vuelta.empezamos",
+      "situacion": "vuelta al día siguiente",
+      "texto": "Empezamos por una que ya sabes.",
+      "palabras": 6
+    },
+    {
+      "id": "vuelta.cinta_torre",
+      "situacion": "vuelta al día siguiente",
+      "texto": "La cinta sigue en la torre.",
+      "palabras": 6
+    },
+    {
+      "id": "vuelta.lampara_diez",
+      "situacion": "vuelta al día siguiente",
+      "texto": "La lámpara del diez sigue encendida.",
+      "palabras": 6
+    },
+    {
+      "id": "vuelta.luz_nueva_pequena",
+      "situacion": "vuelta al día siguiente",
+      "texto": "Hoy hay una luz nueva, pequeña.",
+      "palabras": 6
+    },
+    {
+      "id": "vuelta.cinta_ahi",
+      "situacion": "vuelta al día siguiente",
+      "texto": "La cinta sigue ahí.",
+      "palabras": 4
+    },
+    {
+      "id": "vuelta.al_diez",
+      "situacion": "vuelta al día siguiente",
+      "texto": "Volvemos al diez.",
+      "palabras": 3
+    },
+    {
+      "id": "vuelta.luz_ayer",
+      "situacion": "vuelta al día siguiente",
+      "texto": "La luz de ayer sigue.",
+      "palabras": 5
+    },
+    {
+      "id": "vuelta.puerta",
+      "situacion": "vuelta al día siguiente",
+      "texto": "Esa puerta sigue ahí.",
+      "palabras": 4
+    },
+    {
+      "id": "vuelta.cuando_toque",
+      "situacion": "vuelta al día siguiente",
+      "texto": "Cuando toque, entramos.",
+      "palabras": 3
+    },
+    {
+      "id": "vuelta.acuerdas",
+      "situacion": "vuelta al día siguiente",
+      "texto": "¿Te acuerdas del dos con el ocho?",
+      "palabras": 7
+    },
+    {
+      "id": "vuelta.con_las_manos",
+      "situacion": "vuelta al día siguiente",
+      "texto": "Lo miramos con las manos.",
+      "palabras": 5
+    },
+    {
+      "id": "vuelta.no_pasa_nada",
+      "situacion": "vuelta al día siguiente",
+      "texto": "No pasa nada.",
+      "palabras": 3
+    },
+    {
+      "id": "vuelta.siguen_aqui",
+      "situacion": "vuelta al día siguiente",
+      "texto": "El ocho y el dos siguen aquí.",
+      "palabras": 7
+    },
+    {
+      "id": "vuelta.juntamos",
+      "situacion": "vuelta al día siguiente",
+      "texto": "Los juntamos otra vez.",
+      "palabras": 4
+    },
+    {
+      "id": "cansancio.seguimos",
+      "situacion": "cansancio",
+      "texto": "Seguimos con una que ya sabes.",
+      "palabras": 6,
+      "literal_gdd": true
+    },
+    {
+      "id": "cansancio.diez_trabajado",
+      "situacion": "cansancio",
+      "texto": "El diez de hoy ya ha trabajado.",
+      "palabras": 7
+    },
+    {
+      "id": "cansancio.una_que_puedes",
+      "situacion": "cansancio",
+      "texto": "Vamos a una que puedes hacer.",
+      "palabras": 6
+    },
+    {
+      "id": "cansancio.salto_trabajado",
+      "situacion": "cansancio",
+      "texto": "Hoy el salto ya ha trabajado.",
+      "palabras": 6
+    },
+    {
+      "id": "cansancio.mercado_trabajado",
+      "situacion": "cansancio",
+      "texto": "Hoy el mercado ya ha trabajado.",
+      "palabras": 6
+    },
+    {
+      "id": "salida.guardo",
+      "situacion": "salida",
+      "texto": "Si sales, lo guardo.",
+      "palabras": 4
+    },
+    {
+      "id": "salida.torre",
+      "situacion": "salida",
+      "texto": "La torre se queda como está.",
+      "palabras": 6
+    },
+    {
+      "id": "salida.cuando_vuelvas",
+      "situacion": "salida",
+      "texto": "Cuando vuelvas, seguimos.",
+      "palabras": 3
+    },
+    {
+      "id": "borde.otras",
+      "situacion": "borde",
+      "texto": "Ahora lo miramos con otras.",
+      "palabras": 5
+    },
+    {
+      "id": "borde.hay_siete",
+      "situacion": "borde",
+      "texto": "Aquí hay siete.",
+      "palabras": 3
+    },
+    {
+      "id": "borde.busca_faltan",
+      "situacion": "borde",
+      "texto": "Busca las que faltan para diez.",
+      "palabras": 6
+    },
+    {
+      "id": "borde.hay_nueve",
+      "situacion": "borde",
+      "texto": "Aquí hay nueve.",
+      "palabras": 3
+    },
+    {
+      "id": "borde.busca_falta",
+      "situacion": "borde",
+      "texto": "Busca la que falta para diez.",
+      "palabras": 6
+    },
+    {
+      "id": "borde.hay_seis",
+      "situacion": "borde",
+      "texto": "Aquí hay seis.",
+      "palabras": 3
+    },
+    {
+      "id": "borde.dos_grupos",
+      "situacion": "borde",
+      "texto": "Dos grupos de cinco.",
+      "palabras": 4
+    },
+    {
+      "id": "borde.juntalos",
+      "situacion": "borde",
+      "texto": "Júntalos.",
+      "palabras": 1
+    },
+    {
+      "id": "borde.ocho_y_tres",
+      "situacion": "borde",
+      "texto": "Ocho y tres, en las unidades.",
+      "palabras": 6
+    },
+    {
+      "id": "borde.haz_diez_sobra",
+      "situacion": "borde",
+      "texto": "Haz el diez, y mira qué sobra.",
+      "palabras": 7
+    },
+    {
+      "id": "borde.ya_sabes_diez",
+      "situacion": "borde",
+      "texto": "Ya sabes hacer el diez.",
+      "palabras": 5
+    },
+    {
+      "id": "borde.ademas_salta",
+      "situacion": "borde",
+      "texto": "Hoy, además, salta.",
+      "palabras": 3
+    },
+    {
+      "id": "borde.seis_y_siete",
+      "situacion": "borde",
+      "texto": "Seis y siete.",
+      "palabras": 3
+    },
+    {
+      "id": "borde.haz_un_diez",
+      "situacion": "borde",
+      "texto": "Haz un diez.",
+      "palabras": 3
+    },
+    {
+      "id": "borde.cuantas_sobran",
+      "situacion": "borde",
+      "texto": "Mira cuántas sobran.",
+      "palabras": 3
+    },
+    {
+      "id": "borde.quince_mas_seis",
+      "situacion": "borde",
+      "texto": "Quince más seis.",
+      "palabras": 3
+    },
+    {
+      "id": "borde.primero_unidades",
+      "situacion": "borde",
+      "texto": "Primero las unidades.",
+      "palabras": 3
+    },
+    {
+      "id": "borde.decena_junta",
+      "situacion": "borde",
+      "texto": "La decena que salte se junta con la que ya está.",
+      "palabras": 11
+    },
+    {
+      "id": "borde.farolillo_dos",
+      "situacion": "borde",
+      "texto": "El farolillo cuesta dos euros.",
+      "palabras": 5
+    },
+    {
+      "id": "borde.pon_dos",
+      "situacion": "borde",
+      "texto": "Pon dos monedas de un euro.",
+      "palabras": 6
+    },
+    {
+      "id": "borde.maceta_dos",
+      "situacion": "borde",
+      "texto": "La maceta cuesta dos euros.",
+      "palabras": 5
+    },
+    {
+      "id": "borde.moneda_de_dos",
+      "situacion": "borde",
+      "texto": "Puedes poner la moneda de dos.",
+      "palabras": 6
+    },
+    {
+      "id": "borde.o_dos_de_uno",
+      "situacion": "borde",
+      "texto": "O dos monedas de uno.",
+      "palabras": 5
+    },
+    {
+      "id": "borde.tu_eliges",
+      "situacion": "borde",
+      "texto": "Tú eliges.",
+      "palabras": 2
+    },
+    {
+      "id": "borde.guirnalda",
+      "situacion": "borde",
+      "texto": "La guirnalda cuesta cuatro euros.",
+      "palabras": 5
+    },
+    {
+      "id": "borde.arma_cuatro",
+      "situacion": "borde",
+      "texto": "Arma el cuatro con las monedas.",
+      "palabras": 6
+    },
+    {
+      "id": "borde.cojin",
+      "situacion": "borde",
+      "texto": "El cojín cuesta tres euros.",
+      "palabras": 5
+    },
+    {
+      "id": "borde.pon_tres",
+      "situacion": "borde",
+      "texto": "Pon tres monedas de un euro.",
+      "palabras": 6
+    },
+    {
+      "id": "acertijo.mirar",
+      "situacion": "acertijo",
+      "texto": "Ahora un juego de mirar.",
+      "palabras": 5
+    },
+    {
+      "id": "acertijo.no_sumar",
+      "situacion": "acertijo",
+      "texto": "No hay que sumar.",
+      "palabras": 4
+    },
+    {
+      "id": "acertijo.patron",
+      "situacion": "acertijo",
+      "texto": "Piedra, estrella, piedra, estrella.",
+      "palabras": 4
+    },
+    {
+      "id": "acertijo.que_sigue_hueco",
+      "situacion": "acertijo",
+      "texto": "¿Qué sigue en el hueco?",
+      "palabras": 5
+    },
+    {
+      "id": "acertijo.corta_alta",
+      "situacion": "acertijo",
+      "texto": "Corta, alta, corta, alta.",
+      "palabras": 4
+    },
+    {
+      "id": "acertijo.que_sigue",
+      "situacion": "acertijo",
+      "texto": "¿Qué sigue?",
+      "palabras": 2
+    },
+    {
+      "id": "acertijo.no_pagar",
+      "situacion": "acertijo",
+      "texto": "No hay que pagar.",
+      "palabras": 4
+    },
+    {
+      "id": "acertijo.uno_dos",
+      "situacion": "acertijo",
+      "texto": "Uno, dos, uno, dos.",
+      "palabras": 4
+    },
+    {
+      "id": "acertijo.que_moneda",
+      "situacion": "acertijo",
+      "texto": "¿Qué moneda sigue?",
+      "palabras": 3
+    },
+    {
+      "id": "acertijo.pesan",
+      "situacion": "acertijo",
+      "texto": "¿Pesan igual?",
+      "palabras": 2
+    },
+    {
+      "id": "acertijo.dos_y_dos",
+      "situacion": "acertijo",
+      "texto": "Dos euros, y dos euros.",
+      "palabras": 5
+    }
+  ],
+  "secuencias": {
+    "bienvenida_primer_dia": [
+      "bienvenida.hola",
+      "bienvenida.magia",
+      "bienvenida.niebla_suave",
+      "bienvenida.cortina",
+      "bienvenida.lamparas_apagadas",
+      "bienvenida.se_queda",
+      "bienvenida.irte",
+      "bienvenida.guarda"
+    ],
+    "torre_primer_dia": [
+      "bienvenida.torre",
+      "bienvenida.ya_esta_bien",
+      "bienvenida.algo_bonito",
+      "bienvenida.no_perfecto",
+      "bienvenida.jugar_cuenta"
+    ],
+    "entrar_piedras": [
+      "bienvenida.hoy_piedras",
+      "sala.piedras_1",
+      "bienvenida.lampara_diez",
+      "bienvenida.diez_especial"
+    ],
+    "cuenta_que_ya_sabe": [
+      "cuenta.mira_tres",
+      "cuenta.de_un_golpe",
+      "cuenta.arrastra_cuenco"
+    ],
+    "idea_de_hoy_hacer_el_diez": [
+      "idea.visto_diez",
+      "idea.despacio",
+      "idea.ocho_cuenco",
+      "idea.anado_dos",
+      "idea.ocho_y_dos",
+      "idea.brillan",
+      "idea.ahora_tu",
+      "idea.arrastra_dos"
+    ],
+    "cierre_primer_dia": [
+      "cierre.facil",
+      "acierto.cinco_y_cinco",
+      "cierre.arrastra_cinco",
+      "cierre.dejo_el_mio"
+    ],
+    "cierre_adorno": [
+      "cierre.elige_cinta",
+      "cierre.las_dos_sirven",
+      "cierre.torre_guarda",
+      "cierre.manana",
+      "cierre.paramos"
+    ],
+    "vuelta_varios_dias": [
+      "vuelta.hola",
+      "vuelta.alegro",
+      "vuelta.luces",
+      "vuelta.nada",
+      "vuelta.empezamos"
+    ],
+    "vuelta_dia_siguiente_firme": [
+      "vuelta.hola",
+      "vuelta.cinta_torre",
+      "vuelta.lampara_diez",
+      "vuelta.luz_nueva_pequena"
+    ],
+    "vuelta_dia_siguiente_sin_firme": [
+      "vuelta.hola",
+      "vuelta.cinta_ahi",
+      "vuelta.al_diez",
+      "vuelta.luz_ayer"
+    ],
+    "corte": [
+      "cansancio.seguimos"
+    ],
+    "salida": [
+      "salida.guardo",
+      "salida.torre",
+      "salida.cuando_vuelvas"
+    ],
+    "mercado_monedas": [
+      "sala.monedas_juego",
+      "sala.no_compra"
+    ]
+  }
+}

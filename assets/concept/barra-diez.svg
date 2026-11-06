@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img">
+  <title>Barra de diez</title>
+  <path fill="#E08A2E" stroke="#3B2A22" stroke-width="16" stroke-linejoin="round" d="M24 156V96Q24 68 52 68h40v40h72V68h40q28 0 28 28v60q0 28-28 28H52q-28 0-28-28z"/>
+</svg>

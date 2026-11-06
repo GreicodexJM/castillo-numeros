@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img">
+  <title>Botón</title>
+  <desc>Blanco de toque de 96 por 96. La ventana en arco lo distingue de la pieza.</desc>
+  <rect x="4" y="4" width="88" height="88" rx="20" fill="#2C2416"/>
+  <rect x="10" y="10" width="76" height="76" rx="16" fill="#F4C56D"/>
+  <path d="M30 68 V46 a18 18 0 0 1 36 0 V68 Z" fill="#FFF8E8" stroke="#2C2416" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="28" y="64" width="40" height="8" rx="2" fill="#E07A3D" stroke="#2C2416" stroke-width="3"/>
+</svg>

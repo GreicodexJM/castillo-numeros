@@ -1,0 +1,139 @@
+{
+  "juego": "Estrella y el Castillo de los Números",
+  "regla": "El color no es la única pista. Cada uso lleva además forma, letra, sitio o número.",
+  "archivo": "assets/palette.json",
+  "colores": [
+    {
+      "id": "noche_patio",
+      "hex": "#1E2A4A",
+      "uso": "Fondo del Patio de la Niebla si falta el dibujo. Texto encima en crema_texto.",
+      "no_basta": "No significa noche cerrada ni peligro. El patio se reconoce por la torre redonda a la derecha y por Estrella a la izquierda."
+    },
+    {
+      "id": "luz_encendida",
+      "hex": "#F4C56D",
+      "uso": "Pulso de la lámpara al encender una sala, llama de casa y forro de la capa.",
+      "no_basta": "No significa perfecto, ni sola, ni premio raro. El pulso dura 1,2 s y es igual siempre. La llama de casa ya estaba encendida. La sala se confirma porque la niebla de esa ventana se aparta."
+    },
+    {
+      "id": "sala_piedras",
+      "hex": "#3D4F8A",
+      "uso": "Suelo de Piedras de luz si falta el dibujo.",
+      "no_basta": "No basta para nombrar la sala. Hace falta el nido de dos filas de cinco."
+    },
+    {
+      "id": "piedra",
+      "hex": "#F2E2A0",
+      "uso": "Piedra de luz y broche de tela en forma de estrella, en el pecho.",
+      "no_basta": "No significa acierto. La piedra es un canto grande, de unos 96 px. El broche es tela y no va en la cabeza."
+    },
+    {
+      "id": "sala_espejo",
+      "hex": "#7EC8C3",
+      "uso": "Sala Espejo si falta el dibujo.",
+      "no_basta": "No significa bien. Hace falta el marco grueso y los dos montones."
+    },
+    {
+      "id": "sala_circulo",
+      "hex": "#E7A6C8",
+      "uso": "Sala Círculo si falta el dibujo.",
+      "no_basta": "No significa premio. Hace falta la alfombra redonda y la cinta."
+    },
+    {
+      "id": "sala_pergamino",
+      "hex": "#F3E6C8",
+      "uso": "Papel del pergamino. La letra va en tinta.",
+      "no_basta": "No distingue las columnas. Cada columna lleva la letra U, D o C, el sitio del colegio y la forma de la pieza."
+    },
+    {
+      "id": "tinta",
+      "hex": "#2C2416",
+      "uso": "Letra, cifras y letras de columna U, D y C. Texto sobre fondo claro.",
+      "no_basta": "No es un fallo ni una nota. La cifra solo comprueba un gesto ya hecho. La columna sin letra no se publica."
+    },
+    {
+      "id": "sala_mercado",
+      "hex": "#E07A3D",
+      "uso": "Puesto del Mercado si falta el dibujo.",
+      "no_basta": "No es rojo de error ni aviso. La moneda lleva el número escrito y cambia de tamaño."
+    },
+    {
+      "id": "sala_jardin",
+      "hex": "#7DAF6A",
+      "uso": "Jardín si falta el dibujo.",
+      "no_basta": "No es semáforo de bien. Los grupos se ven en macetas iguales, no en el verde."
+    },
+    {
+      "id": "sala_tesoro",
+      "hex": "#C6A15B",
+      "uso": "Tesoro si falta el dibujo.",
+      "no_basta": "No es una nota alta. El reparto se ve en el cofre y los cuencos. La sobra no se pinta como fallo."
+    },
+    {
+      "id": "sala_acertijos",
+      "hex": "#8E7CC3",
+      "uso": "Acertijos si falta el dibujo.",
+      "no_basta": "No significa difícil. El patrón lleva forma: piedra y estrella, no solo color."
+    },
+    {
+      "id": "niebla",
+      "hex": "#D5DCE8",
+      "uso": "Cortina clara de lo que aún no toca, y vaho dentro de una ventana disponible.",
+      "no_basta": "No es un monstruo, ni un botón gris muerto, ni una sala castigada. Lo que no se puede elegir no se dibuja como hueco."
+    },
+    {
+      "id": "crema_texto",
+      "hex": "#F7F1E4",
+      "uso": "Texto sobre noche_patio y sobre sala_piedras. La frase se lee aunque haya voz.",
+      "no_basta": "No sustituye a la forma ni a la letra de columna. Cuerpo de al menos 28 px."
+    },
+    {
+      "id": "piel",
+      "hex": "#C6866A",
+      "uso": "Piel de Estrella en todos los generadores y en el sustituto.",
+      "no_basta": "No expresa ánimo. La cara se compara con la hoja de referencia, no con el tono solo."
+    },
+    {
+      "id": "pelo",
+      "hex": "#3F2A22",
+      "uso": "Pelo y cejas de Estrella. Flequillo recto, media melena hasta la clavícula, raya a su izquierda.",
+      "no_basta": "El castaño no basta: el corte tiene que coincidir con la hoja. No cambia entre Gemini, Grok y Tripo."
+    },
+    {
+      "id": "iris",
+      "hex": "#5A3A2E",
+      "uso": "Iris de Estrella. Ojos medianos, separados el ancho de un ojo.",
+      "no_basta": "No expresa fallo ni sorpresa. El tamaño del ojo no cambia con la pose."
+    },
+    {
+      "id": "boca",
+      "hex": "#A15A52",
+      "uso": "Boca pequeña y cerrada. En contenta, las comisuras suben un poco, sin dientes.",
+      "no_basta": "No es rojo de error ni de enfado. Una boca hacia abajo se descarta."
+    },
+    {
+      "id": "blanco_ojo",
+      "hex": "#F3EBE3",
+      "uso": "Blanco del ojo. No es blanco puro.",
+      "no_basta": "No es un brillo de acierto ni una chispa."
+    },
+    {
+      "id": "capa",
+      "hex": "#C45C4A",
+      "uso": "Capa corta, hasta la cadera, siempre puesta.",
+      "no_basta": "No es un aviso ni un fallo. Un error no la pone más roja. Sin corona y sin varita."
+    },
+    {
+      "id": "botas",
+      "hex": "#5C4038",
+      "uso": "Botas blandas de Estrella.",
+      "no_basta": "No son sombra de error. Van siempre, del mismo color."
+    },
+    {
+      "id": "sombra",
+      "hex": "#152033",
+      "uso": "Separar una forma grande del fondo.",
+      "no_basta": "No apaga una sala, no marca un botón prohibido y no es rojo de error."
+    }
+  ]
+}

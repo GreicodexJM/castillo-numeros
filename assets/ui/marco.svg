@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="384" height="256" viewBox="0 0 384 256" role="img">
+  <title>Marco</title>
+  <desc>Marco de sala. El vano empieza a 24 px del borde. Las esquinas cuadradas lo distinguen del botón.</desc>
+  <rect width="384" height="256" rx="24" fill="#2C2416"/>
+  <rect x="8" y="8" width="368" height="240" rx="20" fill="#F4C56D"/>
+  <rect x="24" y="24" width="336" height="208" rx="8" fill="#1E2A4A"/>
+  <rect x="8" y="8" width="24" height="24" fill="#F3E6C8" stroke="#2C2416" stroke-width="3"/>
+  <rect x="352" y="8" width="24" height="24" fill="#F3E6C8" stroke="#2C2416" stroke-width="3"/>
+  <rect x="8" y="224" width="24" height="24" fill="#F3E6C8" stroke="#2C2416" stroke-width="3"/>
+  <rect x="352" y="224" width="24" height="24" fill="#F3E6C8" stroke="#2C2416" stroke-width="3"/>
+</svg>

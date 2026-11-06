@@ -1,0 +1,859 @@
+{
+  "id": "mecanicas",
+  "version": 1,
+  "fuente": "docs/GDD.md",
+  "idioma": "es-ES",
+  "ella_no_ve": [
+    "estados",
+    "duda",
+    "reloj_interno",
+    "subida",
+    "bajada",
+    "registro"
+  ],
+  "prohibido_visible": {
+    "cronometro": true,
+    "vidas": true,
+    "marcador": true,
+    "estrellas_vacias": true,
+    "sonido_de_error": true
+  },
+  "reloj_interno": {
+    "dibujado": false,
+    "no_corta_arrastre_a_medias": true,
+    "acorta_entre_turnos": true,
+    "objetivo_s": 420,
+    "no_abre_otro_intento_desde_s": 420,
+    "entra_en_cierre_desde_s": 480,
+    "margen_para_acabar_arrastre_s": 15,
+    "no_hay_vela_ni_cielo_ni_bostezo": true
+  },
+  "estados_sesion": [
+    {
+      "id": "patio",
+      "nombre": "Patio",
+      "ella_ve": "Castillo, torre y niebla. Sin marcador.",
+      "puede_salir": true
+    },
+    {
+      "id": "entrada",
+      "nombre": "Entrada",
+      "ella_ve": "Estrella curiosa. Una frase. Sin piezas de cuenta todavía.",
+      "objetivo_s": 4,
+      "se_salta_al_tocar": true
+    },
+    {
+      "id": "ya_sabe",
+      "nombre": "Una cuenta que ya sabe",
+      "ella_ve": "Una cuenta que ya puede hacer. Ejemplo al lado si hace falta.",
+      "tropiezos_cuentan_para_el_corte": false,
+      "se_ayuda_hasta_el_acierto": true,
+      "nota": "El GDD manda: los tropiezos de aquí no cuentan para el corte. No se salta al cierre por dos tropiezos de este tramo."
+    },
+    {
+      "id": "idea_demo",
+      "nombre": "Idea, modelo",
+      "ella_ve": "Estrella hace el gesto en su lado, no en la bandeja de ella.",
+      "objetivo_s": 20,
+      "cede_si_ella_arrastra": true,
+      "sin_video": true
+    },
+    {
+      "id": "idea_repite",
+      "nombre": "Idea, repetición",
+      "ella_ve": "Sus piezas. Repite el gesto arrastrando.",
+      "puede_fallar_la_sesion": false,
+      "cuenta_como": "con_ayuda"
+    },
+    {
+      "id": "borde",
+      "nombre": "Borde",
+      "ella_ve": "Un solo micropaso. Piezas. Sin numerar intentos.",
+      "intentos": 3,
+      "intentos_si_sin_fallos_y_sin_cansancio": 4,
+      "fallos_para_corte": 2,
+      "no_hay_tercero": true
+    },
+    {
+      "id": "acertijo",
+      "nombre": "Acertijo",
+      "ella_ve": "Un juguete. Sin numerar.",
+      "solo_si_no_hubo_corte": true,
+      "tropiezo_baja_aritmetica": false,
+      "tropiezo_sube_aritmetica": false,
+      "sala_no_se_cierra": true
+    },
+    {
+      "id": "cierre",
+      "nombre": "Cierre",
+      "ella_ve": "Una que puede hacer. Ejemplo al lado si hace falta.",
+      "lo_hace_ella": true,
+      "estrella_coloca_la_ultima": false,
+      "el_acierto_sube": false,
+      "no_se_abandona_por_tiempo_con_la_app_abierta": true
+    },
+    {
+      "id": "torre",
+      "nombre": "Torre",
+      "ella_ve": "Dos adornos, los dos válidos.",
+      "mide_el_saber": false,
+      "se_gana_por_llegar_al_cierre_jugando": true,
+      "no_por_hacerlo_perfecto": true
+    },
+    {
+      "id": "guardado",
+      "nombre": "Guardado",
+      "ella_ve": "Nada nuevo. La luz sigue.",
+      "inventa_el_acierto": false,
+      "envia_fuera": false
+    }
+  ],
+  "transiciones": [
+    {
+      "id": "patio_a_entrada",
+      "desde": "patio",
+      "hacia": "entrada",
+      "cuando": "Toca una ventana disponible o encendida."
+    },
+    {
+      "id": "patio_sin_sesion",
+      "desde": "patio",
+      "hacia": "patio",
+      "cuando": "Menos de 15 s sin tocar una pieza.",
+      "efectos": ["no_abre_sesion", "no_hay_deuda", "no_hay_adorno"]
+    },
+    {
+      "id": "patio_a_cierre_pendiente",
+      "desde": "patio",
+      "hacia": "cierre",
+      "cuando": "Hay un cierre pendiente. La bandeja es una que ya sabe, no el fallo.",
+      "efectos": ["no_reanuda_el_borde", "no_hay_idea_nueva_hasta_encender"]
+    },
+    {
+      "id": "entrada_a_ya_sabe",
+      "desde": "entrada",
+      "hacia": "ya_sabe",
+      "cuando": "Sala de cuentas. Pasan 4 s o ella toca."
+    },
+    {
+      "id": "entrada_a_acertijo",
+      "desde": "entrada",
+      "hacia": "acertijo",
+      "cuando": "Entra en Acertijos. La sala no se cierra para obligarla."
+    },
+    {
+      "id": "ya_sabe_tropiezo",
+      "desde": "ya_sabe",
+      "hacia": "ya_sabe",
+      "cuando": "Tropiezo en la cuenta que ya sabe.",
+      "efectos": ["se_ayuda_hasta_el_acierto", "no_suma_fallo_de_borde", "no_salta_al_cierre_por_dos_tropiezos"]
+    },
+    {
+      "id": "ya_sabe_a_idea",
+      "desde": "ya_sabe",
+      "hacia": "idea_demo",
+      "cuando": "Acierto con sus manos, sola o con ayuda."
+    },
+    {
+      "id": "ya_sabe_a_cierre_por_acortar",
+      "desde": "ya_sabe",
+      "hacia": "cierre",
+      "cuando": "Entre turnos, cansancio que no es un tropiezo, o el reloj interno acorta. No se inventa el acierto de este tramo.",
+      "efectos": ["corta_lo_nuevo", "frase_de_corte_si_sigue_en_la_sesion"]
+    },
+    {
+      "id": "ya_sabe_a_guardado",
+      "desde": "ya_sabe",
+      "hacia": "guardado",
+      "cuando": "Sale o cierra la tableta.",
+      "efectos": ["no_inventa_el_acierto", "al_volver_entra_por_una_que_ya_sabe", "sin_reproche"]
+    },
+    {
+      "id": "idea_demo_a_repite",
+      "desde": "idea_demo",
+      "hacia": "idea_repite",
+      "cuando": "Pasan unos 20 s, o ella empieza a arrastrar."
+    },
+    {
+      "id": "idea_repite_a_borde",
+      "desde": "idea_repite",
+      "hacia": "borde",
+      "cuando": "Suelta el gesto. Si no arrastra, se acercan las piezas. No se alarga el discurso.",
+      "efectos": ["cuenta_como_con_ayuda", "no_puede_fallar_la_sesion"]
+    },
+    {
+      "id": "idea_repite_a_cierre",
+      "desde": "idea_repite",
+      "hacia": "cierre",
+      "cuando": "Entre turnos, cansancio o reloj interno. Tras acabar el arrastre."
+    },
+    {
+      "id": "borde_sigue",
+      "desde": "borde",
+      "hacia": "borde",
+      "cuando": "El intento no es el segundo fallo, y caben más. El cuarto solo si van cero fallos, no hay cansancio y el reloj interno va por debajo de 300 s."
+    },
+    {
+      "id": "borde_a_acertijo",
+      "desde": "borde",
+      "hacia": "acertijo",
+      "cuando": "El borde termina sin dos fallos y sin cansancio fuerte."
+    },
+    {
+      "id": "borde_a_cierre_por_dos_fallos",
+      "desde": "borde",
+      "hacia": "cierre",
+      "cuando": "Segundo fallo del borde.",
+      "efectos": ["salta_acertijo", "no_hay_tercero", "frase_de_corte", "no_cierra_la_sala_de_acertijos"]
+    },
+    {
+      "id": "borde_a_cierre_por_cansancio",
+      "desde": "borde",
+      "hacia": "cierre",
+      "cuando": "Devuelve piezas, pausas que no avanzan, se va entre turnos, o el reloj interno acorta.",
+      "efectos": ["salta_acertijo", "corta_lo_nuevo", "no_quita_luces"]
+    },
+    {
+      "id": "borde_a_guardado",
+      "desde": "borde",
+      "hacia": "guardado",
+      "cuando": "Sale o cierra la tableta durante el borde.",
+      "efectos": ["no_reanuda_el_fallo", "no_inventa_el_acierto", "al_volver_entra_por_una_que_ya_sabe"]
+    },
+    {
+      "id": "acertijo_a_cierre",
+      "desde": "acertijo",
+      "hacia": "cierre",
+      "cuando": "Acierto con sus manos, tope interno entre turnos, o cansancio.",
+      "efectos": ["no_baja_aritmetica", "no_sube_aritmetica"]
+    },
+    {
+      "id": "acertijo_a_guardado",
+      "desde": "acertijo",
+      "hacia": "guardado",
+      "cuando": "Sale sin haber completado el gesto.",
+      "efectos": ["no_inventa_el_acierto", "la_sala_sigue_abierta"]
+    },
+    {
+      "id": "cierre_sigue",
+      "desde": "cierre",
+      "hacia": "cierre",
+      "cuando": "La colocación no enciende.",
+      "efectos": ["vuelve_el_ejemplo", "estrella_no_coloca_la_ultima", "no_suma_fallo_de_borde", "no_baja_estado"]
+    },
+    {
+      "id": "cierre_a_torre",
+      "desde": "cierre",
+      "hacia": "torre",
+      "cuando": "Ella enciende la luz con sus manos.",
+      "efectos": ["adorno_por_llegar_jugando", "el_acierto_no_sube"]
+    },
+    {
+      "id": "cierre_a_guardado",
+      "desde": "cierre",
+      "hacia": "guardado",
+      "cuando": "Sale o cierra la tableta antes de encender.",
+      "efectos": ["cierre_pendiente", "no_inventa_el_acierto", "ayuda_nunca_mas_dura_que_el_ejemplo_al_lado"]
+    },
+    {
+      "id": "torre_a_guardado",
+      "desde": "torre",
+      "hacia": "guardado",
+      "cuando": "Coloca un adorno, o sale. Si ya llegó al cierre y no coloca, el adorno espera.",
+      "efectos": ["lo_colocado_no_se_quita", "colocarlo_despues_no_regala_otro"]
+    },
+    {
+      "id": "guardado_a_patio",
+      "desde": "guardado",
+      "hacia": "patio",
+      "cuando": "Vuelve a abrir.",
+      "efectos": ["las_luces_siguen", "no_reanuda_el_fallo"]
+    }
+  ],
+  "reglas_de_paso": {
+    "orden": ["ya_sabe", "idea_demo", "idea_repite", "borde", "acertijo", "cierre", "torre"],
+    "una_idea_nueva_por_sesion": true,
+    "idea_nueva_solo_si_anterior_firme": true,
+    "dos_primeras_sesiones_completas_repiten_el_gesto": true,
+    "cuarto_intento_borde": {
+      "solo_si_fallos": 0,
+      "solo_si_sin_cansancio": true,
+      "ademas_reloj_interno_menor_que_s": 300
+    },
+    "a_los_420_s_entre_turnos": "No se abre otro intento. Si van menos de 2 fallos de borde y no hay cansancio fuerte, un acertijo corto y luego el cierre. Si no, al cierre.",
+    "a_los_480_s_entre_turnos": "Se entra en el cierre, tras acabar el arrastre en curso.",
+    "frase_de_corte": "Seguimos con una que ya sabes.",
+    "frase_de_corte_no_nombra": ["cansancio", "fallo"],
+    "frase_de_corte_solo_si_el_juego_acorta": true,
+    "al_salir_ella": "sin_reproche"
+  },
+  "estados_intento": [
+    {
+      "id": "presenta",
+      "cuando": "Las piezas están en el origen.",
+      "primer_toque": "toca",
+      "sin_toque_s": 20,
+      "sin_toque_es": "se_va",
+      "sin_toque_no_es": "fallo_de_caracter"
+    },
+    {
+      "id": "toca",
+      "cuando": "Hay contacto y la pieza no ha cambiado de sitio.",
+      "toque_sin_mover": "ni_acierto_ni_fallo",
+      "sostener_marca_duda": true
+    },
+    {
+      "id": "mueve",
+      "cuando": "La pieza ha cambiado de sitio.",
+      "devolver_al_origen": "se_puede",
+      "devolver_no_suena_a_error": true
+    },
+    {
+      "id": "suelta",
+      "cuando": "Levanta el dedo en un destino.",
+      "margen_para_desdecirse_s": 3,
+      "si_se_desdice": "vuelve_a_mueve",
+      "deshacer_no_se_quita": true
+    },
+    {
+      "id": "juicio",
+      "cuando": "No se desdice.",
+      "resultados": ["acierto", "acierto_con_duda", "con_ayuda", "despacio", "adivinar", "fallo", "rechazo_de_material"]
+    }
+  ],
+  "transiciones_intento": [
+    {
+      "desde": "presenta",
+      "hacia": "toca",
+      "cuando": "Primer toque. Se anota el tiempo. No se muestra."
+    },
+    {
+      "desde": "presenta",
+      "hacia": "guardado",
+      "cuando": "20 s sin toque, sale o cierra la tableta.",
+      "efectos": ["se_va", "al_volver_una_que_ya_sabe"]
+    },
+    {
+      "desde": "toca",
+      "hacia": "mueve",
+      "cuando": "La pieza cambia de sitio."
+    },
+    {
+      "desde": "toca",
+      "hacia": "toca",
+      "cuando": "Suelta sin haber movido, o toca un número o el vacío."
+    },
+    {
+      "desde": "mueve",
+      "hacia": "suelta",
+      "cuando": "Levanta el dedo en un destino."
+    },
+    {
+      "desde": "mueve",
+      "hacia": "toca",
+      "cuando": "La devuelve al origen. No es fallo."
+    },
+    {
+      "desde": "suelta",
+      "hacia": "mueve",
+      "cuando": "Se desdice antes de 3 s."
+    },
+    {
+      "desde": "suelta",
+      "hacia": "juicio",
+      "cuando": "Pasan 3 s sin desdecirse, o confirma el gesto al no retirarlo."
+    }
+  ],
+  "eventos_duda": [
+    {
+      "id": "soltar_en_el_sitio",
+      "nombre": "Soltar en el sitio",
+      "fuente": "docs/GDD.md",
+      "cuando": "Suelta a menos de 24 px del origen tras haber tenido la pieza 1 s.",
+      "umbral": {
+        "distancia_al_origen_px_menor_que": 24,
+        "agarre_minimo_s": 1,
+        "no_confundir_con": "El aire de 24 px entre piezas, ni el botón de 96 px."
+      },
+      "es_acierto": false,
+      "es_fallo": false,
+      "es_duda": true,
+      "visible": false,
+      "sonido": "ninguno"
+    },
+    {
+      "id": "cambiar_destino",
+      "nombre": "Cambiar destino",
+      "fuente": "docs/GDD.md",
+      "cuando": "Durante el agarre la pieza estuvo sobre otro destino, y se suelta en uno distinto.",
+      "deteccion": {
+        "fuente": "docs/expertos/01-videojuegos.md",
+        "sobre_otro_destino_s_minimo": 0.4,
+        "suelta_en_destino_distinto": true
+      },
+      "es_duda": true,
+      "visible": false,
+      "sonido": "ninguno"
+    },
+    {
+      "id": "sostener",
+      "nombre": "Sostener",
+      "fuente": "docs/GDD.md",
+      "cuando": "Tiene la pieza en la mano más de 8 s.",
+      "umbral": {
+        "agarre_s_mayor_que": 8
+      },
+      "se_anota_al_soltar": true,
+      "es_duda": true,
+      "visible": false,
+      "pone_reloj": false,
+      "dice_date_prisa": false,
+      "quita_la_pieza": false,
+      "solo_no_corta_la_sesion": true
+    },
+    {
+      "id": "desdecirse",
+      "nombre": "Desdecirse",
+      "fuente": "docs/GDD.md",
+      "cuando": "Antes de 3 s vuelve a cogerla y la saca del destino.",
+      "umbral": {
+        "antes_de_s": 3
+      },
+      "es_fallo": false,
+      "es_duda": true,
+      "suena_a_error": false,
+      "se_puede_quitar_el_deshacer": false,
+      "vuelve_a": "mueve",
+      "visible": false
+    }
+  ],
+  "respuesta_duda": {
+    "marca_el_intento": true,
+    "se_le_dice": false,
+    "hereda_frases_de_fallo": false,
+    "si_luego_acierta": {
+      "sube": false,
+      "siguiente": "parecido",
+      "retira_mas_ayuda_hoy": false
+    },
+    "si_luego_falla_en_el_borde": {
+      "baja_un_estado": true,
+      "ensenar_gesto": true,
+      "si_ya_aprendiendo": "se_queda_y_vuelve_el_ejemplo",
+      "si_primeros_dias": "no_baja_y_si_ensena_el_gesto"
+    },
+    "soltar_en_el_sitio_por_si_solo_no_es_fallo": true
+  },
+  "fallo": {
+    "no_hay_boton_de_listo": true,
+    "no_hay_cuatro_opciones": true,
+    "no_hay_unico_sitio_que_brille": true,
+    "material_no_admite": {
+      "ejemplo": "Una oncena en la losa de diez no enciende.",
+      "vuelve_en_silencio": true,
+      "primera_vez_en_el_intento": "juguete",
+      "segunda_vez_en_el_mismo_intento": "fallo"
+    },
+    "metodo_equivocado_sin_retirar": {
+      "es_fallo": true,
+      "si_se_desdice_antes_de_3_s": "no_es_fallo"
+    },
+    "no_es_fallo": [
+      "soltar_en_el_sitio",
+      "devolver_una_pieza",
+      "quedarse_corta_sin_boton_de_listo",
+      "toque_sin_mover",
+      "primera_pieza_que_el_material_rechaza",
+      "tropiezo_de_ya_sabe",
+      "tropiezo_de_acertijo",
+      "sobra"
+    ],
+    "borde": {
+      "fallos_para_corte": 2,
+      "no_hay_tercero": true,
+      "salta_a": "cierre",
+      "cada_fallo_con_duda_baja_uno_y_ensena_el_gesto": true,
+      "fallo_aislado_sin_duda_no_tira_lo_firme": true
+    },
+    "error_siempre_el_mismo": {
+      "primer_caso_sin_duda": "no_baja",
+      "hay_frase": true,
+      "frase_la_pone_el_relato": true,
+      "si_sigue_en_otro_dia": {
+        "techo": "fragil",
+        "no_abre_el_siguiente": true,
+        "baja_como_maximo_un_estado": true
+      }
+    },
+    "adivinar": {
+      "cuenta": false,
+      "obliga_a_mover_piezas": true,
+      "suena_a_error": false,
+      "sube": false,
+      "manipular_menos_de_s_sin_gesto": 0.8
+    },
+    "estrella": {
+      "puede": ["curiosa", "contenta", "pensando"],
+      "nunca": ["decepcionada", "enfadada", "triste"]
+    },
+    "pieza_vuelve_s": 0.4,
+    "luz_pulso_s": 1.2,
+    "campanada_s": 0.4,
+    "misma_campanada_sola_o_con_ayuda": true,
+    "errores_con_frase": [
+      {"id": "E_DIEZ", "en_primer_jugable": true, "sentido": "Un grupo de diez."},
+      {"id": "E_PATRON", "en_primer_jugable": true, "sentido": "El que toca ahora, no el de antes."},
+      {"id": "E_CONTEO", "en_primer_jugable": false, "sentido": "Señalar cada una, una vez."},
+      {"id": "E_LADO", "en_primer_jugable": false, "sentido": "La suma no cambia al darla la vuelta."},
+      {"id": "E_RESTA_ORDEN", "en_primer_jugable": false, "sentido": "7−3 no es 3−7. No se enseña en el Espejo."},
+      {"id": "E_COLUMNA", "en_primer_jugable": false, "sentido": "Unidades con unidades."},
+      {"id": "E_LLEVADA", "en_primer_jugable": false, "sentido": "Me llevo una."},
+      {"id": "E_PRESTAMO", "en_primer_jugable": false, "sentido": "Pido prestada una decena. Se rompe en diez unidades."},
+      {"id": "E_MONEDA", "en_primer_jugable": false, "sentido": "Diez de estos son uno de esos."},
+      {"id": "E_GRUPO", "en_primer_jugable": false, "sentido": "Los mismos en cada grupo."},
+      {"id": "E_REPARTO", "en_primer_jugable": false, "sentido": "De una en una, hasta igualar."},
+      {"id": "E_SOBRA", "en_primer_jugable": false, "sentido": "La sobra no es un fallo. El reparto sí puede encenderse."}
+    ]
+  },
+  "ayuda": {
+    "se_retira_de_uno_en_uno": true,
+    "se_anuncia": false,
+    "volver_no_es_castigo": true,
+    "peldaños": [
+      {
+        "id": "piezas_a_la_vista",
+        "que": "Modelo y apoyos visibles. La bandeja de ella no se esconde."
+      },
+      {
+        "id": "ejemplo_al_lado",
+        "que": "Estrella hace el mismo gesto en su lado. No deja la solución en la bandeja de ella.",
+        "copiar_cuenta_como": "con_ayuda"
+      },
+      {
+        "id": "solo_el_gesto",
+        "que": "El ejemplo no está. No se dice que sea un examen.",
+        "si_sostener": "el_ejemplo_puede_volver_sin_palabra_de_fallo"
+      }
+    ],
+    "registro_de_gesto": {
+      "sola": "Mueve las piezas, sin el ejemplo haciendo el trabajo, sin duda. Puede alimentar una subida. No cruza a firme el mismo día.",
+      "con_ayuda": "Ejemplo al lado, repetición del modelo, o cierre dejado en un movimiento. No sube. Enciende la sala igual la primera vez.",
+      "no": "No hay gesto válido. No se dice en voz alta."
+    },
+    "frase": {
+      "una_y_luego_silencio": true,
+      "max_palabras": 12,
+      "la_pone_el_relato": true,
+      "duda_no_hereda_frases_de_fallo": true,
+      "acierto_no_elogia_a_la_persona": true
+    }
+  },
+  "cierre": {
+    "lo_hace_ella": true,
+    "estrella_no_coloca_la_ultima": false,
+    "acierto_no_sube": true,
+    "no_suma_fallo_de_borde": true,
+    "no_baja_por_ser_el_cierre": true,
+    "no_hay_boton_de_saltar": true,
+    "peldaños": [
+      {
+        "id": "C0",
+        "que": "Un micropaso que ya ha hecho sola. Si no existe, contar tres piedras. Piezas a la vista."
+      },
+      {
+        "id": "C1",
+        "que": "Si no enciende, el ejemplo aparece en el lado de Estrella. La bandeja de ella sigue siendo un gesto. Zona amplia, no el único píxel que brilla.",
+        "zona_px": 120,
+        "brillo_si_hace_falta": "toda_la_losa"
+      }
+    ],
+    "no_hay_peldaño_en_que_estrella_resuelva": true,
+    "pendiente": {
+      "si_cierra_la_tableta_antes": true,
+      "no_se_inventa": true,
+      "al_volver": "una_que_ya_sabe",
+      "no_reanuda_el_fallo": true,
+      "bloquea_idea_nueva": true,
+      "no_es_candado": true,
+      "acertijos_siguen": true,
+      "solo_una_sesion_abierta": true
+    },
+    "adorno": {
+      "cuando": "Al encender ella el cierre, o al completar con las manos una visita a Acertijos.",
+      "elige_entre": 2,
+      "los_dos_validos": true,
+      "por_hacerlo_perfecto": false,
+      "lo_colocado_no_se_quita": true,
+      "si_no_lo_coloca": "espera",
+      "colocarlo_despues_no_regala_otro": true,
+      "bajar_estado_no_lo_quita": true
+    }
+  },
+  "estados_micropaso": [
+    {"id": "sin_ver", "orden": 0},
+    {"id": "aprendiendo", "orden": 1},
+    {"id": "fragil", "orden": 2},
+    {"id": "firme", "orden": 3},
+    {"id": "suelto", "orden": 4}
+  ],
+  "transiciones_micropaso": [
+    {
+      "desde": "sin_ver",
+      "hacia": "aprendiendo",
+      "cuando": "Se muestra la idea unos 20 s y ella la arrastra.",
+      "paso": 1
+    },
+    {
+      "desde": "aprendiendo",
+      "hacia": "fragil",
+      "cuando": "Acierta sola hoy, moviendo piezas, sin duda y sin copiar el ejemplo.",
+      "no_vale": ["con_ayuda", "cierre", "duda", "adivinar"],
+      "paso": 1
+    },
+    {
+      "desde": "fragil",
+      "hacia": "firme",
+      "cuando": "Lo repite sola en otro día, sin ejemplo al lado y sin duda. No es el primer acierto de ese día.",
+      "paso": 1
+    },
+    {
+      "desde": "firme",
+      "hacia": "suelto",
+      "cuando": "Sola, en más de un día, sin piezas de apoyo, a su ritmo, sin adivinanza.",
+      "lento_no_basta": true,
+      "paso": 1
+    },
+    {
+      "desde": "cualquiera_menos_aprendiendo",
+      "hacia": "uno_menos",
+      "cuando": "Duda y falla, fuera de los primeros días.",
+      "paso": -1,
+      "ademas": "ensenar_gesto"
+    },
+    {
+      "desde": "aprendiendo",
+      "hacia": "aprendiendo",
+      "cuando": "Duda y falla.",
+      "efectos": ["no_vuelve_a_sin_ver", "vuelve_el_ejemplo", "ensenar_gesto"]
+    }
+  ],
+  "reglas_maestria": {
+    "solo_sube_uno": true,
+    "solo_baja_uno": true,
+    "suelo_una_vez_vista": "aprendiendo",
+    "bajar_no_quita_luces_ni_adornos": true,
+    "ella_no_oye_los_estados": true,
+    "lento_y_bien_puede_ser_firme": true,
+    "lento_es_lento_para_ella": true,
+    "lento_no_sube_a_suelto": true,
+    "primer_acierto_del_dia_no_sube_a_firme": true,
+    "acierto_de_cierre_no_sube": true,
+    "acierto_con_ayuda_no_sube": true,
+    "acierto_con_duda_no_sube": true,
+    "siguiente_si_duda_y_acierta": "parecido",
+    "fallo_aislado_sin_duda_no_tira_lo_firme": true,
+    "primeros_dias": {
+      "manda_subida": false,
+      "manda_bajada": false,
+      "dias_fijados_por_el_gdd": null,
+      "desde_el_primer_dia_si_mandan": [
+        "cierre_en_acierto",
+        "corte_a_los_dos_fallos_del_borde",
+        "corte_por_cansancio",
+        "ensenar_el_gesto_si_duda_y_falla"
+      ]
+    }
+  },
+  "cansancio": {
+    "no_infiere_emocion": true,
+    "no_se_escribe_frustrada": true,
+    "corta_lo_nuevo": true,
+    "viene_un_acierto_que_ella_hace": true,
+    "no_quita_luces": true,
+    "no_quita_adornos": true,
+    "no_es_bajada_de_castillo": true,
+    "senales": [
+      {
+        "id": "devuelve_piezas",
+        "cuando": "Tres veces en un intento, o en dos intentos seguidos."
+      },
+      {
+        "id": "pausas_que_no_avanzan",
+        "cuando": "Pausas de 4 s o más que no son un arrastre que avanza. Tres en el mismo intento, juntas con tiempos que se alargan, entran aquí. Una pausa sola no es un fallo."
+      },
+      {
+        "id": "fallos_encadenados",
+        "cuando": "El segundo fallo del borde. Los tropiezos de una cuenta que ya sabe no entran en esta cuenta."
+      },
+      {
+        "id": "se_va",
+        "cuando": "20 s sin toque al presentar, sale de la sala o cierra la tableta."
+      },
+      {
+        "id": "reloj_interno",
+        "cuando": "Pasa de unos siete minutos. Se acorta entre turnos. No se dibuja."
+      }
+    ],
+    "no_corta_si_las_piezas_avanzan": true,
+    "hora_y_postura_no_mandan": true
+  },
+  "adaptador": {
+    "ella_no_lo_ve": true,
+    "puede_cambiar": [
+      {
+        "id": "micropaso",
+        "que": "El micropaso de la sesión.",
+        "limites": [
+          "Solo se sube uno y solo se baja uno.",
+          "Un paso nuevo solo si el anterior está firme.",
+          "Firme es acertar sola, en otro día, sin ejemplo al lado y sin duda.",
+          "En una sesión no hay dos ideas nuevas.",
+          "El techo del padre solo frena.",
+          "Los primeros días no manda la subida ni la bajada."
+        ]
+      },
+      {
+        "id": "tamano_de_los_numeros",
+        "que": "El tamaño de los números, dentro del mismo gesto.",
+        "limites": [
+          "Un número más grande no es una idea nueva.",
+          "El techo del padre solo frena."
+        ]
+      },
+      {
+        "id": "piezas_a_la_vista",
+        "que": "Si el modelo y los apoyos siguen a la vista.",
+        "limites": [
+          "No esconde la bandeja de ella.",
+          "Se retira un peldaño, no todos.",
+          "No se anuncia."
+        ]
+      },
+      {
+        "id": "frase_de_ayuda",
+        "que": "La frase de ayuda, del listado cerrado.",
+        "limites": [
+          "Una frase, luego silencio.",
+          "Hasta 12 palabras.",
+          "La duda no hereda frases de fallo.",
+          "El acierto no elogia a la persona.",
+          "No se improvisan."
+        ]
+      },
+      {
+        "id": "duracion",
+        "que": "La duración interna de la sesión.",
+        "limites": [
+          "Unos siete minutos es el diseño, no un cupo.",
+          "Se acorta entre turnos.",
+          "No corta un arrastre a medias.",
+          "No se dibuja."
+        ]
+      },
+      {
+        "id": "idea_nueva_hoy",
+        "que": "Si hoy hay idea nueva.",
+        "limites": [
+          "Solo si el anterior está firme.",
+          "El techo del padre puede frenarla.",
+          "La apertura con duda, el cansancio o el corte la apagan.",
+          "No hay dos en la misma sesión.",
+          "No empieza mientras el cierre esté pendiente.",
+          "Las dos primeras sesiones completas repiten el gesto."
+        ]
+      }
+    ],
+    "no_puede": [
+      "quitar luces",
+      "poner cronómetro",
+      "cerrar acertijos",
+      "enseñar un marcador",
+      "enviar datos fuera",
+      "poner vidas",
+      "poner estrellas vacías",
+      "poner sonido de error",
+      "quitar adornos",
+      "inventar el acierto",
+      "decirle que ha subido o que ha bajado",
+      "inferir emoción",
+      "comparar con otros niños",
+      "diagnosticar",
+      "usar la hora o la postura para cambiar el juego"
+    ],
+    "observa": [
+      "sola_con_ayuda_o_no",
+      "tiempo_al_primer_toque",
+      "tiempo_manipulando",
+      "pausas_largas",
+      "duracion_de_la_sesion",
+      "hora_de_inicio",
+      "postura_de_la_tableta",
+      "duda"
+    ],
+    "postura_de_la_tableta": ["de_pie", "plana", "encima_de_la_cara"],
+    "postura_no_es_del_cuerpo": true,
+    "sin_giroscopio": true,
+    "sin_camara": true,
+    "sin_microfono": true
+  },
+  "registro": {
+    "visible": false,
+    "no_es_marcador": true,
+    "no_envia_fuera": true,
+    "hora_y_postura_se_anotan": true,
+    "hora_y_postura_no_cambian_el_juego_todavia": true
+  },
+  "frases_fijadas": {
+    "corte": "Seguimos con una que ya sabes.",
+    "vuelta": [
+      "Me alegro de verte.",
+      "Tus luces siguen encendidas.",
+      "No hay que recuperar nada."
+    ],
+    "prohibidas": [
+      "mal",
+      "incorrecto",
+      "eres un genio",
+      "casi",
+      "date prisa",
+      "esto es fácil",
+      "te echaba de menos",
+      "se ha apagado"
+    ]
+  },
+  "primer_jugable": {
+    "entra": [
+      "bucle_de_sesion",
+      "piedras_hacer_el_10",
+      "acertijo_piedra_estrella",
+      "cierre_en_acierto",
+      "registro_de_duda_al_soltar",
+      "corte_a_los_dos_fallos",
+      "corte_si_devuelve_piezas_encadena_fallos_o_se_va",
+      "hora_y_postura_anotadas_sin_mandar"
+    ],
+    "hacer_el_10": {
+      "losa": "dos filas de cinco",
+      "la_decima_enciende": true,
+      "la_oncena_no_enciende": true,
+      "sin_teclado": true
+    },
+    "acertijo": {
+      "patron": ["piedra", "estrella", "piedra", "estrella"],
+      "cuelga_la_siguiente_desde_un_arcon": true,
+      "no_elige_entre_dos_botones": true
+    },
+    "partida_referencia": [
+      "ver tres piedras",
+      "Estrella cierra un diez",
+      "ella repite 7 y 3",
+      "borde 8",
+      "borde 5",
+      "borde 9",
+      "collar piedra-estrella",
+      "cierre de una que puede",
+      "farol a la torre"
+    ],
+    "no_entra": ["llevada", "euro", "problema_con_historia"]
+  }
+}

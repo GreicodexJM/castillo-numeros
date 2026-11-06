@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img">
+  <title>Piedra de luz</title>
+  <path fill="#F6E7A8" stroke="#3B2A22" stroke-width="16" stroke-linejoin="round" d="M40 176C32 118 62 40 122 34c58-6 108 28 112 86 4 58-28 104-84 112-58 8-102-4-110-56z"/>
+  <circle cx="132" cy="112" r="36" fill="#F0C43A" stroke="#3B2A22" stroke-width="14"/>
+</svg>

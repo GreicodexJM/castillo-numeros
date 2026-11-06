@@ -1,0 +1,132 @@
+{
+  "id": "estrella",
+  "nombre": "Estrella",
+  "rol": "aprendiz de magia de las luces",
+  "origen": "personaje original",
+  "edad_en_el_dibujo": "chica joven, unos once años; no bebé, no adulta",
+  "ficha_cara": "curiosa",
+  "silueta": "assets/personajes/estrella-silueta.svg",
+  "personajes_secundarios": [],
+  "colores": {
+    "piel": "#E2A56B",
+    "piel_sombra": "#C4844E",
+    "mejilla": "#E58B6A",
+    "pelo": "#4A2E24",
+    "ceja": "#4A2E24",
+    "ojo": "#3F2A22",
+    "blanco_ojo": "#F7F1E6",
+    "boca": "#C46A52",
+    "capa": "#C85A32",
+    "forro": "#F2C14E",
+    "broche": "#F2C14E",
+    "costura_broche": "#C45C28",
+    "tunica": "#F4E2C0",
+    "cinturon": "#6E432C",
+    "bolsa": "#8A5A3C",
+    "piedra_luz": "#F6E27A",
+    "bota": "#5C3D30",
+    "contorno": "#3A241C",
+    "fondo_ficha": "#F7F1E6"
+  },
+  "colores_no_significan": {
+    "capa": "no es acierto ni error",
+    "piedra_luz": "no es una nota ni una estrella de premio",
+    "boca": "no es rojo de fallo"
+  },
+  "proporciones": {
+    "unidad": "cabeza",
+    "altura_de_pie": 4.2,
+    "cabeza_ancho_sobre_alto": 0.92,
+    "cuello": 0.2,
+    "torso": 1.3,
+    "piernas": 1.7,
+    "ojo_alto_sobre_cara": 0.18,
+    "separacion_ojos": "un ojo",
+    "boca_ancho_sobre_cara": 0.22,
+    "manos": "grandes, cuatro dedos juntos más pulgar",
+    "bolsa": "cadera izquierda de Estrella; derecha de la imagen si mira de frente",
+    "capa": "corta, abierta, hasta la cadera; no tapa las botas",
+    "en_1024x600": {
+      "de_pie_patio_px": 280,
+      "busto_sala_px": 200,
+      "cabeza_minima_px": 72,
+      "ficha_cara_px": 512
+    }
+  },
+  "invariantes": [
+    "misma cara, mismo pelo, misma piel, mismos ojos",
+    "melena a la mandíbula, flequillo recto, orejas a la vista",
+    "sin corona, sin varita, sin tiara, sin velo, sin joyas",
+    "capa corta ámbar, broche de tela en estrella, bolsa, botas blandas",
+    "piernas visibles",
+    "boca pequeña, cejas suaves, nunca ceño ni lágrima ni cabeza gacha"
+  ],
+  "caras": {
+    "curiosa": {
+      "cejas": "un poco más altas por fuera",
+      "ojos": "abiertos del todo",
+      "boca": "pequeña entreabierta, sin dientes, apertura máxima 0,06 del alto de cara",
+      "mirada": "al frente o a la pieza",
+      "en_fallo": true
+    },
+    "contenta": {
+      "cejas": "arco bajo, simétrico",
+      "ojos": "casi del todo abiertos",
+      "boca": "comisuras unos 2 px arriba en una cara de 200 px, sin dientes",
+      "mirada": "al frente o a la torre",
+      "en_fallo": true
+    },
+    "pensando": {
+      "cejas": "suaves, una un poco más alta",
+      "ojos": "abiertos, un pelo menos",
+      "boca": "cerrada, comisuras planas, nunca hacia abajo",
+      "mirada": "al broche o a la pieza, no al suelo",
+      "cabeza": "ladeo máximo 8 grados, barbilla alta",
+      "en_fallo": true
+    },
+    "celebrando": {
+      "cejas": "igual que contenta",
+      "ojos": "abiertos, no cerrados",
+      "boca": "comisuras unos 4 px arriba en una cara de 200 px, sin dientes",
+      "mejillas": "un pelo más redondas",
+      "en_fallo": false
+    }
+  },
+  "poses": [
+    {
+      "id": "quieta",
+      "cara": "contenta",
+      "cara_alternativa": "curiosa",
+      "cuerpo": "De pie, peso igual, brazos caídos, manos a la vista. También sentada en un escalón, farol apagado en el regazo.",
+      "cuando": "Saludo, espera, patio.",
+      "no": "Brazos en jarra, salto, tapa las piezas."
+    },
+    {
+      "id": "señalando",
+      "cara": "curiosa",
+      "cuerpo": "Un brazo hacia las piezas, palma abierta, índice hacia el objeto. El otro brazo bajo.",
+      "cuando": "Enseña el gesto. Señala nido, piedra, varilla o hueco.",
+      "no": "No señala a quien juega. No señala a cámara. No hay varita. El dedo no niega."
+    },
+    {
+      "id": "pensando",
+      "cara": "pensando",
+      "cuerpo": "Una mano toca el broche. La otra baja. Cabeza ladeada como mucho 8 grados.",
+      "cuando": "Pieza que vuelve, duda, gesto que aún no cierra.",
+      "no": "Barbilla caída, mano en la barbilla de pena, suspiro, mirada al suelo."
+    },
+    {
+      "id": "celebrando",
+      "cara": "celebrando",
+      "cuerpo": "Una palmada suave, manos justo al juntarse. Pies en el suelo.",
+      "cuando": "Solo en un acierto. En el cierre, la cinta vale más que la palmada.",
+      "no": "Salto, confeti, brazos en V, segunda palmada, ojos cerrados, usar esta pose en un fallo."
+    }
+  ],
+  "prompt_referencia": {
+    "uso": "Se genera antes que el resto. Las poses posteriores dicen: Misma cara que la ficha de Estrella. No redibujes el pelo, los ojos ni la boca. Solo cambia el gesto indicado.",
+    "es": "Retrato de frente, de los hombros para arriba, fondo liso #F7F1E6, sin escenario. Estrella, personaje original, aprendiz de magia de las luces. Parece una chica joven, de unos once años en el dibujo: no es un bebé, no es una mujer adulta, no es una reina, no es un hada. Cara redonda, un poco más alta que ancha. Piel #E2A56B, sombra #C4844E, mejillas #E58B6A siempre en el mismo sitio. Pelo #4A2E24, melena a la mandíbula, flequillo recto que no tapa los ojos, orejas redondas a la vista, sin coleta, sin trenza, sin moño, sin diadema, sin horquilla. Ojos #3F2A22, blanco #F7F1E6, tamaño medio, separados el ancho de un ojo, sin pestañas largas, sin brillo de cristal. Cejas cortas y suaves, #4A2E24, nunca en pico. Nariz: una curva corta. Boca pequeña #C46A52, sin dientes. Esta ficha es la cara curiosa: cejas un poco más altas por fuera, ojos abiertos, boca pequeña entreabierta sin dientes, mirada al frente, cabeza alta. En el cuello, broche de tela en estrella de cinco puntas, #F2C14E, costura #C45C28, cosido, no de metal y no de joya. Asoma una capa corta #C85A32, sin vestido de baile. Dibujo plano, formas grandes, poco detalle, contorno #3A241C, contraste alto. Esta imagen fija la cara. No generes el cuerpo entero. No cambies el pelo ni la piel en imágenes posteriores. Prohibido: corona, varita, tiara, velo, joyas, maquillaje, lágrima, ceño, tristeza, enfado, decepción, cabeza gacha, sonrisa enorme, dientes, estilo de princesa de película, estilo Disney, foto real, texto, partículas, confeti.",
+    "en": "Front view, head and shoulders only, flat background #F7F1E6, no setting. Estrella, an original character, apprentice of light magic. She looks like a young girl, about eleven in the drawing: not a toddler, not an adult woman, not a queen, not a fairy. Round face, slightly taller than wide. Skin #E2A56B, shadow #C4844E, cheeks #E58B6A always in the same place. Hair #4A2E24, jaw-length bob, straight fringe that does not cover the eyes, round ears visible, no ponytail, no braid, no bun, no tiara, no hairpin. Eyes #3F2A22, white #F7F1E6, medium size, one eye-width apart, no long lashes, no glassy shine. Short soft brows, #4A2E24, never peaked. Nose: one short curve. Small mouth #C46A52, no teeth. This sheet is the curious face: brows a little higher at the outer end, eyes open, small mouth slightly open with no teeth, looking forward, chin up. At the neck, a sewn five-point cloth star brooch, #F2C14E, stitch #C45C28, not metal, not a jewel. A short cape #C85A32 shows, no ball gown. Flat drawing, large shapes, little detail, outline #3A241C, high contrast. This image locks the face. Do not generate the full body. Do not change hair or skin in later images. Forbidden: crown, wand, tiara, veil, jewels, makeup, tear, frown, sadness, anger, disappointment, bowed head, huge smile, teeth, movie-princess style, Disney style, real photo, text, particles, confetti.",
+    "si_ignora_hex": "piel albaricoque cálida, pelo castaño oscuro, ojos marrón cálido, boca coral suave, broche amarillo de tela, capa terracota"
+  }
+}

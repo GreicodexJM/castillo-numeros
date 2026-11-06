@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img">
+  <title>Placa de cien</title>
+  <rect x="28" y="28" width="200" height="200" rx="28" fill="#C45C28" stroke="#3B2A22" stroke-width="16"/>
+  <rect x="104" y="52" width="48" height="152" rx="10" fill="#3B2A22"/>
+  <rect x="52" y="104" width="152" height="48" rx="10" fill="#3B2A22"/>
+</svg>

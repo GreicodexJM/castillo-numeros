@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img">
+  <title>Moneda del juego</title>
+  <circle cx="128" cy="128" r="104" fill="#E6B15A" stroke="#3B2A22" stroke-width="16"/>
+  <circle cx="128" cy="128" r="72" fill="#F6E7A8"/>
+  <circle cx="128" cy="128" r="28" fill="#3B2A22"/>
+</svg>
