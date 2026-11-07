@@ -26,15 +26,16 @@ AMBAR = (244, 197, 109)
 TELA = (232, 214, 186)
 
 
-def fuente(px):
-    for ruta in (
-        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-        "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
-    ):
+def fuente(px, negrita=True):
+    rutas = [
+        "/usr/share/fonts/TTF/DejaVuSans-Bold.ttf" if negrita else "/usr/share/fonts/TTF/DejaVuSans.ttf",
+        "/usr/share/fonts/noto/NotoSans-Bold.ttf" if negrita else "/usr/share/fonts/noto/NotoSans-Regular.ttf",
+    ]
+    import os
+    for ruta in rutas:
         if os.path.exists(ruta):
             return ImageFont.truetype(ruta, px)
     return ImageFont.load_default()
-
 
 def piedra(d, cx, cy, r, relleno=PIEDRA, borde=4):
     """Un canto rodado irregular, no un círculo ni un cuadrado. La misma forma siempre."""
