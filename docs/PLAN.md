@@ -21,5 +21,8 @@ Llevada, euro, centenas, signos, problemas con historia, vídeo, red, PIN de rec
 | Qué | Dónde |
 |---|---|
 | Diseño | `docs/GDD.md` |
+| Cómo se programa el primer jugable | `docs/specs/programacion.md` |
+| Pantallas y zonas | `docs/specs/ui-ux.md` y `assets/pantallas/` |
+| Cómo se dibuja | `docs/specs/direccion-artistica.md` |
 | Críticas que se aplicaron | `docs/criticas/` |
 | Historial de la primera pasada | `docs/expertos/` |

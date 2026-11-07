@@ -120,14 +120,21 @@
       "desde": "patio",
       "hacia": "patio",
       "cuando": "Menos de 15 s sin tocar una pieza.",
-      "efectos": ["no_abre_sesion", "no_hay_deuda", "no_hay_adorno"]
+      "efectos": [
+        "no_abre_sesion",
+        "no_hay_deuda",
+        "no_hay_adorno"
+      ]
     },
     {
       "id": "patio_a_cierre_pendiente",
       "desde": "patio",
       "hacia": "cierre",
       "cuando": "Hay un cierre pendiente. La bandeja es una que ya sabe, no el fallo.",
-      "efectos": ["no_reanuda_el_borde", "no_hay_idea_nueva_hasta_encender"]
+      "efectos": [
+        "no_reanuda_el_borde",
+        "no_hay_idea_nueva_hasta_encender"
+      ]
     },
     {
       "id": "entrada_a_ya_sabe",
@@ -146,7 +153,11 @@
       "desde": "ya_sabe",
       "hacia": "ya_sabe",
       "cuando": "Tropiezo en la cuenta que ya sabe.",
-      "efectos": ["se_ayuda_hasta_el_acierto", "no_suma_fallo_de_borde", "no_salta_al_cierre_por_dos_tropiezos"]
+      "efectos": [
+        "se_ayuda_hasta_el_acierto",
+        "no_suma_fallo_de_borde",
+        "no_salta_al_cierre_por_dos_tropiezos"
+      ]
     },
     {
       "id": "ya_sabe_a_idea",
@@ -159,14 +170,21 @@
       "desde": "ya_sabe",
       "hacia": "cierre",
       "cuando": "Entre turnos, cansancio que no es un tropiezo, o el reloj interno acorta. No se inventa el acierto de este tramo.",
-      "efectos": ["corta_lo_nuevo", "frase_de_corte_si_sigue_en_la_sesion"]
+      "efectos": [
+        "corta_lo_nuevo",
+        "frase_de_corte_si_sigue_en_la_sesion"
+      ]
     },
     {
       "id": "ya_sabe_a_guardado",
       "desde": "ya_sabe",
       "hacia": "guardado",
       "cuando": "Sale o cierra la tableta.",
-      "efectos": ["no_inventa_el_acierto", "al_volver_entra_por_una_que_ya_sabe", "sin_reproche"]
+      "efectos": [
+        "no_inventa_el_acierto",
+        "al_volver_entra_por_una_que_ya_sabe",
+        "sin_reproche"
+      ]
     },
     {
       "id": "idea_demo_a_repite",
@@ -179,7 +197,10 @@
       "desde": "idea_repite",
       "hacia": "borde",
       "cuando": "Suelta el gesto. Si no arrastra, se acercan las piezas. No se alarga el discurso.",
-      "efectos": ["cuenta_como_con_ayuda", "no_puede_fallar_la_sesion"]
+      "efectos": [
+        "cuenta_como_con_ayuda",
+        "no_puede_fallar_la_sesion"
+      ]
     },
     {
       "id": "idea_repite_a_cierre",
@@ -204,86 +225,137 @@
       "desde": "borde",
       "hacia": "cierre",
       "cuando": "Segundo fallo del borde.",
-      "efectos": ["salta_acertijo", "no_hay_tercero", "frase_de_corte", "no_cierra_la_sala_de_acertijos"]
+      "efectos": [
+        "salta_acertijo",
+        "no_hay_tercero",
+        "frase_de_corte",
+        "no_cierra_la_sala_de_acertijos"
+      ]
     },
     {
       "id": "borde_a_cierre_por_cansancio",
       "desde": "borde",
       "hacia": "cierre",
       "cuando": "Devuelve piezas, pausas que no avanzan, se va entre turnos, o el reloj interno acorta.",
-      "efectos": ["salta_acertijo", "corta_lo_nuevo", "no_quita_luces"]
+      "efectos": [
+        "salta_acertijo",
+        "corta_lo_nuevo",
+        "no_quita_luces"
+      ]
     },
     {
       "id": "borde_a_guardado",
       "desde": "borde",
       "hacia": "guardado",
       "cuando": "Sale o cierra la tableta durante el borde.",
-      "efectos": ["no_reanuda_el_fallo", "no_inventa_el_acierto", "al_volver_entra_por_una_que_ya_sabe"]
+      "efectos": [
+        "no_reanuda_el_fallo",
+        "no_inventa_el_acierto",
+        "al_volver_entra_por_una_que_ya_sabe"
+      ]
     },
     {
       "id": "acertijo_a_cierre",
       "desde": "acertijo",
       "hacia": "cierre",
       "cuando": "Acierto con sus manos, tope interno entre turnos, o cansancio.",
-      "efectos": ["no_baja_aritmetica", "no_sube_aritmetica"]
+      "efectos": [
+        "no_baja_aritmetica",
+        "no_sube_aritmetica"
+      ]
     },
     {
       "id": "acertijo_a_guardado",
       "desde": "acertijo",
       "hacia": "guardado",
       "cuando": "Sale sin haber completado el gesto.",
-      "efectos": ["no_inventa_el_acierto", "la_sala_sigue_abierta"]
+      "efectos": [
+        "no_inventa_el_acierto",
+        "la_sala_sigue_abierta"
+      ]
     },
     {
       "id": "cierre_sigue",
       "desde": "cierre",
       "hacia": "cierre",
       "cuando": "La colocación no enciende.",
-      "efectos": ["vuelve_el_ejemplo", "estrella_no_coloca_la_ultima", "no_suma_fallo_de_borde", "no_baja_estado"]
+      "efectos": [
+        "vuelve_el_ejemplo",
+        "estrella_no_coloca_la_ultima",
+        "no_suma_fallo_de_borde",
+        "no_baja_estado"
+      ]
     },
     {
       "id": "cierre_a_torre",
       "desde": "cierre",
       "hacia": "torre",
       "cuando": "Ella enciende la luz con sus manos.",
-      "efectos": ["adorno_por_llegar_jugando", "el_acierto_no_sube"]
+      "efectos": [
+        "adorno_por_llegar_jugando",
+        "el_acierto_no_sube"
+      ]
     },
     {
       "id": "cierre_a_guardado",
       "desde": "cierre",
       "hacia": "guardado",
       "cuando": "Sale o cierra la tableta antes de encender.",
-      "efectos": ["cierre_pendiente", "no_inventa_el_acierto", "ayuda_nunca_mas_dura_que_el_ejemplo_al_lado"]
+      "efectos": [
+        "cierre_pendiente",
+        "no_inventa_el_acierto",
+        "ayuda_nunca_mas_dura_que_el_ejemplo_al_lado"
+      ]
     },
     {
       "id": "torre_a_guardado",
       "desde": "torre",
       "hacia": "guardado",
       "cuando": "Coloca un adorno, o sale. Si ya llegó al cierre y no coloca, el adorno espera.",
-      "efectos": ["lo_colocado_no_se_quita", "colocarlo_despues_no_regala_otro"]
+      "efectos": [
+        "lo_colocado_no_se_quita",
+        "colocarlo_despues_no_regala_otro"
+      ]
     },
     {
       "id": "guardado_a_patio",
       "desde": "guardado",
       "hacia": "patio",
       "cuando": "Vuelve a abrir.",
-      "efectos": ["las_luces_siguen", "no_reanuda_el_fallo"]
+      "efectos": [
+        "las_luces_siguen",
+        "no_reanuda_el_fallo"
+      ]
     }
   ],
   "reglas_de_paso": {
-    "orden": ["ya_sabe", "idea_demo", "idea_repite", "borde", "acertijo", "cierre", "torre"],
+    "orden": [
+      "ya_sabe",
+      "idea_demo",
+      "idea_repite",
+      "borde",
+      "acertijo",
+      "cierre",
+      "farol",
+      "torre"
+    ],
     "una_idea_nueva_por_sesion": true,
     "idea_nueva_solo_si_anterior_firme": true,
-    "dos_primeras_sesiones_completas_repiten_el_gesto": true,
+    "tres_primeras_sesiones_completas_solo_observan": true,
+    "se_cuenta_desde_la_sesion": 4,
+    "primeras_sesiones_mismo_micropaso": "M11",
     "cuarto_intento_borde": {
       "solo_si_fallos": 0,
       "solo_si_sin_cansancio": true,
       "ademas_reloj_interno_menor_que_s": 300
     },
-    "a_los_420_s_entre_turnos": "No se abre otro intento. Si van menos de 2 fallos de borde y no hay cansancio fuerte, un acertijo corto y luego el cierre. Si no, al cierre.",
+    "a_los_420_s_entre_turnos": "No se abre otro intento de borde. Si no hubo corte, se pasa al acertijo; luego, al cierre.",
     "a_los_480_s_entre_turnos": "Se entra en el cierre, tras acabar el arrastre en curso.",
     "frase_de_corte": "Seguimos con una que ya sabes.",
-    "frase_de_corte_no_nombra": ["cansancio", "fallo"],
+    "frase_de_corte_no_nombra": [
+      "cansancio",
+      "fallo"
+    ],
     "frase_de_corte_solo_si_el_juego_acorta": true,
     "al_salir_ella": "sin_reproche"
   },
@@ -318,7 +390,15 @@
     {
       "id": "juicio",
       "cuando": "No se desdice.",
-      "resultados": ["acierto", "acierto_con_duda", "con_ayuda", "despacio", "adivinar", "fallo", "rechazo_de_material"]
+      "resultados": [
+        "acierto",
+        "acierto_con_duda",
+        "con_ayuda",
+        "despacio",
+        "adivinar",
+        "fallo",
+        "rechazo_de_material"
+      ]
     }
   ],
   "transiciones_intento": [
@@ -331,7 +411,10 @@
       "desde": "presenta",
       "hacia": "guardado",
       "cuando": "20 s sin toque, sale o cierra la tableta.",
-      "efectos": ["se_va", "al_volver_una_que_ya_sabe"]
+      "efectos": [
+        "se_va",
+        "al_volver_una_que_ya_sabe"
+      ]
     },
     {
       "desde": "toca",
@@ -387,7 +470,7 @@
       "fuente": "docs/GDD.md",
       "cuando": "Durante el agarre la pieza estuvo sobre otro destino, y se suelta en uno distinto.",
       "deteccion": {
-        "fuente": "docs/expertos/01-videojuegos.md",
+        "fuente": "docs/GDD.md; el umbral de 0,4 s se decide en docs/specs/programacion.md",
         "sobre_otro_destino_s_minimo": 0.4,
         "suelta_en_destino_distinto": true
       },
@@ -399,9 +482,10 @@
       "id": "sostener",
       "nombre": "Sostener",
       "fuente": "docs/GDD.md",
-      "cuando": "Tiene la pieza en la mano más de 8 s.",
+      "cuando": "La pieza está quieta, menos de 24 px, más de 8 s.",
       "umbral": {
-        "agarre_s_mayor_que": 8
+        "quieta_px_menor_que": 24,
+        "quieta_s_mayor_que": 8
       },
       "se_anota_al_soltar": true,
       "es_duda": true,
@@ -493,26 +577,82 @@
       "manipular_menos_de_s_sin_gesto": 0.8
     },
     "estrella": {
-      "puede": ["curiosa", "contenta", "pensando"],
-      "nunca": ["decepcionada", "enfadada", "triste"]
+      "puede": [
+        "curiosa",
+        "contenta",
+        "pensando"
+      ],
+      "nunca": [
+        "decepcionada",
+        "enfadada",
+        "triste"
+      ]
     },
     "pieza_vuelve_s": 0.4,
     "luz_pulso_s": 1.2,
     "campanada_s": 0.4,
     "misma_campanada_sola_o_con_ayuda": true,
     "errores_con_frase": [
-      {"id": "E_DIEZ", "en_primer_jugable": true, "sentido": "Un grupo de diez."},
-      {"id": "E_PATRON", "en_primer_jugable": true, "sentido": "El que toca ahora, no el de antes."},
-      {"id": "E_CONTEO", "en_primer_jugable": false, "sentido": "Señalar cada una, una vez."},
-      {"id": "E_LADO", "en_primer_jugable": false, "sentido": "La suma no cambia al darla la vuelta."},
-      {"id": "E_RESTA_ORDEN", "en_primer_jugable": false, "sentido": "7−3 no es 3−7. No se enseña en el Espejo."},
-      {"id": "E_COLUMNA", "en_primer_jugable": false, "sentido": "Unidades con unidades."},
-      {"id": "E_LLEVADA", "en_primer_jugable": false, "sentido": "Me llevo una."},
-      {"id": "E_PRESTAMO", "en_primer_jugable": false, "sentido": "Pido prestada una decena. Se rompe en diez unidades."},
-      {"id": "E_MONEDA", "en_primer_jugable": false, "sentido": "Diez de estos son uno de esos."},
-      {"id": "E_GRUPO", "en_primer_jugable": false, "sentido": "Los mismos en cada grupo."},
-      {"id": "E_REPARTO", "en_primer_jugable": false, "sentido": "De una en una, hasta igualar."},
-      {"id": "E_SOBRA", "en_primer_jugable": false, "sentido": "La sobra no es un fallo. El reparto sí puede encenderse."}
+      {
+        "id": "E_DIEZ",
+        "en_primer_jugable": true,
+        "sentido": "Un grupo de diez."
+      },
+      {
+        "id": "E_PATRON",
+        "en_primer_jugable": true,
+        "sentido": "El que toca ahora, no el de antes."
+      },
+      {
+        "id": "E_CONTEO",
+        "en_primer_jugable": false,
+        "sentido": "Señalar cada una, una vez."
+      },
+      {
+        "id": "E_LADO",
+        "en_primer_jugable": false,
+        "sentido": "La suma no cambia al darla la vuelta."
+      },
+      {
+        "id": "E_RESTA_ORDEN",
+        "en_primer_jugable": false,
+        "sentido": "7−3 no es 3−7. No se enseña en el Espejo."
+      },
+      {
+        "id": "E_COLUMNA",
+        "en_primer_jugable": false,
+        "sentido": "Unidades con unidades."
+      },
+      {
+        "id": "E_LLEVADA",
+        "en_primer_jugable": false,
+        "sentido": "Me llevo una."
+      },
+      {
+        "id": "E_PRESTAMO",
+        "en_primer_jugable": false,
+        "sentido": "Pido prestada una decena. Se rompe en diez unidades."
+      },
+      {
+        "id": "E_MONEDA",
+        "en_primer_jugable": false,
+        "sentido": "Diez de estos son uno de esos."
+      },
+      {
+        "id": "E_GRUPO",
+        "en_primer_jugable": false,
+        "sentido": "Los mismos en cada grupo."
+      },
+      {
+        "id": "E_REPARTO",
+        "en_primer_jugable": false,
+        "sentido": "De una en una, hasta igualar."
+      },
+      {
+        "id": "E_SOBRA",
+        "en_primer_jugable": false,
+        "sentido": "La sobra no es un fallo. El reparto sí puede encenderse."
+      }
     ]
   },
   "ayuda": {
@@ -550,7 +690,7 @@
   },
   "cierre": {
     "lo_hace_ella": true,
-    "estrella_no_coloca_la_ultima": false,
+    "estrella_no_coloca_la_ultima": true,
     "acierto_no_sube": true,
     "no_suma_fallo_de_borde": true,
     "no_baja_por_ser_el_cierre": true,
@@ -590,11 +730,26 @@
     }
   },
   "estados_micropaso": [
-    {"id": "sin_ver", "orden": 0},
-    {"id": "aprendiendo", "orden": 1},
-    {"id": "fragil", "orden": 2},
-    {"id": "firme", "orden": 3},
-    {"id": "suelto", "orden": 4}
+    {
+      "id": "sin_ver",
+      "orden": 0
+    },
+    {
+      "id": "aprendiendo",
+      "orden": 1
+    },
+    {
+      "id": "fragil",
+      "orden": 2
+    },
+    {
+      "id": "firme",
+      "orden": 3
+    },
+    {
+      "id": "suelto",
+      "orden": 4
+    }
   ],
   "transiciones_micropaso": [
     {
@@ -607,7 +762,12 @@
       "desde": "aprendiendo",
       "hacia": "fragil",
       "cuando": "Acierta sola hoy, moviendo piezas, sin duda y sin copiar el ejemplo.",
-      "no_vale": ["con_ayuda", "cierre", "duda", "adivinar"],
+      "no_vale": [
+        "con_ayuda",
+        "cierre",
+        "duda",
+        "adivinar"
+      ],
       "paso": 1
     },
     {
@@ -634,7 +794,11 @@
       "desde": "aprendiendo",
       "hacia": "aprendiendo",
       "cuando": "Duda y falla.",
-      "efectos": ["no_vuelve_a_sin_ver", "vuelve_el_ejemplo", "ensenar_gesto"]
+      "efectos": [
+        "no_vuelve_a_sin_ver",
+        "vuelve_el_ejemplo",
+        "ensenar_gesto"
+      ]
     }
   ],
   "reglas_maestria": {
@@ -675,7 +839,7 @@
     "senales": [
       {
         "id": "devuelve_piezas",
-        "cuando": "Tres veces en un intento, o en dos intentos seguidos."
+        "cuando": "Tres veces en el mismo intento, fuera de la ventana de 3 s. Una sola no corta."
       },
       {
         "id": "pausas_que_no_avanzan",
@@ -790,7 +954,11 @@
       "postura_de_la_tableta",
       "duda"
     ],
-    "postura_de_la_tableta": ["de_pie", "plana", "encima_de_la_cara"],
+    "postura_de_la_tableta": [
+      "de_pie",
+      "plana",
+      "encima_de_la_cara"
+    ],
     "postura_no_es_del_cuerpo": true,
     "sin_giroscopio": true,
     "sin_camara": true,
@@ -801,7 +969,39 @@
     "no_es_marcador": true,
     "no_envia_fuera": true,
     "hora_y_postura_se_anotan": true,
-    "hora_y_postura_no_cambian_el_juego_todavia": true
+    "hora_y_postura_no_cambian_el_juego_todavia": true,
+    "inclinacion": {
+      "fuente": "docs/GDD.md 10.2",
+      "muestra": "Una por segundo, mediana de cinco, al empezar la sesión y en cada cambio de estado.",
+      "cubos": [
+        "plana",
+        "de_pie",
+        "encima",
+        "desconocida"
+      ],
+      "regla": {
+        "plana": "El eje que sale de la pantalla es el mayor y la pantalla mira hacia arriba (d > cos 25).",
+        "encima": "Ese mismo eje es el mayor y la pantalla mira hacia abajo (d < -cos 35).",
+        "de_pie": "El mayor está en el plano de la pantalla.",
+        "desconocida": "Magnitud menor de 5, ruido, o menos de tres lecturas válidas."
+      },
+      "no_hace": [
+        "no cambia sala",
+        "no cambia tiempo",
+        "no cambia frase",
+        "no sale en la pantalla del padre",
+        "no se llama sentada, acostada, noche ni tumbada"
+      ]
+    },
+    "anillos": {
+      "intentos": 200,
+      "eventos_de_duda": 800,
+      "nunca_se_olvida": [
+        "luces",
+        "adornos",
+        "estados"
+      ]
+    }
   },
   "frases_fijadas": {
     "corte": "Seguimos con una que ya sabes.",
@@ -839,7 +1039,12 @@
       "sin_teclado": true
     },
     "acertijo": {
-      "patron": ["piedra", "estrella", "piedra", "estrella"],
+      "patron": [
+        "piedra",
+        "estrella",
+        "piedra",
+        "estrella"
+      ],
       "cuelga_la_siguiente_desde_un_arcon": true,
       "no_elige_entre_dos_botones": true
     },
@@ -854,6 +1059,10 @@
       "cierre de una que puede",
       "farol a la torre"
     ],
-    "no_entra": ["llevada", "euro", "problema_con_historia"]
+    "no_entra": [
+      "llevada",
+      "euro",
+      "problema_con_historia"
+    ]
   }
 }

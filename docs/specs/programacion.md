@@ -1,52 +1,55 @@
 # Programación — primer jugable
 
-Este texto obedece `docs/GDD.md` y `BRIEF.md`. Si un capítulo de experto dice otra cosa, manda el GDD. Aquí se cierra lo que un programador tendría que decidir. No es el juego. No abre la llevada, ni el euro, ni un problema con historia.
+Este documento obedece `docs/GDD.md`. Si algo de aquí lo contradice, manda el GDD. Cierra lo que un programador tendría que decidir y que el GDD deja abierto; cuando una decisión no está en el GDD se dice, para que se pueda cambiar sin miedo.
 
-Idioma del material y de las cadenas: español de España. No hay nombre, foto ni edad de una niña real. No hay identificador de aparato más allá de no pedirlo.
+Las coordenadas no se copian de aquí: se leen de las placas de `assets/pantallas/`, que se generan del GDD con `tools/mockup_pantallas.py`. Si una placa y el GDD no coinciden, el error está en la placa y se regenera.
 
-## Qué se construye
+Idioma de pantalla y de datos: español de España. No hay nombre, foto ni edad de una niña real. No hay identificador de aparato porque no se pide.
 
-Godot 4.7.2, solo 2D, GDScript. Sin C#, sin extensión nativa, sin plugin de red. El primer jugable, en el ordenador y luego en la tableta, es esto:
+## 1. Qué se construye
 
-- Patio, Estrella, torre con un farol que ella coloca.
-- Piedras de luz: hacer el 10. Caja de dos filas de cinco. La décima enciende. Una oncena de más no enciende.
-- Acertijo: piedra, estrella, piedra, estrella. Ella cuelga la siguiente desde un arcón. No elige entre dos botones.
-- Cierre siempre en un acierto suyo. Estrella no coloca la última pieza.
-- Registro de duda al soltar.
-- Corte a los dos fallos del borde, y corte si devuelve piezas, encadena fallos o se va.
-- Hora y postura se anotan y no cambian el juego.
+Godot 4.7.2, solo 2D, GDScript. Sin C#, sin extensión nativa, sin plugin de red. El corte es jugable de principio a fin:
 
-Partida de referencia, si nada se tuerce: ver tres piedras; Estrella cierra un diez; ella repite 7 y 3; borde 8, luego 5, luego 9; collar piedra-estrella; cierre de una que puede; farol a la torre.
+- Patio con tres ventanas y la campana.
+- Nido: hacer el diez. Dos filas de cinco huecos. La décima enciende. Una oncena no.
+- Collar: piedra, estrella, piedra, estrella. La siguiente se arrastra desde el arcón.
+- Cierre: nueve puestas, ella pone la última.
+- Farol: dos, los dos válidos, lo coloca ella.
+- Pantalla del padre con PIN y como mucho dos frases.
+- Registro de duda, fallo y corte.
+- Hora e inclinación se anotan y no cambian nada.
 
-## Aparato
+Partida de referencia, si nada se tuerce: tres piedras; Estrella cierra un diez en el paño; ella repite 7 y 3; borde 8, 5 y 9; collar; cierre con su mano; farol.
 
-Amazon Fire 7 (2022), KFQUWI. Fire OS 8.3.3.8, Android 11, API 30. MT8168, Mali-G52, 2 GB de RAM; en reposo quedan unos 620 MB. Pantalla 1024×600, 60 Hz, unos 171 dpi. En horizontal, con la barra, el área útil baja a unos 1024×552. Acelerómetro sí. Giroscopio no. Multitáctil. Sin permiso de internet. Disco justo: el APK cabe holgado por debajo de 40 MB y nunca pasa de 80.
+No entra: llevada, préstamo, euros, céntimos, centenas, grupos, reparto, sobra, problemas con historia, las otras seis salas y los 81 micropasos como selector.
 
-El primer jugable se prueba antes en el ordenador. El ratón emula el dedo. En el escritorio el acelerómetro devuelve cero: la postura queda `desconocida` y el juego sigue igual. No se simula una postura en la exportación.
+## 2. Aparato y proyecto
 
-### Proyecto
+Amazon Fire 7 (2022), KFQUWI. Fire OS 8.3.3.8, Android 11, API 30. MT8168, Mali-G52, 2 GB de RAM; en reposo quedan unos 620 MB. Pantalla 1024×600, 60 Hz, unos 171 dpi. Acelerómetro sí. Giroscopio no. Multitáctil. Sin permiso de internet. El APK cabe por debajo de 40 MB y nunca pasa de 80.
+
+Se prueba antes en el ordenador con el ratón como dedo. En el escritorio el acelerómetro devuelve cero: la inclinación queda `desconocida` y el juego sigue igual. No se simula una postura en la exportación.
 
 | Ajuste | Valor |
 |---|---|
 | Renderer | `gl_compatibility`, también en móvil. Sin Vulkan, sin Forward+ |
 | Viewport | 1024×600 |
 | Estirado | `canvas_items`, aspecto `expand` |
-| Orientación | landscape fijo, no sensor. El margen de abajo no puede rotar |
+| Orientación | landscape fijo, no sensor |
 | Inmersivo | sí, en la exportación Android |
-| Arquitectura | solo `arm64-v8a`. Sin armeabi-v7a, sin x86 |
+| Arquitectura | solo `arm64-v8a` |
 | min SDK | 30 |
-| target SDK | el de la plantilla de Godot 4.7.2, si el APK arranca en API 30 |
-| Permisos | ninguno. Internet apagado. Sin red, cámara, micrófono ni almacenamiento externo |
-| Sensores en el manifiesto | acelerómetro y giroscopio `required=false`. El giroscopio no se lee |
+| target SDK | el de la plantilla de Godot 4.7.2, si arranca en API 30 |
+| Permisos | ninguno. Internet apagado |
+| Sensores en el manifiesto | acelerómetro `required=false`. El giroscopio no se lee |
 | Main scene | `res://escenas/arranque.tscn` |
 
-`user://` es el directorio privado de la app. No hace falta permiso de disco. No se escribe fuera.
+`user://` es el directorio privado de la app. No hay permiso de disco y no se escribe fuera.
 
-Botón atrás: en una sala, guarda y vuelve al patio. En el patio, guarda y sale. No hay diálogo de «¿seguro?». `auto_accept_quit` en falso. Se vacía el fichero en pausa, pérdida de foco, atrás y cierre.
+Botón atrás: en una sala guarda y vuelve al patio; en el patio guarda y sale. Sin diálogo de «¿seguro?». `auto_accept_quit` en falso. Se vuelca en pausa, pérdida de foco, atrás y cierre.
 
-Nada importante vive en los 48 px de abajo. Botones y piezas de unos 96 px. Aire de 24 px. Una frase de hasta 12 palabras, cuerpo 32 px. El texto se ve aunque no haya voz.
+Nada importante vive en los 48 px de abajo. Un toque mide al menos 80 px. Aire de 24 px. Frase de hasta doce palabras, cuerpo 32 px como mínimo. El texto se ve aunque no haya voz.
 
-### Presupuesto
+## 3. Presupuesto
 
 Una sala en memoria. Al cambiar de escena se suelta el fondo y el atlas de la anterior. Los autoloads no cargan dibujos de sala.
 
@@ -55,291 +58,348 @@ Una sala en memoria. Al cambiar de escena se suelta el fondo y el atlas de la an
 | Sprites en movimiento | 40 |
 | Partículas al encender | 12, `CPUParticles2D`, discos del mismo ámbar, 1,2 s. No confeti |
 | Capas de fondo | 2 |
-| Fondo | 1024×512, ETC2, sin mipmaps |
+| Fondo | 1024×600, ETC2 |
 | Atlas de la sala | 512×512, se suelta al salir |
 | Pieza | 128×128 en textura, 96 px en pantalla |
-| APK del corte | por debajo de 40 MB; nunca 80 |
+| APK | por debajo de 40 MB; nunca 80 |
 | Dibujo comprimido | no pasa de 8 MB. Si no cabe, se quita dibujo, no el gesto |
-| Ficheros de `user://` | kilobytes. `metricas.json` no pasa de 256 KB |
+| `user://` | kilobytes. `metricas.json` no pasa de 256 KB |
 
-Si falta un dibujo, `ColorRect` del color de sala, mismo tamaño. Colores: patio `#1E2A4A`, luz `#F4C56D`, Piedras `#3D4F8A`, piedra `#F2E2A0`, Acertijos `#8E7CC3`, texto crema `#F7F1E4` sobre oscuro, tinta `#2C2416` sobre claro. No hay color de fallo. El detalle de texturas está en `docs/specs/direccion-artistica.md`.
+Si falta un dibujo, `ColorRect` del color de sala y del mismo tamaño. No hay color de fallo. Paleta cerrada en `assets/palette.json`.
 
-Sin vídeo, sin malla, sin shader pesado, sin precarga de las ocho salas. Una voz como mucho, y en el primer jugable no hace falta ningún ogg: si no hay audio, se ve el texto. La campanada suave, si entra, es un wav de unos pocos KB, 0,4 s, la misma con ayuda o sin ella. No hay zumbido de error. No hay vibración.
+Sin vídeo, sin malla, sin shader pesado, sin precarga de las otras salas. Una voz como mucho a la vez. Sin vibración.
 
-Prohibido en el proyecto: `HTTPRequest`, sockets, `Input.get_gyroscope()`, nodos 3D, `VideoStreamPlayer`, anuncios, cuentas, un `Label` de tiempo aunque sea invisible.
+Prohibido en el proyecto: `HTTPRequest`, sockets, `Input.get_gyroscope()`, nodos 3D, `VideoStreamPlayer`, anuncios, cuentas, y un `Label` de tiempo aunque sea invisible.
 
-## Árbol de escenas
-
-Tres autoloads, en este orden: `Progreso`, `Metricas`, `Adaptador`. No hay un cuarto. Las constantes viven en `res://scripts/reglas.gd`, precargado, no autoload.
+## 4. Escenas y archivos
 
 ```
-res://escenas/arranque.tscn          Node. Carga el guardado y pasa al patio. Sin logotipo. Sin «pulsa para empezar».
-res://escenas/patio/patio.tscn       Control. Mapa único.
-res://escenas/piedras/piedras.tscn   Control. Hacer el 10.
-res://escenas/acertijos/collar.tscn  Control. Patrón.
-res://escenas/torre/torre.tscn       Control. Colocar el farol.
-res://escenas/padre/padre.tscn       Control. PIN y frases. Ella no la ve en el flujo.
-res://escenas/ui/frase.tscn          Se instancia. No es una sala.
-res://escenas/ui/estrella.tscn       Se instancia. Tres poses.
+res://escenas/arranque.tscn            Node. Carga el guardado y pasa al patio. Sin logotipo, sin «pulsa para empezar»
+res://escenas/patio/patio.tscn         Control
+res://escenas/nido/nido.tscn           Control. Hacer el diez
+res://escenas/collar/collar.tscn       Control. El patrón
+res://escenas/cierre/cierre.tscn       Control. Nueve y una
+res://escenas/farol/farol.tscn         Control. Dos faroles
+res://escenas/torre/torre.tscn         Control. El farol en la pared
+res://escenas/padre/padre.tscn         Control. PIN y frases
+res://escenas/ui/frase.tscn            Se instancia
+res://escenas/ui/estrella.tscn         Se instancia. Cara según estado
 res://escenas/piezas/piedra.tscn
-res://escenas/piezas/cuenta.tscn     Cuenta del collar: piedra o estrella.
+res://escenas/piezas/cuenta.tscn       Piedra o estrella de tela
 res://escenas/piezas/farol.tscn
+res://escenas/ui/pulso.tscn            Anillo ámbar de 1,2 s
 ```
 
-Navegación con `change_scene_to_file`. El estado no viaja en la escena: vive en los autoloads. Un fundido de 0,4 s puede ser un `ColorRect` en un `CanvasLayer` del autoload de progreso visual, sin retener las dos salas.
+```
+res://scripts/nucleo/reglas.gd         Constantes. Sin nodos
+res://scripts/nucleo/sesion.gd         Máquina de sesión. Sin nodos
+res://scripts/nucleo/adaptador.gd      Qué toca. Sin nodos
+res://scripts/nucleo/guardado.gd       Serializa y valida. Sin nodos
+res://scripts/nucleo/medida.gd         Distancias y radios. Sin nodos
+res://scripts/autoload/progreso.gd     Autoload
+res://scripts/autoload/metricas.gd     Autoload
+res://scripts/autoload/adaptador_nodo.gd  Autoload, envuelve a nucleo/adaptador.gd
+```
 
-### Patio
+Todo lo de `scripts/nucleo/` es lógica pura, sin `Node`, para poder probarla en cabeza sin ventana. Es la única parte con pruebas automáticas en este corte.
 
-Fondo. Estrella a la izquierda, unos 200 px, curiosa o contenta. Torre a la derecha con la llama de casa ya encendida: no es un premio y no se apaga. Dos ventanas de 96 px, con 24 px entre ellas: Piedras de luz y Acertijos. Disponibles el primer día, no encendidas. Se encienden al primer cierre que ella completa allí. El resto de salas es un solo bulto de niebla, no seis candados y no un botón prohibido. Tocarlo no abre lección. Estrella, curiosa. Frase ya escrita, si cabe: «Las otras esperan, dormidas.» Si no se dice, silencio. No se inventa «esta sala espera» ni «esa luz viene después».
+Arte ya hecho, que se usa tal cual:
 
-Campana de 96 px, sin rótulo «padres». Pulsación de 1,5 s abre el PIN. Altavoz de 96 px: calla el sonido y deja el texto. El silencio se guarda. Nada de esto es una cuenta.
+| Archivo | Uso |
+|---|---|
+| `assets/pantallas/<sala>-1024x600.png` | Referencia de la placa. No se carga en el juego si los nodos ya la reproducen |
+| `assets/pantallas/<sala>-zonas-1024x600.png` | Las zonas numeradas, para comprobar el árbol de nodos |
+| `assets/piezas/piedra-96.png`, `piedra-72.png`, `piedra-68.png` | Piedra del montón, del hueco y del cierre |
+| `assets/piezas/nido.png` | Marco de diez huecos |
+| `assets/piezas/estrella-tela.png` | Estrella del patrón |
+| `assets/piezas/farol-ambar.png`, `farol-terracota.png` | Los dos faroles |
+| `assets/piezas/campana.png` | Campana del patio |
+| `assets/fondos/piedras.png` | Pared y suelo de la sala de Piedras |
+| `assets/personajes/estrella-cara.png` | Cara fijada. Se recorta a 112×150 |
 
-### Piedras de luz
+Navegación con `change_scene_to_file`. El estado no viaja en la escena: vive en los autoloads. El fundido de 200 ms es un `ColorRect` en un `CanvasLayer` del autoload, sin retener las dos salas.
 
-Una pantalla. Nido de dos filas de cinco huecos, 96 px, aire 24 px. Montón al centro, por encima del margen de 48 px. Estrella a un lado, con su nido de ejemplo, que no es el de ella. Frase arriba. Luz del nido, apagada hasta la décima. Sin teclado, sin botón de listo, sin «1/4», sin reloj.
+## 5. Autoloads
 
-### Collar
+Tres, en este orden: `Progreso`, `Metricas`, `AdaptadorNodo`. No hay un cuarto. Las constantes viven en `nucleo/reglas.gd`, precargado.
 
-Cordón a la altura de la mano, no en el borde. Cuatro cuentas ya puestas: piedra, estrella, piedra, estrella. Un hueco. Arcón con al menos tres piedras y tres estrellas sueltas, de más, sin rótulo y sin pareja de botones. Un toque sin arrastrar no ensarta.
-
-### Torre
-
-Dos faroles del mismo tamaño y la misma forma. Dos colores cálidos, los dos válidos: `#F2E2A0` y `#F4C56D`. Ninguno es el de hacerlo perfecto. Ninguno es gris. Ella arrastra uno a la pared y lo suelta donde quiere. Torcido vale. Encima de otro vale. El juego no lo endereza. No se dibujan ganchos vacíos: serían estrellas vacías. En datos caben los puestos más adelante; en pantalla solo se ve lo colocado.
-
-### Estrella
-
-Tres poses y ninguna más: `curiosa`, `contenta`, `pensando`. Pensando es la cabeza un poco ladeada, la boca serena. No existe fotograma de decepción, enfado ni tristeza, ni en el proyecto. Sin corona. Sin varita. Si falta el dibujo, una forma de color del mismo tamaño, piel `#C6866A`, capa `#C45C4A`.
-
-### Padre
-
-Fuera del flujo de ella. Teclado de diez teclas de 96 px, que no son las piedras del juego. Una o dos frases. Sin gráfica, sin porcentaje, sin hora, sin postura, sin la palabra nivel. La exportación del resumen no entra.
-
-## Autoloads
-
-Las salas no deciden pedagogía. Emiten hechos. `Metricas` los anota. `Adaptador` responde. `Progreso` guarda. Ella no ve el nombre de ningún estado.
+Las salas no deciden pedagogía. Emiten hechos. `Metricas` los anota. `AdaptadorNodo` responde. `Progreso` guarda. Ella no ve el nombre de ningún estado.
 
 ### Progreso
 
 Único escritor de `user://progreso.json` y `user://sesion_abierta.json`.
 
-- Carga al arrancar. Si el fichero no existe, partida nueva, sin luces de sala, con la llama de casa encendida, sin aciertos inventados.
-- Escritura atómica: `fichero.json.tmp`, `flush`, cerrar, renombrar encima. Se conserva la generación anterior como `.bak`. Al arrancar, si el principal está corrupto y el `.bak` vale, se restaura. Si los dos fallan, se empieza de cero y no se fabrica un cierre.
-- Guarda en cada cambio de estado de sesión y en cada suelta juzgada. Una ráfaga se aplaza 200 ms. Pausa, atrás y cierre no esperan.
+- Carga al arrancar. Si no existe, partida nueva: sin luces, con la llama de casa encendida, sin aciertos inventados, sin cierre pendiente.
+- Escritura atómica: `.tmp`, `flush`, cerrar, renombrar encima. Se conserva la generación anterior como `.bak`. Si el principal está corrupto y el `.bak` vale, se restaura. Si fallan los dos, se empieza de cero y **no** se fabrica un cierre.
+- Guarda en cada suelta juzgada y en cada cambio de estado. Una ráfaga se aplaza 200 ms; pausa, atrás y cierre no esperan.
 - Una pieza en el aire al matar la app se tira. No es fallo ni acierto. El nido vuelve al último estado asentado.
 
-No abre sockets. No lee el acelerómetro.
+Una luz en `true` no vuelve a `false` por ningún camino de código. Aserto al guardar.
 
 ### Metricas
 
-Único escritor de `user://metricas.json`. No dibuja. No elige micropaso. No habla con el padre.
+Único escritor de `user://metricas.json`. No dibuja, no elige micropaso y no habla con el padre.
 
-Clasifica la suelta en crudo y emite el evento de duda, si lo hay. El anillo de ejercicios no pasa de 200. El de eventos no pasa de 800. Al pasar, se olvidan los más viejos. Nunca se olvidan luces, adornos ni estados: eso no vive aquí.
+Clasifica la suelta en crudo y emite el evento del GDD 10.1. Anillo de intentos: 200. Anillo de eventos de duda: 800. Al pasar, se olvidan los más viejos. Nunca se olvidan luces, adornos ni estados: eso no vive aquí.
 
-### Adaptador
+### AdaptadorNodo
 
-La máquina de la sesión. Lee a los otros dos. No tiene nodos de interfaz.
+La máquina de sesión, sin nodos de interfaz. Lee a los otros dos.
 
-Decide, y solo esto puede cambiar: el tramo, el tamaño del nido de hoy, si el ejemplo está al lado, el identificador de frase, la duración y si hoy hay idea nueva. En el primer jugable la idea de hoy es siempre hacer el 10. No hay otro micropaso en pantalla.
+Solo puede cambiar: el tramo, cuántas piedras hay en el nido al empezar, si el paño del ejemplo está, qué `error_id` se nombra, cuánto dura el corte y si hoy hay idea nueva. En este corte la idea de hoy es siempre hacer el diez y no hay otro micropaso en pantalla.
 
-No puede: quitar luces, poner un cronómetro visible, cerrar Acertijos, enseñar un marcador, enviar datos, quitar un adorno, hacer que la hora o la postura cambien el plan.
+No puede: quitar luces, poner cronómetro, cerrar el collar, enseñar un marcador, enviar datos, quitar un adorno, ni dejar que la hora o la inclinación cambien el plan.
 
-Señales que la sala escucha: `presentar`, `mostrar_ejemplo`, `ocultar_ejemplo`, `volver_pieza`, `encender`, `frase`, `ir_a`. Señales que la sala emite: agarrar, mover, soltar, desdecirse, toque vacío, salir, pausa de la app. La sala no cuenta fallos.
+Señales que la sala escucha: `presentar`, `mostrar_ejemplo`, `ocultar_ejemplo`, `volver_pieza`, `encender`, `frase`, `ir_a`. Señales que la sala emite: `agarrar`, `mover`, `soltar`, `desdecirse`, `toque_vacio`, `salir`, `pausa_app`.
 
-## Máquina de sesión
+La sala no cuenta fallos ni compara números. Manda píxeles y tiempos en crudo.
 
-Estados, que ella no ve: `PATIO`, `ENTRADA`, `YA_SABE`, `IDEA_DEMO`, `IDEA_REPITE`, `BORDE`, `ACERTIJO`, `CIERRE`, `TORRE`, `GUARDADO`.
+## 6. Máquina de sesión
+
+Estados, que ella no ve: `PATIO`, `ENTRADA`, `YA_SABE`, `IDEA_DEMO`, `IDEA_REPITE`, `BORDE`, `ACERTIJO`, `CIERRE`, `FAROL`, `TORRE`, `GUARDADO`.
 
 ```
-PATIO → ENTRADA → YA_SABE → IDEA_DEMO → IDEA_REPITE → BORDE → ACERTIJO → CIERRE → TORRE → GUARDADO → PATIO
-                                                     |            |
-                                                     |            +-- 2 fallos, o cansancio --> CIERRE
-                                                     +-- el reloj interno no abre otro intento a mitad de un arrastre
+PATIO → ENTRADA → YA_SABE → IDEA_DEMO → IDEA_REPITE → BORDE → ACERTIJO → CIERRE → FAROL → TORRE → GUARDADO → PATIO
+                                                          |          |
+                                                          |          +-- 2 fallos, o corte --> CIERRE
+                                                          +-- el reloj interno no corta un arrastre
 ```
 
 | Estado | Entra | Sale | Qué ve ella |
 |---|---|---|---|
-| `PATIO` | Al abrir, o al guardar | Toca una ventana disponible o encendida | Castillo, torre, niebla. Sin marcador |
-| `ENTRADA` | Entra en una sala | 4 s, o ella toca | Estrella curiosa. Una frase. Aún no la cuenta |
-| `YA_SABE` | Tras la entrada | Acierto. Se ayuda hasta lograrlo | Tres piedras. Los tropiezos de aquí no suman corte |
-| `IDEA_DEMO` | Tras el ya-sabe | 20 s, o ella empieza a arrastrar | Estrella cierra un diez en su lado. Sin vídeo |
-| `IDEA_REPITE` | Acaba el modelo | Ella suelta el gesto, o 40 s | Nido con 7. Ella añade 3. Ejemplo al lado: es con ayuda |
-| `BORDE` | Tras la repetición | 3 intentos, o 4 si cabe, o 2 fallos, o cansancio | 8, luego 5, luego 9. Sin «1/3» |
-| `ACERTIJO` | Borde sin corte | Acierto con sus manos, o 90 s, o cansancio | Collar. Un tropiezo aquí no baja la aritmética |
-| `CIERRE` | Por orden, por corte o por reloj | Ella enciende la luz | Una que puede. Estrella no la resuelve |
-| `TORRE` | Tras el cierre, si hay farol pendiente | Lo coloca, o sale | Dos faroles, los dos válidos |
-| `GUARDADO` | Al colocar, o al salir habiendo guardado | Patio, o la app se cierra | Nada nuevo. La luz sigue |
+| `PATIO` | Al abrir o al guardar | Toca una ventana o la campana | Tres ventanas, la campana. Sin marcador |
+| `ENTRADA` | Entra en el nido | 4 s, o ella toca una pieza | Estrella curiosa, una frase. Aún no cuenta |
+| `YA_SABE` | Tras la entrada | Acierto. Se ayuda hasta lograrlo | Tres piedras. Los tropiezos de aquí no cortan |
+| `IDEA_DEMO` | Tras el ya-sabe | 20 s, o ella empieza a arrastrar | Estrella cierra un diez en el paño |
+| `IDEA_REPITE` | Al acabar el modelo | Ella suelta el gesto | Nido con siete. Ella añade tres. Con ejemplo: es ayuda |
+| `BORDE` | Tras la repetición | 3 intentos, o 4, o 2 fallos, o corte | 8, luego 5, luego 9. Sin «1/3» |
+| `ACERTIJO` | Borde sin corte | El collar resuelto, o corte | Collar. Un tropiezo aquí no toca la aritmética |
+| `CIERRE` | Por orden, por corte o por reloj | Ella enciende la luz | Nueve y una. Estrella no la resuelve |
+| `FAROL` | Tras el cierre | Ella elige uno | Dos faroles, los dos válidos |
+| `TORRE` | Tras elegir | Lo coloca, o sale | El farol en la pared |
+| `GUARDADO` | Al colocar o al salir | Patio, o la app se cierra | Nada nuevo. La luz sigue |
 
-El reloj interno no se dibuja. No corta un arrastre: actúa al soltar, entre turnos. A los 420 s no se abre otro intento de borde. Si van menos de dos fallos y no hay cansancio, el acertijo de ese corte dura 40 s; si no, al cierre. A los 480 s, tras la suelta en curso, al cierre. Si el recorrido acaba antes, se acaba. No se rellena.
+El reloj interno no se dibuja y no corta un arrastre. Actúa al soltar, entre turnos:
 
-Menos de 15 s dentro de una sala, sin haber tocado una pieza, no abre sesión. No queda farol, no queda reproche, se borra `sesion_abierta.json`. Tocar una pieza sí abre sesión, aunque luego salga. Mirar el patio no abre sesión.
+- 420 s: no se abre otro intento de borde.
+- 480 s: al soltar la pieza que tiene en la mano, se entra en el cierre.
+- 400 s y sigue en el collar con la pieza avanzando: se respeta la mano hasta la suelta.
+- 20 s sin toque con la pieza presentada y no en la mano: abandono. En la misma sentada se va al cierre.
+- Menos de 15 s dentro de una sala sin haber tocado una pieza: no abre sesión, no deja farol y se borra `sesion_abierta.json`.
 
-### Choques cerrados
+Si el recorrido acaba antes, se acaba. No se rellena.
 
-| Tema | Manda | No se implementa |
+**Decidido aquí, no en el GDD:** el collar no tiene límite propio de tiempo. Lo cierra el acierto, el corte o el reloj interno. Un límite de 90 s se descartó porque el GDD ya corta a los 480 s y dos relojes distintos se contradicen.
+
+## 7. Los cuatro finales
+
+Un final es cómo termina la sesión, no una pantalla.
+
+| Final | Cómo se llega | Qué queda |
 |---|---|---|
-| Números del primer día | GDD: tres; Estrella cierra un diez; ella repite 7 y 3; borde 8, 5 y 9 | El guion de relato con 8+2 y borde 7, 9, 6, 5+5. Esas frases se reutilizan cambiando solo el número |
-| Frase del corte | «Seguimos con una que ya sabes.» Una frase, luego silencio | Nombrar cansancio o fallo. Encadenar otras frases de puente |
-| Acertijo | Piedra, estrella, piedra, estrella. La siguiente es piedra. Desde un arcón | Dos botones. Faroles círculo/estrella. Un collar que se cuelga solo en la torre |
-| Comprobación | La décima enciende la losa. El 10, si se dibuja en la luz, no se traza y no se teclea | Teclado. Ficha que pueda fallar la sesión |
-| Torre | Un farol, a elegir entre dos, los dos válidos. Lo coloca ella | Cinta del guion. Huecos vacíos. Un adorno mejor por no fallar |
-| Ya-sabe | Los tropiezos no cuentan para el corte. Se ayuda hasta el acierto | Dos fallos de la apertura que manden al cierre |
-| Oncena | No enciende. La primera del intento es el juguete. La segunda del mismo intento es fallo `E_DIEZ` | Un aspa, un zumbido, o contar la primera como fallo |
-| Primeros días | El registro observa. No sube a firme ni a suelto. No baja un cimiento que aún no estaba establecido. Hora y postura no mandan | Un selector de los 81 micropasos. Dejar que la inclinación acorte la sesión |
+| Completo | Borde sin dos fallos, collar, cierre y farol | Luz de Piedras, luz de Acertijos si se resolvió el collar, farol colocado |
+| Dos fallos en el borde | Segundo fallo del borde | Frase de corte, cierre, farol. Sin collar. El segundo fallo no enciende nada |
+| Corte por cansancio | Tres devoluciones en un intento, tres pausas de 4 s en un intento, o el segundo fallo | Igual que el anterior, con la misma frase |
+| A medias | Cierra la tableta, botón atrás o 20 s sin toque | Se guarda lo hecho. El acierto no se inventa. Al volver, una que ya sabe |
 
-Las dos primeras sesiones completas repiten hacer el 10. No hay idea nueva. Firme, si algún día llega, pide otro día, y aun así este corte no abre el Pergamino.
+El cierre y el farol existen en los cuatro. Lo que cambia es si hay collar y si el farol se coloca en esa sentada o en la siguiente.
 
-## Hacer el 10
+Los fallos de `YA_SABE` no cuentan para el corte. Una devolución sola no corta. Una pausa sola no corta.
 
-Micropaso de pantalla: M11, la caja de diez. M01 a M10 no son una aduana y no se juegan en este corte. Si más adelante el borde tuviera que bajar a contar, sería dentro de Piedras, no otra sala. Aquí el borde no baja de estos nidos.
+Al volver otro día, y solo entonces: V05, V06, V07, y luego una que ya sabe. Sin saludo si en quince segundos no toca una pieza.
+
+## 8. Entrada y colocación
+
+Un dedo. El segundo se ignora: no suelta la pieza del primero, no pulsa atrás y no abre una sala.
+
+- Agarrar: contacto sobre una pieza del montón o de la bandeja.
+- Mover: el centro se ha alejado 24 px o más del origen. Menos de eso es un toque quieto y no es intento.
+- Soltar: levantar el dedo.
+- Vale si el centro queda a **36 px o menos** del centro de un hueco vacío. Es el mismo radio para todos los huecos y ninguno se preilumina.
+- Si no vale, la pieza vuelve al origen en 0,4 s, en silencio.
+- Si vale, ocupa el hueco: imán al centro del hueco, sin física.
+
+Sin doble toque. Sin pulsación larga salvo la campana, 1,5 s. Sin cuerpo rígido. `Control` y el dedo alcanzan.
+
+**Decidido aquí:** el radio de 36 px es también el que decide que la pieza «entró» en un destino, para las reglas de duda. Un solo radio en todo el código.
+
+## 9. El nido
+
+Micropaso de pantalla: M11, la caja de diez. M01 a M10 no se juegan en este corte.
 
 | Tramo | Nido al empezar | Montón | Acierto |
 |---|---|---|---|
-| Ya sabe | vacío | exactamente 3, ya encendidas, sin otras | las tres reposan en el nido. Calor pequeño, no la luz del diez |
-| Demo | el de Estrella, en su lado | ella añade hasta cerrar un diez, en 20 s | ella lo ve. La luz del ejemplo se apaga al resetear y no es una luz del castillo |
-| Repite | 7 | 3 claras y otras apagadas, para que no sea un botón con un 3 | la décima enciende. Una oscura no entra y vuelve. Eso no es fallo del borde: aún es la idea |
-| Borde 1 | 8 | al menos 6, ninguna preelegida | parar en 10. Vaciar el montón no es el método |
-| Borde 2 | 5 | igual | igual |
-| Borde 3 | 9 | igual | igual |
-| Borde 4 | 6 | igual | solo si van 0 fallos, no hay cansancio y el reloj interno va por debajo de 300 s |
-| Cierre | 9 y una clara, o las 3 si el borde costó | lo justo para un gesto, no un imán de un píxel | la enciende su dedo |
+| Ya sabe | vacío | tres, ya encendidas, sin otras | las tres en el nido. Calor pequeño, no la luz del diez |
+| Demo | el de Estrella, en el paño | Estrella añade hasta cerrar diez, 20 s | ella lo ve. Esa luz no es del castillo |
+| Repite | siete | tres claras y otras apagadas | la décima enciende. Una oscura no entra y vuelve, y eso aún no es fallo del borde |
+| Borde 1 | ocho | al menos seis, ninguna preelegida | parar en diez |
+| Borde 2 | cinco | igual | igual |
+| Borde 3 | nueve | igual | igual |
+| Borde 4 | seis | igual | solo si van cero fallos, sin corte y reloj interno por debajo de 300 s |
+| Cierre | nueve y una clara | lo justo para un gesto | la enciende su dedo |
 
-No hay botón de listo. Quedarse corta no es fallo: el nido espera. A los 8 s sin toque, después de haber movido algo, el ejemplo aparece al lado. No se le dice que se dé prisa.
+No hay botón de listo. Quedarse corta no es fallo: el nido espera.
 
-La oncena, con el nido lleno, vuelve sola en 0,4 s, en silencio. Estrella, pensando. La primera vez en ese intento no suma `fail_count`. La segunda en el mismo intento es `E_DIEZ` y sí suma, si el tramo es el borde.
+La oncena, con el nido lleno, vuelve sola en 0,4 s y en silencio. Estrella, pensando. La primera del intento no suma fallo. La segunda del mismo intento es `E_DIEZ`.
 
-Un grupo que no cierra el diez y se deja 3 s, sin desdecirse, es fallo a la primera en el borde: no es un límite del material, es una respuesta. Si se desdice dentro de los 3 s, no es fallo.
+Un grupo que no cierra el diez y se deja 3 s sin desdecirse es fallo a la primera en el borde: es una respuesta, no un límite del material. Si se desdice dentro de los 3 s, no es fallo.
 
-Adivinar no cuenta. Tocar el vacío, o soltar sin haber movido la pieza, no enciende nada y no es fallo. Estrella, pensando. Se sigue esperando el arrastre. Manipular menos de 0,8 s sin un gesto que llene huecos no cuenta y obliga a mover, sin sonido de error.
+Adivinar no cuenta. Tocar el vacío o soltar sin haber movido no enciende nada y no es fallo.
 
-### Intentos
+El pulso ámbar de 1,2 s nace en el borde del nido de ella, en la suelta válida, y no convive con otro. El paño del ejemplo, al resetear, se apaga en 0,4 s **sin** pulso.
 
-`PRESENTA` → `TOCA` al primer toque → `MUEVE` cuando la pieza cambia de sitio → `SUELTA` al levantar el dedo → 3 s para desdecirse → `JUICIO` si no se desdice.
+El andamio de 7 y 3 son huecos vacíos, no piedras marcadas. Nunca las dos cosas.
 
-- 20 s sin toque en `PRESENTA`: abandono. Se guarda. No es un fallo de carácter. Al volver, una cuenta que ya sabe, no este nido.
-- Sostener 8 s o más: duda `sostiene_mucho`. Una frase de duda, si hace falta, y no se repite en el mismo intento. No hay reloj.
-- Soltar sin haber movido: vuelve a `TOCA`. No es acierto.
-- Devolver al origen se puede. No suena a error. Tres devoluciones en el mismo intento, o una en dos intentos seguidos: cansancio.
-- El juicio de acierto enciende porque el nido tiene diez y ella ha movido piezas. Pulso de 1,2 s. Campanada 0,4 s si existe el wav. Estrella contenta, 1 s. La misma luz con ayuda o sin ella.
+## 10. Collar
 
-Resultado de cada ejercicio, una sola palabra guardada: `sola`, `con_ayuda` o `no`. Con ayuda es el ejemplo al lado, la repetición del modelo, o el cierre con ejemplo. Sola exige gesto, sin ejemplo haciendo el trabajo, sin duda y sin ir despacio para ella en ese paso. En este corte, `sola` se anota y no sube a firme ni a suelto. El acierto de cierre no sube. El primer acierto del día no sube a firme.
+Solo si el borde no se cortó. No se anuncia como examen ni con número de pregunta. Pantalla propia, con fundido: no hay cordón de camino.
 
-Estados de M11, de menor a mayor: `sin_ver`, `aprendiendo`, `fragil`, `firme`, `suelto`. Ella no los ve. Solo se sube uno. Solo se baja uno. El suelo, una vez vista la idea, es `aprendiendo`. Este corte puede pasar de `sin_ver` a `aprendiendo` cuando ella arrastra la repetición, y puede anotar `fragil` si acierta sola hoy. No escribe `firme` ni `suelto`. No baja un estado que aún no estaba establecido. Si duda y falla, se enseña el gesto igual: el ejemplo vuelve al lado de Estrella. Eso es ayuda, no un juicio, y no espera a tener muchas partidas.
+Tira puesta: piedra, estrella, piedra, estrella, y un hueco que pide piedra. La siguiente cuelga del arcón. Un solo sitio del que sale la pieza: no hay dos botones y no se dice en texto qué pide el hueco.
 
-## Acertijo
+Si no sigue el ritmo, resbala en 0,4 s, en silencio, y vuelve al arcón. Eso no suma fallo del borde y no toca M11. Al segundo tropiezo, Estrella deja el ritmo en su lado y ella coloca en el suyo: eso es ayuda del acertijo, no una nota.
 
-Solo si el borde no se cortó. No se anuncia como examen, ni como problema, ni con un número de pregunta.
+La victoria es el mismo pulso de 1,2 s sobre el cordón. No nace un adorno de torre por el collar.
 
-Tira ya puesta: piedra, estrella, piedra, estrella. El hueco pide piedra, que es la que sigue. Ella la arrastra desde el arcón. Si no sigue el ritmo, resbala en 0,4 s, en silencio, y vuelve al arcón. Eso no suma `fail_count` del borde y no baja M11. Al segundo tropiezo, Estrella deja el ritmo en su lado y ella coloca en el suyo. Eso es con ayuda del acertijo, no una nota. A los 90 s, al cierre. Un acertijo no se queda imposible: la ayuda llega, y la última pieza la mueve ella.
+Si entra al collar desde el patio sin haber hecho el borde, puede jugarlo y luego ir al nido. La sala no se cierra para obligarla.
 
-La victoria es el cordón que da el mismo pulso de 1,2 s. No nace un adorno de torre por el collar. El farol llega después del cierre de la partida, no aquí.
+## 11. Cierre
 
-Si ella entra en Acertijos desde el patio, sin haber hecho el borde, juega el collar y puede ir luego a Piedras. Si se queda y sale tras completarlo con las manos, ese acierto vale como visita, el farol espera si ya se ganó por haber jugado, y la idea de mates no se pierde. No se cierra la sala para obligarla. En este corte, con una sola sesión de referencia, entrar primero al collar no apaga Piedras.
-
-## Cierre y torre
-
-El cierre es una que puede hacer. Si el borde de 9 salió, se puede repetir ese gesto, con la piedra clara ya cerca de la mano. Si costó, son las tres del ya-sabe. Escalera, sin nombrarla:
+Una que puede hacer. Si el borde de nueve salió, se repite ese gesto con la piedra clara cerca de la mano. Si costó, son las tres del ya-sabe.
 
 1. **C0.** Piezas a la vista. Unos 15 s para el primer movimiento.
-2. **C1.** Si no enciende, o pasan 15 s sin un movimiento con destino: el ejemplo aparece en el lado de Estrella. La zona es amplia, unos 120 px, y no es el único píxel que brilla. El brillo, si hace falta, es de toda la losa.
-3. No hay C2. No hay botón de saltar. Estrella no pone la última piedra en el nido de ella. No suma fallo de borde. No baja peldaño.
+2. **C1.** Si no enciende, o pasan 15 s sin un movimiento con destino: el ejemplo aparece en el lado de Estrella. La zona es amplia y no es un solo píxel el que brilla.
+3. No hay C2. No hay botón de saltar.
 
-Hasta que esa luz se enciende con su mano, no se da el farol por ganado y no se inventa el acierto. Si cierra la tableta antes, el cierre queda pendiente. Al volver, el patio ofrece esa bandeja, que es una que ya sabe, no el nido que falló. No se reanuda el `fail_count` como deuda visible. Lo ya escrito, incluidas las bajadas que de verdad ocurrieron, se queda, para no bajarla dos veces por lo mismo.
+Estrella no pone la última piedra. El acierto no sube de estado, no suma fallo del borde y no baja peldaño. Hasta que esa luz se enciende con su mano no se da el farol por ganado.
 
-El farol se gana por llegar al cierre habiendo tocado una pieza, aunque el borde se saltara, aunque hubiera ayuda. Uno, no dos. Si sale antes de colocarlo, queda en el umbral, ya suyo. Colocarlo al volver no exige repetir la cuenta y no regala otro.
+Si cierra la tableta antes, el cierre queda pendiente y el patio ofrece esa bandeja al volver, no el nido que falló.
 
-La luz de Piedras se enciende la primera vez que ella completa allí un cierre moviendo piezas, con ayuda o sin ella, y no se apaga. La de Acertijos, igual, la primera vez que completa el collar con las manos. Bajar un peldaño no quita luz ni farol. No jugar tampoco.
+## 12. Farol y torre
 
-## Eventos de duda
+Dos faroles, ámbar y terracota, misma forma y mismo tamaño. Los dos son válidos: ninguno es el bueno y ninguno es gris. Se elige uno y se coloca. Torcido vale. Encima de otro vale. El juego no lo endereza.
 
-Se anotan al soltar. Ella no los ve. No se le dice que ha dudado. La duda no hereda frases de fallo.
+El farol se gana por un solo hecho: ella ha encendido el cierre con su dedo en esa sentada. También si el borde se saltó. No se gana por no haberse equivocado.
 
-Una suelta puede llevar más de un tipo. Cualquiera de los cuatro marca el intento.
+En la torre no se dibujan ganchos vacíos: serían estrellas vacías. La pared está lisa y solo se ve lo colocado.
 
-| Tipo | Cuándo | Qué no es |
+## 13. Duda, fallo y corte
+
+Un intento escribe como máximo una etiqueta de juicio: duda, fallo o corte. No las tres.
+
+### Duda
+
+Se anota al soltar. Ella no lo ve y no se le dice que ha dudado. La duda no hereda frases de fallo.
+
+| Tipo | Cuándo | No es |
 |---|---|---|
-| `suelta_en_el_sitio` | El centro acaba a 24 px o menos del origen del agarre, tras tenerla 1 s o más | Ni acierto ni fallo. Si no llegó a entrar en un destino, tampoco es devolución |
-| `cambia_de_destino` | Durante ese agarre, el centro estuvo 0,4 s o más en el radio de un destino, y se suelta en otro destino distinto | No es fallo por sí solo |
-| `sostiene_mucho` | El agarre dura 8 s o más | No dispara un fallo. No aparece un reloj |
-| `se_desdice` | Antes de 3 s desde la suelta, vuelve a cogerla y la saca del destino | No es error. Deshacer no se quita. Se vuelve a `MUEVE` |
+| `origen` | El centro acaba a 24 px o menos del origen, tras tenerla 1 s o más | Ni acierto ni fallo |
+| `destino` | Durante el agarre el centro estuvo 0,4 s o más en el radio de un destino, y se suelta en otro | No es fallo por sí solo |
+| `quieta` | La pieza quieta, menos de 24 px, más de 8 s | No es además una pausa ni un lento |
+| `desdice` | Antes de 3 s desde la suelta vuelve a cogerla y la saca del destino | No es devolución. No se quita el gesto |
 
-Radio de destino: 72 px desde el centro del hueco, en píxeles del viewport 1024×600. El imán de colocación usa ese mismo radio. Todos los huecos vacíos del nido valen. Ninguno se preilumina como la respuesta.
+Una suelta puede llevar más de un tipo.
 
-Distancia de origen: 24 px de viewport, no milímetros.
+### Devolución
 
-Respuesta, en el borde:
+Vuelve al origen después de 3 s, habiendo salido. Tres en el mismo intento cortan lo nuevo. Una no corta.
 
-- Si luego acierta: no sube, el siguiente intento es del mismo tipo de nido, y hoy no se retira más ayuda.
-- Si luego falla: se enseña el gesto. No se baja un cimiento que aún no estaba establecido. Si ya estaba establecido, bajar uno queda anotado para el producto, pero este corte no tiene un cimiento firme que tirar.
-- Soltar en el sitio, por sí solo, no es el fallo.
+### Fallo
 
-Pausa larga: 4 s o más entre toques, guardada aparte, no sumada al tiempo manipulando. Una pausa no es un fallo. Tres pausas largas en el mismo intento no cortan solas mientras haya pocas partidas: se anotan. El cansancio que sí manda en este corte no necesita mediana.
+Suelta, habiendo movido, en un sitio que no enciende. La segunda pieza que el material rechaza en el mismo intento es el fallo. Un método equivocado dejado 3 s sin desdecirse es fallo a la primera.
 
-Devolución, distinta de la duda: la pieza entró en un destino, o salió del montón hacia él, y vuelve al origen. Tres en el mismo intento, o en dos intentos seguidos, cortan lo nuevo.
+### Corte
 
-### Hecho en crudo que emite la sala
+Entre turnos, nunca a mitad de un arrastre:
 
-La sala no clasifica. En cada suelta manda:
+- tres devoluciones en el mismo intento, fuera de la ventana de 3 s;
+- tres pausas de 4 s sin toque en el mismo intento;
+- el segundo fallo del borde;
+- el reloj interno.
 
-- identificador de pieza
-- posición de origen y de suelta, en píxeles de viewport
-- instante de agarrar y de soltar, `Time.get_ticks_msec()`
-- lista de destinos cuyo radio ocupó el centro, con el tiempo acumulado en cada uno
-- si la pieza había salido del origen más de 24 px
+Frase, literal y única: «Seguimos con una que ya sabes.» Luego silencio y el cierre. No se nombra cansancio ni fallo. El corte no quita luz, no quita farol y no es una bajada del castillo.
 
-`Metricas` aplica la tabla y guarda el evento. `Adaptador` no vuelve a medir píxeles.
+### Ayuda
 
-## Cansancio y corte
+Ayuda usada significa solo esto: el paño del ejemplo está en pantalla, el tramo es la repetición del modelo, o el cierre está en el peldaño C1. No hay detección de un segundo dedo de otra persona.
 
-El juego no ve emoción. No escribe «frustrada» en ningún sitio. No se lo dice a ella ni al padre.
+| Estado | Andamio, sin anunciarlo |
+|---|---|
+| Aprendiendo | ejemplo al lado |
+| Frágil | piezas a la vista, ejemplo ausente |
+| Firme | ejemplo ausente |
+| Suelto | sin piezas de apoyo |
 
-Se corta lo nuevo, entre turnos, no a mitad de un arrastre, si ocurre cualquiera de estos:
+## 14. Algoritmos
 
-- devuelve piezas: 3 en un intento, o en dos seguidos
-- encadena fallos: el segundo del borde
-- se va: 20 s sin toque en `PRESENTA`, sale de la sala, o cierra la tableta
-- el reloj interno pasa de unos 7 minutos, al soltar
+Locales. Ella no los ve y no se le dice que ha subido ni que ha bajado. La edad no es una entrada y no hay campo de edad.
 
-No se corta solo porque manipule un buen rato si las piezas avanzan. No se corta por un primer toque lento. No se corta por la postura ni por la hora. Con pocas partidas, la mediana de tiempos no manda: no hay mediana que usar.
+### 14.1 Observación
 
-Frase del corte, literal, sin nombrar cansancio ni fallo: «Seguimos con una que ya sabes.» Luego silencio, y el cierre. El acertijo de esa sesión puede no caber. La sala de Acertijos no se cierra.
+Las tres primeras sesiones completas solo observan: no se sube a frágil, ni a firme, ni a suelto, y no se baja. Sin ver pasa a aprendiendo si ella arrastra el modelo; esos aciertos no se aplican al terminar la tercera. Se empieza a contar en la sesión 4.
 
-El corte no quita luz, no quita farol y no es una bajada de castillo.
+Desde la sesión 1 sí mandan el cierre en acierto, el corte a los dos fallos del borde y el corte por cansancio. Enseñar el gesto si duda y falla es ayuda, no un juicio, y también manda desde el día 1.
 
-## Muestreo de inclinación
+**Decidido aquí:** durante las tres primeras sesiones el micropaso es siempre M11 y el borde repite 8, 5, 9. No hay idea nueva porque no hay otro micropaso en este corte.
 
-La tableta no sabe si ella está sentada o acostada. Solo la inclinación del aparato. No hay giroscopio y no se echa de menos. El acelerómetro no es un mando: inclinar, agitar o tumbar la tableta no mueve piezas, no abre salas y no acorta la sesión.
+### 14.2 Estados
 
-No se llama a `Input.get_gyroscope()`. No se enciende ese sensor. No se pide permiso. Si el manifiesto de exportación marca el giroscopio como obligatorio, se quita o se deja `required=false`. Igual el acelerómetro: si falla, se juega igual.
+Sin ver, aprendiendo, frágil, firme, suelto. El estado vive en el id del micropaso, no en la sala: M12 firme no marca M13. Solo se sube uno. Solo se baja uno. El suelo, una vez vista la idea, es aprendiendo. Bajar no quita luces ni adornos.
 
-### Lectura
+Otro día es otra fecha local, no 24 horas.
 
-`Input.get_accelerometer()` devuelve m/s², o `Vector3.ZERO` si no hay sensor. En el escritorio será cero.
+Sube:
 
-Godot puede entregar el vector en ejes del aparato o ya girado con la pantalla. No se adivina. En la Fire, con la tableta plana y la pantalla hacia arriba, el eje dominante y su signo son la normal de la pantalla, hacia fuera. Ese vector unitario queda fijado en `reglas.gd` después de esa comprobación, con un comentario del eje medido. Hasta medirla en el KFQUWI, el código usa `Vector3(0, 0, 1)` solo como candidato, y una lectura fuera de rango no se clasifica.
+- A aprendiendo: arrastra el modelo.
+- A frágil: acierta sola hoy, moviendo piezas, sin ayuda y sin duda. No vale el cierre ni la repetición del modelo.
+- A firme: 3 ítems distintos del banco de ese id, ninguno igual al ejemplo, en al menos 2 fechas, como máximo 2 ítems por fecha, sin ayuda, sin duda y sin ser cierre. Si el banco tiene discriminador, uno de los 3 es ese. Un mismo ítem no es más de la mitad de los aciertos que alimentan la subida. Un acierto de hace más de 14 fechas no sirve. No baja el estado y no apaga luces.
+- A suelto: ya firme, sin piezas de apoyo, en 2 fechas distintas de la fecha en que pasó a firme, sin adivinanza, y con tiempo de manipulación menor o igual que su mediana. Hacen falta 6 aciertos sola de ese id.
 
-```
-g = Input.get_accelerometer()
-si |g| < 7 o |g| > 12: muestra inestable; se conserva la última estable
-d = normalizar(g) · normal_pantalla
-plana              si d > cos(25°)
-encima_de_la_cara  si d < -cos(35°)
-de_pie             en cualquier otro caso estable
-desconocida        si no hay tres lecturas válidas
-```
+El primer acierto sola de ese id en esa fecha no sube a firme ni a suelto. El tramo `YA_SABE` no consume ese cupo. Lento no existe hasta esos 6 aciertos: lento es tiempo con la pieza en movimiento mayor que 1,5 veces la mediana de esos 6. Lento no impide frágil ni firme; impide suelto.
 
-`cos(25°)` es 0,9063. `cos(35°)` es 0,8192. Plana: la gravedad cae cerca de la normal, pantalla hacia arriba, a menos de 25°. Encima de la cara: la normal mira hacia abajo, a menos de 35° de la vertical invertida. Eso no significa que ella esté acostada. De pie: el resto, sujeta en vertical o inclinada.
+Baja:
 
-### Cuándo se toma
+- Como máximo una bajada por id y fecha.
+- Si duda y falla: baja uno y se enseña el gesto. Si ya estaba en aprendiendo, se queda y vuelve el ejemplo.
+- El segundo fallo con duda del borde corta, enseña el gesto y no baja otra vez.
+- Suelto no llega a frágil en la misma fecha.
+- Un fallo aislado sin duda no tira un cimiento firme.
 
-No cada fotograma. Un temporizador de 1 s, solo con sesión abierta, refresca la última muestra estable. Se anota esa muestra al empezar la sesión y en cada cambio de estado. No se guarda el chorro de 1 Hz.
+El cierre, la repetición del modelo y el acertijo no cambian ningún estado de aritmética.
 
-Esos tres valores no eligen nido, no acortan, no se muestran a ella y no salen en la pantalla del padre. Ni en este corte ni como orden más adelante. Si algún día un resumen exportado los lleva, irán en crudo, sin conclusión. La exportación no entra aquí.
+En este corte, M11 puede llegar a frágil. Firme pide 3 ítems distintos en 2 fechas, y el banco de este corte no los tiene: no se escribe firme a mano.
 
-## Formato de `user://`
+### 14.3 Error sistemático
 
-Tres ficheros. JSON, UTF-8, sin identificador de aparato, sin nombre de niña. La hora es local, ISO-8601 con desplazamiento. El día es `YYYY-MM-DD` local. Otro día significa otra fecha local, no 24 horas exactas.
+Mismo `error_id` en 2 ítems distintos y 2 fechas, y solo si el discriminador de esa familia ya se ha visto. Hasta entonces no hay frase y no hay techo. El techo, si llega, baja como máximo un estado por fecha. Mientras esté puesto, el sucesor no se abre.
 
-### `progreso.json`
+32−17 no separa errores. El discriminador es 32−15: bien 17, girar 23, olvidar el descuento 27. Sin el discriminador no se elige frase.
+
+### 14.4 Qué toca
+
+Cada sesión, desde la cuarta:
+
+- **Ya sabe:** el id firme o frágil cuyo acierto sola es el más antiguo. Uno.
+- **Borde:** el id en aprendiendo o frágil con predecesores firmes, el más antiguo. Si no hay, el siguiente sin ver cuyo predecesor está firme.
+- **Repaso:** va dentro de ya sabe, no es un tramo extra.
+- **Acertijo:** uno cuyo cimiento de compañía esté al menos en aprendiendo y que no esconda una cuenta por encima del borde.
+
+Parecido, si acertó dudando: el mismo id, otro ítem. Cada tercer parecido es el discriminador, si existe. Un paso nuevo solo si cada predecesor está firme; los predecesores se declaran en el id, no son «el número anterior».
+
+### 14.5 Qué puede cambiar y qué no
+
+Puede cambiar: el id, el tamaño de los números dentro de ese id, si el ejemplo está, la frase de ayuda de ese `error_id`, si hoy hay idea nueva y la duración al cortar.
+
+No puede: quitar luces, poner cronómetro, cerrar acertijos, enseñar un marcador, enviar datos fuera, ni usar la hora, la inclinación o la edad como argumento de ninguna función.
+
+### 14.6 Sala evitada
+
+Solo si era elegible y, en 3 de las últimas 5 sesiones abiertas, no se entró. Antes, silencio. La ventana no lleva marca. La frase del padre, si cabe en el cupo de dos, es «La sala sigue abierta.» No dice «no ha entrado».
+
+## 15. Guardado y telemetría
+
+Tres ficheros. JSON, UTF-8, sin identificador de aparato y sin nombre de niña. La hora es local, ISO-8601 con desplazamiento. El día es `YYYY-MM-DD` local.
+
+### 15.1 `progreso.json`
 
 ```json
 {
@@ -348,153 +408,204 @@ Tres ficheros. JSON, UTF-8, sin identificador de aparato, sin nombre de niña. L
   "pin": null,
   "techo": "ninguno",
   "observando": true,
+  "sesiones_completas": 0,
   "llama_casa": true,
   "luces": { "piedras": false, "acertijos": false },
-  "umbral": [],
-  "colocados": [],
-  "micropasos": {
+  "farol_ganado": false,
+  "farol_colocado": null,
+  "cierre_pendiente": false,
+  "estados": {
     "M11": {
       "estado": "sin_ver",
       "ultimo_dia_sola": null,
+      "aciertos_sola": 0,
+      "items": [],
       "error_id": null
     }
   },
-  "sesiones_completas": 0
+  "ultima_sesion": {
+    "dia": "2026-11-06",
+    "hora": "18:04",
+    "duracion_juego_ms": 0,
+    "salas_abiertas": ["piedras", "acertijos"],
+    "sala_propuesta": "piedras",
+    "salas_no_entradas": [],
+    "cierre_pendiente": false,
+    "farol_ganado": false,
+    "techo": "ninguno"
+  }
 }
 ```
 
-`pin` es `null` o `{ "sal": "<hex>", "hash": "<hex>" }`. SHA-256 de la sal de 16 bytes más los cuatro dígitos. Nunca el PIN en claro. `techo` queda en `ninguno` en este corte; los valores futuros son `hasta_20`, `sin_llevada`, `sin_mercado`, `sin_centenas`, `sin_por`. El techo solo frena. `observando` permanece `true`: este corte no lo apaga. `colocados` guarda `{ "id": "farol", "color": "luz", "x": 0, "y": 0 }`. No guarda huecos vacíos. `umbral` es el farol ganado y aún no colocado.
+`pin` es `null` o `{ "sal": "<hex>", "hash": "<hex>" }`: SHA-256 de 16 bytes de sal más los cuatro dígitos. Nunca el PIN en claro. `techo` queda en `ninguno` en este corte; los valores futuros son `hasta_20`, `sin_llevada`, `sin_mercado`, `sin_centenas`, `sin_por`. `observando` pasa a `false` al terminar la tercera sesión completa. `farol_colocado` es `null` o `{ "color": "ambar|terracota", "x": 0, "y": 0 }`; no guarda huecos vacíos.
 
-Una luz en `true` no vuelve a `false` por ningún camino de código. Conviene un aserto al guardar.
+`items` guarda, por id, la lista de ítems ya acertados sola con su fecha, para la regla de los 3 distintos. Se recorta a los 12 más recientes.
 
-### `sesion_abierta.json`
+### 15.2 `sesion_abierta.json`
 
 Existe solo si hay sesión. Al terminar de verdad se vuelca lo duradero a `progreso.json` y se borra.
 
 ```json
 {
   "version": 1,
-  "id": "s-local",
-  "inicio": "2026-11-05T18:04:00+01:00",
-  "dia_local": "2026-11-05",
+  "inicio": "2026-11-06T18:04:00+01:00",
+  "dia_local": "2026-11-06",
   "estado": "BORDE",
-  "sala": "piedras",
+  "tramo": "borde",
+  "sala": "nido",
   "toque_pieza": false,
-  "fail_count": 0,
+  "fallos": 0,
   "cortada": false,
   "motivo_corte": null,
   "cierre_pendiente": false,
   "farol_pendiente": false,
-  "postura_inicio": "desconocida",
+  "inclinacion_inicio": "desconocida",
   "nido": [0, 1, 2, 3, 4, 5, 6, 7],
   "intento": 1,
-  "ejemplo": false
+  "ejemplo": false,
+  "duracion_juego_ms": 0
 }
 ```
 
-`motivo_corte` es `null`, `dos_fallos`, `devoluciones`, `abandono` o `reloj`. No es una emoción. `nido` son los huecos ocupados, 0 a 9, dos filas de cinco. Al volver no se restaura el borde abandonado: si `cierre_pendiente`, el patio entra por el cierre; si no hubo cierre, la próxima apertura es una que ya sabe.
+`motivo_corte` es `null`, `dos_fallos`, `devoluciones`, `pausas`, `abandono` o `reloj`. No es una emoción. `nido` son los huecos ocupados, 0 a 9, dos filas de cinco: índice `r*5 + c`.
 
-### `metricas.json`
+Al volver no se restaura el borde abandonado: si `cierre_pendiente`, el patio entra por el cierre; si no, la próxima apertura es una que ya sabe.
+
+### 15.3 `metricas.json`
+
+Un registro por intento, con la forma exacta del GDD 10.1:
 
 ```json
 {
   "version": 1,
-  "ejercicios": [
+  "intentos": [
     {
-      "sesion": "s-local",
-      "tramo": "borde",
-      "micropaso": "M11",
-      "nido_inicial": 8,
-      "resultado": "con_ayuda",
-      "dudas": ["sostiene_mucho"],
-      "t_primer_toque_ms": 1200,
-      "t_manipulando_ms": 4300,
-      "pausas_largas_ms": [4100],
-      "hora_inicio": "18:04",
-      "postura": "plana",
-      "error": null
+      "id": "M11",
+      "item": "8+2",
+      "fecha": "2026-11-06",
+      "t0": 0,
+      "primer_toque_ms": 1200,
+      "moviendo_ms": 4300,
+      "pausas_4s": 0,
+      "etiqueta": "acierto",
+      "sola": false,
+      "ejemplo": true,
+      "cierre": false,
+      "duda": ["destino"],
+      "devoluciones": 1,
+      "error_id": "",
+      "tilt": "plana"
     }
-  ],
-  "dudas": [
-    {
-      "t": "2026-11-05T18:06:12+01:00",
-      "sesion": "s-local",
-      "intento": 1,
-      "pieza": "piedra-3",
-      "tipo": "cambia_de_destino",
-      "dx_px": 180,
-      "agarre_ms": 2400,
-      "destino_previo": "hueco-8",
-      "destino_suelta": "hueco-2"
-    }
-  ],
-  "posturas": [
-    { "t": "2026-11-05T18:04:00+01:00", "sesion": "s-local", "estado": "ENTRADA", "postura": "de_pie" }
   ]
 }
 ```
 
-`resultado` es `sola`, `con_ayuda` o `no`. `error` es `null` o `E_DIEZ` o `E_PATRON`. `postura` es `de_pie`, `plana`, `encima_de_la_cara` o `desconocida`. No se guarda aceleración en crudo de más: basta el cubo. No se guarda una conclusión.
+`etiqueta` es `duda`, `fallo`, `corte`, `acierto` o `nada`. `t0` es el instante del primer toque del intento, en ms desde el inicio de la sesión. `item` es la cuenta de ese intento en texto corto (`8+2`, `7+3`, `collar-piedra`). `tilt` usa los cuatro cubos del apartado 16.
 
-## Padre
+Tiempos separados, nunca sumados en un «lento»: hasta el primer toque, con desplazamiento de al menos 24 px, y pausas sin toque de al menos 4 s.
 
-Pulsación de 1,5 s en la campana. Si no hay PIN, la primera entrada lo elige y lo repite. No hay PIN de fábrica. Si falla, silencio y patio. A la tercera vez seguida, patio también. No hay espera de castigo.
+No se guarda una conclusión, ni una emoción, ni un porcentaje.
 
-Él lee una o dos frases de esta lista, las que los hechos permitan. No se redactan otras.
+## 16. Inclinación
 
-| Hecho | Frase |
+La tableta no sabe si ella está sentada o acostada; solo la inclinación del aparato. No hay giroscopio y no se echa de menos. Inclinar, agitar o tumbar la tableta no mueve piezas, no abre salas y no acorta la sesión.
+
+`Input.get_accelerometer()` devuelve m/s², o `Vector3.ZERO` si no hay sensor. En el escritorio será cero.
+
+Godot puede entregar el vector en ejes del aparato o ya girado con la pantalla. No se adivina: en el KFQUWI se mide una vez, con la tableta plana y la pantalla arriba, y el vector unitario queda fijado en `reglas.gd` con un comentario del eje medido. Hasta medirlo, el código usa `Vector3(0, 0, 1)` solo como candidato y una lectura fuera de rango no se clasifica.
+
+```
+g = Input.get_accelerometer()
+si |g| < 7 o |g| > 12: muestra inestable; se conserva la última estable
+d = normalizar(g) · normal_pantalla
+plana        si d > cos(25°)      = 0,9063
+encima       si d < -cos(35°)     = -0,8192
+de_pie       en cualquier otro caso estable
+desconocida  si no hay tres lecturas válidas
+```
+
+Una muestra por segundo, solo con sesión abierta. Se anota la mediana de cinco al empezar la sesión y en cada cambio de estado. No se guarda el chorro de 1 Hz.
+
+Ninguno de esos valores elige nido, acorta la sesión, se muestra a ella ni sale en la pantalla del padre. No se llaman sentada, acostada, noche ni tumbada.
+
+## 17. Padre
+
+Pulsación de 1,5 s en la campana. Si no hay PIN, la primera entrada lo elige y lo repite. No hay PIN de fábrica. Si falla, las casillas se vacían y no se dice nada: sin contador de intentos y sin bloqueo. Bloquear dejaría a la niña fuera de su propio juego.
+
+Con la cuarta cifra se cierra solo: no hay botón de confirmar. «C» borra una cifra.
+
+Estrella no está en esa pantalla y no se la nombra. Él ve como máximo dos frases, en este orden, y solo si el hecho es de las sesiones ya contadas, no de la observación:
+
+1. Si un sucesor no se abre por un error sistemático: «Seguimos con el gesto de antes.»
+2. Si una sala se evita, según la regla: «La sala sigue abierta.»
+3. Si no hay nada de eso: «Esto no es una nota.»
+
+No aparecen: dudado, despacio, lento, siempre, frustrada, no ha entrado, retrasada, noche, tumbada, ni un número.
+
+Techos, cinco, y solo estos. Ponerlos frena; quitarlos no salta cimientos.
+
+| Techo | Qué esconde |
 |---|---|
-| Acertó sola un diez hoy | «Hoy ha hecho dieces sola. Mañana se mira si sigue. La llevada no se abre todavía.» |
-| Dudó y falló, y volvió el ejemplo | «Ha dudado y ha fallado. Se ha vuelto al gesto. La torre no ha perdido luz.» |
-| La sesión se cortó y hubo cierre | «La sesión se ha cortado y ha acabado en una cuenta que ya sabe.» |
-| Salió cuando quiso | «Ha salido cuando ha querido. Lo hecho está guardado. El castillo sigue encendido.» |
-| Siempre, si no cabe otra | «Esto no es una nota. No la compares con otros niños.» |
+| Hasta 20 | Decenas, centenas, llevada, préstamo |
+| Sin llevada | Llevada y préstamo |
+| Sin mercado | Mercado, masa, capacidad, billetes |
+| Sin centenas | Tres cifras y céntimos que exigen el cien |
+| Sin signo de por | Los signos × y ÷. No esconde los grupos ni el reparto con piezas |
 
-No se le dice que iba retrasada, ni que estaba tumbada, ni un porcentaje, ni un nivel, ni una emoción.
+## 18. Texto y voz
 
-## Frases de ella
+Solo se graban ocho frases en este corte. Si falta el fichero, se ve el texto.
 
-El listado cerrado está en `docs/expertos/02-relato.md`. No se improvisa. Se cambian los números, dichos con palabra, y en F08 se cambian «piedra» y «estrella» si el hueco pide la otra. El resto de la frase se queda.
+| Id | Cuándo | Frase |
+|---|---|---|
+| V01 | Primera llegada, si ha tocado una pieza | Hola. Soy Estrella. |
+| V02 | Después, una vez | Mi magia no adivina. |
+| V03 | Entrar al nido | Aquí las piedras se juntan y se separan. |
+| V04 | Corte | Seguimos con una que ya sabes. |
+| V05 | Volver otro día | Me alegro de verte. |
+| V06 | Volver otro día | Tus luces siguen encendidas. |
+| V07 | Volver otro día | No hay que recuperar nada. |
+| V08 | Disco lleno, si cabe texto | Seguimos. Hoy no se ha guardado. |
 
-En este corte se usan, con los números del GDD:
+Texto de pantalla que no se graba, el de las placas:
 
-- Llegada y torre: las frases del guion de la primera sesión, literales.
-- Ya sabe: «Mira estas tres.» «Se ven de un golpe.» «Arrástralas al cuenco.» Al lograrlo: «Has juntado las tres.» «Se ven claras.»
-- Demo y repetición: el bloque de ocho y dos, cambiado a siete y tres. «Siete piedras en el cuenco.» «Añado tres.» «Siete y tres son diez.» «Ahora tú.»
-- Borde: «Ahora lo miramos con otras.» «Aquí hay ocho.» «Aquí hay cinco.» «Aquí hay nueve.» «Busca las que faltan para diez.» En el de nueve: «Busca la que falta para diez.»
-- Acertijo: «Ahora un juego de mirar.» «No hay que sumar.» «Piedra, estrella, piedra, estrella.» La respuesta se arrastra. Si el hueco pide piedra, la frase de acierto cambia la pieza, no la forma: «Has puesto la piedra en el hueco.» «El ritmo sigue.»
-- Corte: «Seguimos con una que ya sabes.»
-- Cierre, al encender ella: «Has hecho un diez.» «Hoy se queda encendido.»
-- Torre: «Elige una.» no se inventa si el guion dice «Elige una cinta.» Se usan las dos frases que sí valen para el farol sin nombrar una cinta: se calla el nombre que no es, y se dice «Las dos sirven.» «La torre la guarda.» «Mañana sigue aquí.» «Cuando quieras, paramos.»
-- Al volver tras días: «Me alegro de verte.» «Tus luces siguen encendidas.» «No hay que recuperar nada.»
+| Id | Dónde | Texto |
+|---|---|---|
+| T01 | Nido, si el tramo lo pide | Pon las que faltan. |
+| T02 | Cierre | Pon la que falta. |
+| T03 | Farol | Elige uno de los dos. |
 
-Duda: solo D01–D12. Una por intento. D11 no entra: habla de columnas. Fallo del diez: F01, F02 o F11, con el número de la mesa. F04 y F05 no entran: son de llevada. Fallo del collar: F08, con la pieza que el hueco pide. Acierto, si se habla: A01–A12, nunca un elogio de persona. Prohibido en boca de Estrella: «mal», «incorrecto», «eres un genio», «casi», «date prisa», «esto es fácil», cualquier comparación, cualquier etiqueta de emoción o de inteligencia.
+Contrato de audio:
 
-Una frase, luego silencio. Permanece al menos 4 s. Ella puede seguir al tocar, nunca antes de 0,8 s. Tocar la frase la repite, si hay audio. Sin bucle. Sin suspiro.
+- `res://audio/voz/v01.ogg` … `v08.ogg`, OGG Vorbis, mono, 44,1 kHz, 96 kbps, sin silencio de cola, 4 s como máximo.
+- `res://audio/campana.ogg`, 0,4 s, la misma con ayuda o sin ella.
+- Normalizado a −3 dBFS de pico. Sin compresión que suba el ruido de fondo.
+- Una voz a la vez. Tocar la frase la repite. Sin bucle, sin suspiro.
+- Si el archivo no está, el juego funciona igual: la frase se ve y el acierto no espera sonido.
 
-## Entrada
+El texto permanece al menos 4 s. Ella puede seguir tocando antes de 0,8 s; el texto no bloquea.
 
-Un dedo basta. El segundo dedo se ignora. Sin doble toque. Sin pulsación larga en las piezas: la pulsación larga es solo la campana.
+## 19. Lo que no se escribe
 
-El arrastre sigue el dedo dentro del área segura. Al soltar, si el centro está en el radio de un hueco vacío, ocupa ese hueco. Si el nido ya tiene diez, vuelve en 0,4 s. No hay cuerpo rígido ni física. `Control` y el dedo alcanzan.
+Espejo, Círculo, Pergamino, Mercado, Jardín y Tesoro como escenas en las que se entra. Llevada, préstamo, centenas, euros, céntimos, grupos, reparto, sobra, signos × y ÷, problemas con historia. Los 81 micropasos como selector. Exportación. Vídeo. Red. Cuentas. Anuncios. Marcador. Vidas. Estrellas vacías. Sonido de error. Giroscopio. 3D. Un cronómetro, aunque sea invisible. Un icono de altavoz. Un botón de «listo». Dos botones en el collar. Una cara de Estrella en la pantalla del padre.
 
-El botón atrás y matar la app son el mismo guardado.
+El esquema de `estados` y de `luces` admite claves nuevas sin borrar el historial: no hace falta migrar el fichero cuando entre otra sala.
 
-## Qué no se escribe
+## 20. Hecho, cuando
 
-Espejo, Círculo, Pergamino, Mercado, Jardín y Tesoro como escenas en las que se entra. Llevada, préstamo, centenas, euros, céntimos, grupos, reparto, sobra, signos × y ÷, problemas con historia, nombres difíciles. Los 81 micropasos como selector. Exportación. Vídeo. Red. Cuentas. Anuncios. Marcador. Vidas. Estrellas vacías. Sonido de error. Giroscopio. 3D. Un cronómetro, aunque sea invisible.
+Se comprueba en el ordenador y luego en la tableta.
 
-El esquema de `micropasos` y de `luces` admite claves nuevas sin borrar el historial. No hace falta migrar este fichero cuando entre otra sala.
-
-## Hecho, cuando
-
-- En el ordenador, la partida de referencia se puede jugar con el ratón: tres; demo; 7 y 3; borde 8, 5 y 9; collar; cierre con su mano; farol en la pared.
-- Dos sueltas que no encienden en el borde saltan al cierre, sin tercer fallo y sin collar en el armazón. La ventana de Acertijos sigue en el patio.
-- Devolver piezas, irse o encadenar fallos cortan con la frase literal, y el último gesto, si ella se queda, es un acierto suyo.
-- Cerrar a medias no inventa ese acierto. Al volver no reaparece el borde fallido.
-- Menos de 15 s sin tocar una pieza no deja farol ni fichero de sesión.
-- Una oncena no enciende. La segunda del mismo intento queda en métricas como `E_DIEZ`.
-- Soltar en el sitio, cambiar de destino, sostener 8 s y desdecirse antes de 3 s aparecen en `metricas.json` y en ningún nodo visible.
-- La postura se anota en los tres cubos, o `desconocida`, y el nido no cambia al tumbar la tableta.
-- El APK de prueba es arm64, Compatibility, inmersivo, 1024×600, sin permiso de internet, y no llama al giroscopio.
-- No hay pose triste, ni corona, ni varita, ni reloj en pantalla, ni botón de listo, ni dos botones en el collar.
+- [ ] La partida de referencia se juega entera con el ratón: tres piedras, demo, 7 y 3, borde 8-5-9, collar, cierre con su mano, farol en la pared.
+- [ ] Dos sueltas que no encienden en el borde saltan al cierre, sin tercer fallo y sin collar. La ventana del collar sigue en el patio.
+- [ ] Devolver tres veces, encadenar tres pausas o fallar dos veces cortan con la frase literal, y el último gesto es un acierto suyo.
+- [ ] Cerrar a medias no inventa ese acierto. Al volver no reaparece el borde fallido y el patio ofrece el cierre pendiente.
+- [ ] Menos de 15 s sin tocar una pieza no deja farol ni fichero de sesión.
+- [ ] Una oncena no enciende. La segunda del mismo intento queda en `metricas.json` como `E_DIEZ`.
+- [ ] `origen`, `destino`, `quieta` y `desdice` aparecen en `metricas.json` y en ningún nodo visible.
+- [ ] La inclinación se anota en los cuatro cubos y el nido no cambia al tumbar la tableta.
+- [ ] Un segundo dedo no suelta la pieza del primero ni abre una sala.
+- [ ] Ningún hueco se preilumina en ningún tramo.
+- [ ] `progreso.json` sobrevive a un corte de corriente: queda el `.bak` o el principal, y las luces no se apagan.
+- [ ] Con el audio borrado, la partida se juega igual y la frase se ve.
+- [ ] El APK es arm64, Compatibility, inmersivo, 1024×600, sin permiso de internet y no llama al giroscopio.
+- [ ] No hay pose triste, ni corona, ni varita, ni reloj en pantalla, ni botón de listo, ni dos botones en el collar.
