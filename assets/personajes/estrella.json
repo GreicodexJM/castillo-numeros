@@ -94,33 +94,22 @@
   },
   "poses": [
     {
-      "id": "quieta",
-      "cara": "contenta",
-      "cara_alternativa": "curiosa",
-      "cuerpo": "De pie, peso igual, brazos caídos, manos a la vista. También sentada en un escalón, farol apagado en el regazo.",
-      "cuando": "Saludo, espera, patio.",
-      "no": "Brazos en jarra, salto, tapa las piezas."
+      "id": "curiosa",
+      "usada_en": "Ficha de referencia, pantalla de idea y nido cuando espera.",
+      "cara": "La de la ficha. Cejas un poco más altas por fuera, ojos abiertos, boca pequeña entreabierta.",
+      "no": "Sonrisa, ceño, mirada al suelo."
     },
     {
-      "id": "señalando",
-      "cara": "curiosa",
-      "cuerpo": "Un brazo hacia las piezas, palma abierta, índice hacia el objeto. El otro brazo bajo.",
-      "cuando": "Enseña el gesto. Señala nido, piedra, varilla o hueco.",
-      "no": "No señala a quien juega. No señala a cámara. No hay varita. El dedo no niega."
+      "id": "contenta",
+      "usada_en": "Solo después de un acierto de ella. Nunca en un fallo.",
+      "cara": "Boca cerrada curvada hacia arriba, ojos algo más cerrados, mejillas un poco más marcadas. Sin dientes, sin brillo en los ojos.",
+      "no": "Confeti en la cara, ojos cerrados del todo, boca abierta, lengua."
     },
     {
       "id": "pensando",
-      "cara": "pensando",
-      "cuerpo": "Una mano toca el broche. La otra baja. Cabeza ladeada como mucho 8 grados.",
-      "cuando": "Pieza que vuelve, duda, gesto que aún no cierra.",
+      "usada_en": "Silencio, pieza que vuelve, duda.",
+      "cara": "Mirada un poco arriba y a un lado, cejas juntas en el centro, boca cerrada recta.",
       "no": "Barbilla caída, mano en la barbilla de pena, suspiro, mirada al suelo."
-    },
-    {
-      "id": "celebrando",
-      "cara": "celebrando",
-      "cuerpo": "Una palmada suave, manos justo al juntarse. Pies en el suelo.",
-      "cuando": "Solo en un acierto. En el cierre, la cinta vale más que la palmada.",
-      "no": "Salto, confeti, brazos en V, segunda palmada, ojos cerrados, usar esta pose en un fallo."
     }
   ],
   "prompt_referencia": {
@@ -128,5 +117,17 @@
     "es": "Retrato de frente, de los hombros para arriba, fondo liso #F7F1E6, sin escenario. Estrella, personaje original, aprendiz de magia de las luces. Parece una chica joven, de unos once años en el dibujo: no es un bebé, no es una mujer adulta, no es una reina, no es un hada. Cara redonda, un poco más alta que ancha. Piel #E2A56B, sombra #C4844E, mejillas #E58B6A siempre en el mismo sitio. Pelo #4A2E24, melena a la mandíbula, flequillo recto que no tapa los ojos, orejas redondas a la vista, sin coleta, sin trenza, sin moño, sin diadema, sin horquilla. Ojos #3F2A22, blanco #F7F1E6, tamaño medio, separados el ancho de un ojo, sin pestañas largas, sin brillo de cristal. Cejas cortas y suaves, #4A2E24, nunca en pico. Nariz: una curva corta. Boca pequeña #C46A52, sin dientes. Esta ficha es la cara curiosa: cejas un poco más altas por fuera, ojos abiertos, boca pequeña entreabierta sin dientes, mirada al frente, cabeza alta. En el cuello, broche de tela en estrella de cinco puntas, #F2C14E, costura #C45C28, cosido, no de metal y no de joya. Asoma una capa corta #C85A32, sin vestido de baile. Dibujo plano, formas grandes, poco detalle, contorno #3A241C, contraste alto. Esta imagen fija la cara. No generes el cuerpo entero. No cambies el pelo ni la piel en imágenes posteriores. Prohibido: corona, varita, tiara, velo, joyas, maquillaje, lágrima, ceño, tristeza, enfado, decepción, cabeza gacha, sonrisa enorme, dientes, estilo de princesa de película, estilo Disney, foto real, texto, partículas, confeti.",
     "en": "Front view, head and shoulders only, flat background #F7F1E6, no setting. Estrella, an original character, apprentice of light magic. She looks like a young girl, about eleven in the drawing: not a toddler, not an adult woman, not a queen, not a fairy. Round face, slightly taller than wide. Skin #E2A56B, shadow #C4844E, cheeks #E58B6A always in the same place. Hair #4A2E24, jaw-length bob, straight fringe that does not cover the eyes, round ears visible, no ponytail, no braid, no bun, no tiara, no hairpin. Eyes #3F2A22, white #F7F1E6, medium size, one eye-width apart, no long lashes, no glassy shine. Short soft brows, #4A2E24, never peaked. Nose: one short curve. Small mouth #C46A52, no teeth. This sheet is the curious face: brows a little higher at the outer end, eyes open, small mouth slightly open with no teeth, looking forward, chin up. At the neck, a sewn five-point cloth star brooch, #F2C14E, stitch #C45C28, not metal, not a jewel. A short cape #C85A32 shows, no ball gown. Flat drawing, large shapes, little detail, outline #3A241C, high contrast. This image locks the face. Do not generate the full body. Do not change hair or skin in later images. Forbidden: crown, wand, tiara, veil, jewels, makeup, tear, frown, sadness, anger, disappointment, bowed head, huge smile, teeth, movie-princess style, Disney style, real photo, text, particles, confetti.",
     "si_ignora_hex": "piel albaricoque cálida, pelo castaño oscuro, ojos marrón cálido, boca coral suave, broche amarillo de tela, capa terracota"
+  },
+  "cara_fijada": {
+    "archivo": "assets/personajes/estrella-cara.png",
+    "fecha": "2026-11-06",
+    "candidatas_descartadas": [
+      "assets/personajes/candidatas/estrella-cara-a.png",
+      "assets/personajes/candidatas/estrella-cara-b.png"
+    ],
+    "por_que": "Ojos medianos sin destello, mentón definido, túnica crema visible en el cuello y estrella de cinco puntas cosida en el cuello, no en el pecho.",
+    "regla": "Toda imagen posterior de Estrella se genera a partir de este archivo como referencia. No se redibuja el pelo, la piel, los ojos ni la boca. Solo cambia el gesto indicado.",
+    "desviacion_conocida": "Aparenta unos nueve o diez años, no once. El amarillo del broche se lee más dorado que tela. Se corrige solo si molesta en el juego a tamaño 112x150, no por gusto.",
+    "tamano_util": "112x150 en el juego; la cara se lee a ese tamaño."
   }
 }
