@@ -1,244 +1,186 @@
-# Dirección artística — Estrella y el Castillo de los Números
+# Dirección artística
 
-Este texto obedece `docs/GDD.md` y `BRIEF.md`. Si choca con ellos, mandan ellos. Los colores planos de sala ya fijados en `docs/expertos/01-videojuegos.md` no se cambian. La paleta de trabajo es `assets/palette.json`. Si un generador necesita un color que no está ahí, no lo inventa: usa el sustituto plano de la sala.
+Este documento no cambia el juego. Dice **cómo se dibuja** lo que el documento de diseño (`docs/GDD.md`) ya decidió: qué hay en pantalla, dónde y de qué tamaño. Si hay conflicto, manda el GDD.
 
-Idioma del material: español de España. No hay foto ni nombre de una niña real. Los generadores corren en el ordenador de desarrollo, nunca en el juego.
+La referencia cerrada es la cara de Estrella (`assets/personajes/estrella-cara.png`, fijada el 2026-11-06). Todo lo demás se dibuja para que parezca del mismo mundo que esa cara.
 
-## Promesa visual
+Placas de referencia ya dibujadas:
 
-Castillo bajo, cálido, de ventanas grandes y torre redonda. Formas grandes, mucho aire, contraste alto, poco detalle. Se entiende de un vistazo en una Fire 7 en horizontal.
+| Archivo | Qué es |
+|---|---|
+| `assets/pantallas/nido-1024x600.png` | La pantalla del nido, a tamaño real |
+| `assets/pantallas/nido-zonas-1024x600.png` | La misma, con las seis zonas numeradas |
+| `tools/mockup_nido.py` | El código que la dibuja: si cambia una coordenada, se regenera |
 
-Estrella es aprendiz de magia de las luces. Personaje original. No es una princesa de película ni un castillo de parque. No lleva corona ni varita. Su magia no adivina: enciende lo que las manos entienden.
+## 1. Estilo, medido sobre la cara fijada
 
-La niebla es una cortina clara, baja y quieta. No tiene ojos, boca ni manos. No es un monstruo. No crece si no se juega. No se espanta: se aparta un poco cuando una lámpara entiende.
+Lo que la cara fijada hace y hay que repetir:
 
-## Aparato y texturas
+- **Relleno plano.** Un color por forma y, como mucho, **un** segundo tono más oscuro en la mitad de abajo. No hay degradados, no hay texturas, no hay ruido.
+- **Línea de contorno continua y gruesa**, de un solo color, `#33160D`. Cierra la forma entera. No hay líneas sueltas ni bocetos.
+- **Formas grandes, poco detalle.** Una piedra tiene una silueta y una faceta, nada más. Si un detalle no se ve a tamaño de juego, no se dibuja.
+- **Sin brillos ni reflejos.** La cara fijada no tiene destellos en los ojos y el broche no brilla. Nada en el juego tiene brillo especular.
+- **Sin sombra proyectada**, salvo una mancha plana bajo lo que se apoya (Estrella, el nido en la pared no lleva).
+- **Contraste alto** entre forma y fondo. Ninguna pieza se pierde contra la pared.
 
-Fire 7 (2022), KFQUWI. 2 GB de RAM; en reposo quedan unos 620 MB. GPU Mali-G52. La memoria de vídeo es la misma RAM. Godot 4.7.2, renderer Compatibility, OpenGL ES 3. Sin Vulkan. Sin 3D en la tableta. Sin vídeo dentro del APK.
+Grosor de línea según el tamaño de la pieza, para que el trazo no se coma la forma:
 
-Pantalla 1024×600. Área útil, con la barra, unos 1024×552. Nada importante vive en los 48 px de abajo.
+| Pieza | Línea |
+|---|---|
+| 400 px o más | 6 px |
+| 96 a 200 px | 4 px |
+| 48 a 96 px | 3 px |
+| menos de 48 px | 2 px |
 
-El juego cabe holgado por debajo de 40 MB y nunca pasa de 80. El dibujo comprimido de todo el producto no pasa de 8 MB. Si no cabe, se quita dibujo, no el gesto.
+## 2. Paleta
 
-### Tamaños máximos
+`assets/palette.json` es la lista cerrada. Los colores de Estrella están **medidos** sobre la cara fijada, no elegidos a ojo:
 
-Una sola sala en memoria. Al salir se suelta su fondo y su atlas. No se precargan las ocho salas.
+| Uso | Hex |
+|---|---|
+| Piel | `#E59D65` |
+| Pelo y cejas | `#502920` |
+| Iris | `#502920` |
+| Boca | `#C55733` |
+| Capa | `#BF502F` |
+| Túnica | `#F1D5AB` |
+| Broche de tela | `#F4C254` |
+| Costura | `#C45C28` |
+| Contorno | `#33160D` |
+| Pared de la sala | `#F5EDE2` |
+| Suelo de Piedras de luz | `#3D4F8A` |
+| Piedra de luz | `#F2E2A0`, sombra `#D8C173` |
+| Nido | `#C4925C` |
+| Pulso de acierto | `#F4C56D` |
 
-| Uso | Máximo | En pantalla | Notas |
-|---|---|---|---|
-| Fondo de la sala en curso | 1024×512 | 1024×552 | Una sola textura. Potencia de dos. Lo que sobre, color plano. |
-| Atlas de piezas de esa sala | 512×512 | — | Se suelta al salir. |
-| Hoja de Estrella | 512×512 | unos 200 px en el patio | Como mucho cuatro poses. |
-| Pieza, moneda, adorno, botón | 128×128 | unos 96 px | No hace falta más: no hay zoom. |
-| Atlas de interfaz | 512×512 | — | Uno para todo el juego. |
-| Partícula de luz | 32×32 | — | Va dentro de un atlas. Como mucho 12 al encender. |
-| Cualquier otra | 256×256 | — | Si no está en esta tabla, no pasa de aquí. |
+Dos avisos que la cara fijada deja abiertos y no se arreglan dibujando:
 
-Prohibido en textura: 1024×1024 salvo que sea el fondo ya recortado a 1024×512; 2048; 4096; vídeo; malla en el APK; mipmaps. Una textura de 2048×2048 en RGBA son 16 MB, más que todo el presupuesto de dibujo.
+- El **iris es del mismo tono que el pelo**. No se separa sin volver a fijar la imagen.
+- El **amarillo del broche tira a dorado**. Se acepta mientras se lea como tela cosida; si en el juego parece una medalla, se rehace solo esa pieza, no la cara.
 
-Presupuesto residente: 16 MB como equivalentes sin comprimir, u 8 MB en ETC2. El fondo de 1024×512 en RGBA son 2 MB; en ETC2, medio mega. No se cargan dos fondos a la vez.
+## 3. Cómo se construye cada pieza del primer jugable
 
-Importación en Godot: `vram_compressed` (ETC2), sin mipmaps, filtro lineal, sin repetir. Tope de tamaño 512, salvo el fondo, que puede llegar a 1024 en el lado largo. RGBA sin comprimir solo si el borde alfa se rompe, y entonces 256×256 como tope.
+Todas las medidas de sitio están en el apartado 5 del GDD. Aquí va solo la construcción.
 
-Como mucho dos capas de fondo. Como mucho 40 sprites en movimiento. Como mucho 12 partículas, y solo al encender una luz. Esas partículas son discos del mismo ámbar. No son confeti.
+### Piedra de luz
 
-## Paleta
+- Silueta de canto rodado **irregular**, ni círculo ni cuadrado ni hexágono. Trece vértices con radio desigual; la forma es la misma siempre, para que se reconozca.
+- Relleno `#F2E2A0`, faceta `#D8C173` en la mitad inferior, contorno 3 px.
+- Tres tamaños y ninguno más: **72 px** en el montón, **68 px** dentro de un hueco, **8 a 10 px** en el paño del ejemplo.
+- No lleva número, ni letra, ni marca. La cantidad se ve contando, no leyendo.
+- No parece un botón: no tiene borde recto, ni relleno de color de marca, ni sombra de relieve.
 
-Los códigos de sala son los del capítulo de juego, para que el sustituto plano y el dibujo no discutan. El resto fija a Estrella y a la letra. Uso completo en `assets/palette.json`.
+### Nido
 
-| Id | Hex | Uso |
+- Marco redondeado de 500×220, `#C4925C`, contorno 6 px, y un segundo trazo interior `#AA7846` a 10 px del borde.
+- Dentro, **dos filas de cinco huecos** de 80×80, radio 22, hueco vacío en `#F5EDE2` con contorno 4 px. Separación 92 px.
+- El nido se reconoce por los diez huecos, nunca por el color. Si se pinta de otro color, sigue siendo el nido.
+- El pulso de acierto nace en el **borde del nido de ella**, no en la pieza: un anillo `#F4C56D` de 6 px que crece y se apaga en 1,2 s.
+
+### Hueco
+
+- Cuadrado redondeado, fondo crema, contorno. Nunca se preilumina.
+- El hueco vacío y el hueco lleno se distinguen por la piedra dentro, no por el color del hueco.
+- El andamio de 7 y 3 son **huecos vacíos**, no piedras marcadas. No se dibujan las dos cosas a la vez.
+
+### Montón y celda
+
+- Seis celdas de 96×96 en dos columnas de tres, sin dibujar la celda: solo la piedra de 72 dentro de un espacio de 96.
+- La celda no lleva recuadro ni fondo distinto. Si se dibuja una bandeja, la bandeja no tiene borde de botón.
+
+### Paño del ejemplo
+
+- Rectángulo redondeado de 200×72, `#F1D5AB`, contorno 3 px.
+- Dentro, la cuenta en cifras de 26 px y las piedras pequeñas en dos grupos.
+- **No se toca.** No es un botón: no tiene relieve ni cambia al pasar el dedo. Al resetear se apaga en 0,4 s sin pulso ámbar, para que no parezca que se ha roto algo.
+
+### Banda de frase
+
+- 832×56, fondo crema, contorno 3 px, radio 14.
+- Texto `#2C2416` de **32 px como mínimo**, alineado a la izquierda con 20 px de margen.
+- Como mucho una frase de doce palabras y sin signos de interrogación.
+
+### Campana, ventanas y puertas del patio
+
+- Ventana de 160×160; cuando haya más salas, 96×96 con 24 px de aire, **cuatro por fila como máximo**.
+- La ventana abierta se ve por dentro. La que no existe **no se dibuja**: ni candado, ni hueco gris, ni silueta.
+- La campana es un arco de 96×96 en la esquina. No mide 48 px y no lleva asa que parezca un botón de menú.
+
+### Collar, ganchos y arcón
+
+- Cordón de 640×96, ganchos de 80×80 separados 120 px.
+- El patrón se ve en **forma**, no en color: piedra, estrella, piedra, estrella, hueco.
+- La estrella del patrón es de tela, `#F4C254`, como el broche. No brilla.
+- El arcón mide 160×220 y está cerrado en el primer jugable: lo que hay dentro no se dibuja.
+
+### Farol de la torre
+
+- Se suelta en 160×160 y se ve entero ahí. Entre ámbar y terracota, los dos válidos.
+- Un segundo adorno **no se dibuja** hasta el día en que se gana. No hay silueta de lo que falta, ni rejilla con huecos vacíos.
+
+## 4. Estrella en pantalla
+
+- **112×150**, de pie, sin fondo. La cara fijada se recorta y se le quita el fondo; no se redibuja.
+- Tres caras: curiosa, contenta, pensando. **No existe celebrando.**
+- Lo que no cambia nunca: corte de pelo, altura de la línea del flequillo, separación de los ojos, forma de la nariz, tamaño de la boca, sitio del broche.
+- Un fallo **no cambia la cara**. La señal de fallo es la pieza que vuelve.
+- Si a 112×150 las tres caras no se distinguen, no se usa la cara como señal: se queda en curiosa y la señal es la pieza y el pulso.
+
+## 5. Fondos y escenas
+
+- Dos planos como máximo: pared y suelo. Nada más compite con las piezas.
+- El suelo empieza a la altura de los pies de Estrella (y = 430 en el nido).
+- La pared es lisa, del color de la sala. No lleva estanterías, cuadros ni textura.
+- La niebla es una cortina crema `#E7DCC8` sin ojos, sin voz y sin cuerpo. No se dibuja como humo negro.
+- Nada de viñetas, desenfoques de fondo, ni luces dinámicas. La tableta no puede con ellas y no hacen falta.
+
+## 6. Estados que se ven y estados que no
+
+| Estado | Qué se dibuja | Qué no |
 |---|---|---|
-| noche_patio | `#1E2A4A` | Patio, si falta el dibujo. |
-| luz_encendida | `#F4C56D` | Pulso de lámpara, llama de casa, forro de la capa. |
-| sala_piedras | `#3D4F8A` | Suelo de Piedras de luz. |
-| piedra | `#F2E2A0` | Piedra de luz y broche de tela. |
-| sala_espejo | `#7EC8C3` | Sala Espejo. |
-| sala_circulo | `#E7A6C8` | Sala Círculo. |
-| sala_pergamino | `#F3E6C8` | Papel del pergamino. |
-| tinta | `#2C2416` | Letra, cifras y columnas. |
-| sala_mercado | `#E07A3D` | Puesto del mercado. No es un fallo. |
-| sala_jardin | `#7DAF6A` | Jardín. No es un semáforo de bien. |
-| sala_tesoro | `#C6A15B` | Tesoro. |
-| sala_acertijos | `#8E7CC3` | Acertijos. |
-| niebla | `#D5DCE8` | Cortina clara. Sin ojos. |
-| crema_texto | `#F7F1E4` | Texto sobre fondo oscuro. |
-| piel | `#C6866A` | Piel de Estrella. Siempre esta. |
-| pelo | `#3F2A22` | Pelo y cejas. Siempre este. |
-| iris | `#5A3A2E` | Iris. Siempre este. |
-| boca | `#A15A52` | Boca pequeña. No es rojo de fallo. |
-| blanco_ojo | `#F3EBE3` | Blanco del ojo. No es blanco puro. |
-| capa | `#C45C4A` | Capa corta. Ropa, no aviso. |
-| botas | `#5C4038` | Botas blandas. |
-| sombra | `#152033` | Separar una forma grande del fondo. |
+| Acierto | Anillo ámbar de 1,2 s en el borde del nido y la frase 4 s | Confeti, estrellas, destellos, la cara celebrando |
+| Fallo | La pieza vuelve a su sitio en 0,4 s, en silencio | Cruces, rojo, temblor, sonido, cara de pena |
+| Duda | Nada | Un cartel que nombre la duda |
+| Corte | La frase de corte y el cierre | Pantalla de fin, resumen, nota |
+| Sin audio | Lo mismo, sin esperar a la campanada | Un icono de altavoz tachado |
+| Sin disco | Si cabe, la frase V08 | Un aviso técnico, un número de error |
 
-Texto: tinta `#2C2416` sobre claro, o crema `#F7F1E4` sobre noche y sobre Piedras. Nunca gris sobre niebla. La frase se lee sin la voz. Cuerpo de letra de al menos 28 px, mejor 32. Una frase, hasta 12 palabras.
+## 7. Lo que nunca se dibuja
 
-No hay color de fallo en la paleta. No se añade.
+Brillos, degradados, sombras arrojadas, texturas, cristal, joyas, coronas, varitas, alas, ojos con destello, dientes, lágrimas, ceños, caras nuevas, números sobre las piedras, texto dentro de una pieza, botones con relieve, iconos de altavoz, barras de progreso, relojes, marcadores, candados y huecos grises de lo que no existe.
 
-## El color no es la única pista
+## 8. Producción
 
-El color ayuda. No basta. Cada cosa que ella tiene que distinguir lleva además forma, letra, sitio o número escrito.
+1. **Toda imagen de Estrella** se genera tomando `assets/personajes/estrella-cara.png` como referencia, con la instrucción de no redibujar pelo, ojos, boca ni piel. Solo cambia el gesto.
+2. **Toda pieza** se genera con el mismo estilo y luego se **limpia**: fondo plano quitado, contorno cerrado, un solo tono de sombra.
+3. Se exporta a PNG con transparencia para las piezas y a PNG opaco para las placas de pantalla.
+4. La geometría (sitios, tamaños, zonas seguras) **no se genera con IA**: se dibuja con código, como en `tools/mockup_nido.py`. Un modelo de imagen no coloca un hueco a 92 px de otro.
+5. Lo que la IA haga con texto saldrá mal escrito: las frases se componen en el juego, nunca dentro de la imagen.
 
-- **Columnas.** Unidades, decenas y centenas llevan la letra U, D y C, grande. El sitio es el del colegio: unidades a la derecha, decenas en el centro, centenas a la izquierda. La pieza también cambia: piedra suelta, barra de diez, placa de cien. Una columna sin letra no se publica. Pintar la columna de otro color no sustituye a la letra.
-- **Monedas.** Llevan el número escrito: 1, 2, 5, 10, 20, 50, y 1 € o 2 €. El tamaño cambia con el valor. El color del metal no basta. No hay billetes. Se escribe 1,30 €.
-- **Salas.** Cada ventana tiene la forma de su juguete (nido, marco, círculo, pergamino, puesto, maceta, cofre, cordón) y, si hay sitio, el nombre. El tinte de la sala no basta.
-- **Ventanas.** Niebla de ala, disponible y encendida se distinguen por lo que hay dentro (cortina, cristal con vaho, llama), no por un gris de botón muerto ni por un semáforo.
-- **Acertijos.** El primer patrón es piedra, estrella, piedra, estrella: forma y pieza, no solo color. Un patrón de color lleva también la forma, o el nombre en la pieza.
-- **Más, menos e igual.** Se ven emparejando. La fila más larga no manda. El color no dice cuál es más.
-- **Luz de acierto.** Es siempre el mismo ámbar `#F4C56D`, en cualquier sala. El verde del jardín no significa bien. El naranja del mercado no significa mal. El rosa de la boca no significa enfado.
-- **Estados de saber.** Sin ver, aprendiendo, frágil, firme y suelto no se pintan. Ella no los ve. El padre no recibe un semáforo.
+## 9. Archivos que tiene que haber antes de programar
 
-La capa terracota está siempre. Un fallo no la pone más roja. La sombra no apaga una sala ni marca un botón prohibido.
+| Archivo | Qué |
+|---|---|
+| `assets/personajes/estrella-cara.png` | Hecho |
+| `assets/pantallas/nido-1024x600.png` | Hecho |
+| `assets/piezas/piedra.png` | Piedra de 96 px con transparencia |
+| `assets/piezas/nido.png` | Nido de diez huecos |
+| `assets/piezas/estrella-tela.png` | Estrella del patrón del collar |
+| `assets/piezas/farol.png` | Farol de la torre, dos variantes |
+| `assets/piezas/campana.png` | Campana del patio |
+| `assets/fondos/piedras.png` | Pared y suelo de 1024×600 |
 
-## Escala de formas
+Mientras falten, el juego usa el sustituto de color plano con el contorno. Un sustituto no es un dibujo: se nota y se sustituye.
 
-La pieza es más grande que el adorno. El juguete es más grande que Estrella cuando se está jugando. El aire no es un marco decorativo: es sitio para el dedo.
+## 10. Criterios de rechazo
 
-| Cosa | Tamaño | Aire |
-|---|---|---|
-| Botón, ventana, gancho, piedra, moneda | unos 96 px | 24 px |
-| Pieza que se arrastra | 88 px como mínimo | 24 px |
-| Hueco del nido | cabe una piedra de 96 px | dos filas de cinco |
-| Estrella en el patio | unos 200 px de alto | a la izquierda; no tapa ventanas |
-| Estrella dentro de una sala | como mucho 160 px | al lado; el juguete manda |
-| Letra y cifra | 28 px como mínimo | no pegada al borde |
-| Marca que no se toca | 48 px como mínimo | si baja de eso, no informa |
-| Toque | — | nada importante en los 48 px de abajo |
+Un dibujo no entra si:
 
-Entre ventanas del patio caben 24 px de aire. Ocho ventanas de 96 px siguen cabiendo en 1024. No hay desplazamiento.
-
-Lo que no se puede elegir no se dibuja como botón prohibido, candado ni hueco vacío. El ala que aún no toca es un solo bulto de niebla, no seis ventanas apagadas.
-
-Superficies lisas. Poco adorno menudo. Un ribete que no se distinga a 1024×552 no se dibuja. El detalle pequeño no lleva información: si solo se entiende ampliando, no existe.
-
-## Luz del castillo
-
-El castillo solo gana luz. Una sala encendida no se apaga por fallar, por salir ni por no volver.
-
-Tres estados de ventana, y ninguno es una nota:
-
-1. **Niebla de ala.** Aún no toca. Un bulto, no un candado. Tocarla no abre lección.
-2. **Disponible.** La ventana se ve, con niebla dentro. Sin candado y sin gris de botón muerto. El primer día, Piedras de luz y Acertijos están así, no encendidas.
-3. **Encendida.** El método se ha hecho al menos una vez con las manos, con ayuda o sin ella. La luz se queda.
-
-La llama de casa, en la torre, está encendida desde la primera apertura. No es un premio. No se apaga. Ganar una sala no la enciende y no puede apagarla.
-
-Cuando las manos encienden una luz:
-
-1. La lámpara de esa sala da un pulso de 1,2 s. El color es `#F4C56D`, el mismo si fue sola, con ayuda, despacio o deprisa. No hay un brillo más grande por hacerlo perfecto ni por ir rápido.
-2. El pulso es un disco de unos 64 px que llega a unos 96 px. No blanquea la pantalla. Las piezas siguen viéndose.
-3. Como mucho 12 partículas, discos del mismo ámbar, ya en el atlas. Sin confeti, sin lluvia de estrellas, sin temblor.
-4. La niebla de esa sala se aparta un poco. No huye, no gruñe, no pierde una pelea. El resto del castillo no cambia.
-5. Estrella está contenta 1 s. Puede dar una palmada suave, una sola. No salta por encima de las piezas.
-6. La próxima vez que se vea el patio, esa ventana sigue encendida.
-
-Si el gesto no enciende, la pieza vuelve en 0,4 s, en silencio, como si rodara. Sin aspa, sin zumbido, sin flash, sin temblor, sin rojo. Estrella piensa. La luz que ya había no baja.
-
-La misma campanada suave, 0,4 s, en todo acierto. No hay sonido de error. El cielo no oscurece para marcar el tiempo. No hay vela ni reloj dibujado.
-
-## Cara de Estrella, fija entre generadores
-
-Primero se fija la cara. Todo lo demás usa esa referencia. Hasta que exista la hoja, no se genera otra Estrella: vale una forma de color del mismo tamaño, piel `#C6866A` y capa `#C45C4A`.
-
-Hoja única: `assets/personajes/referencia/estrella-cara.png`. Si el archivo no está, Gemini, Grok y Tripo no inventan una cara «mientras tanto».
-
-La hoja manda sobre el texto. El texto manda sobre un generador que quiera mejorar el parecido. Una imagen nueva se descarta si la cara no coincide con la hoja, aunque el resto esté bien.
-
-### Lo que no cambia nunca
-
-- Óvalo suave, más ancho que una cara de moda. Barbilla redonda, no en punta.
-- Se lee como aprendiz joven. No como una niña de 6 años y no como una reina. La misma edad en todos los dibujos.
-- Piel `#C6866A`. Sin pecas que aparezcan y desaparezcan. Sin maquillaje. Sin brillo de porcelana.
-- Ojos marrones `#5A3A2E`, medianos. El alto del ojo es cerca de un quinto de la cara, no un tercio. La separación entre ojos es el ancho de un ojo. Blancos `#F3EBE3`. Sin estrellas en el iris. Sin pestañas de abanico.
-- Cejas cortas `#3F2A22`, casi horizontales. Nunca fruncidas. Nunca en arco de alarma.
-- Nariz pequeña y simple, sin fosas dibujadas.
-- Boca pequeña `#A15A52`, cerrada. En contenta, las comisuras suben un poco y no se ven dientes.
-- Orejas apenas visibles. Sin pendientes.
-- Pelo `#3F2A22`. Flequillo recto que acaba encima de las cejas y no tapa los ojos. Media melena que acaba en la clavícula, igual por los dos lados. Raya a la izquierda de ella. Sin coletero, sin diadema, sin trenza que cambie de hombro, sin mechón suelto.
-- Cabeza cerca de un quinto del cuerpo, no un tercio. Manos capaces de coger una piedra, no manoplas.
-- Capa corta `#C45C4A`, hasta la cadera, forro `#F4C56D`. Broche de tela en forma de estrella, `#F2E2A0`, en el pecho, no en la cabeza. Bolsa de piedras al costado. Botas blandas `#5C4038`.
-
-### Lo que sí puede cambiar
-
-Solo hay tres caras. Ninguna es de fallo.
-
-| Dibujo | Cara | Qué se mueve |
-|---|---|---|
-| Quieta | Curiosa | Reposo. Mira una pieza. Sonríe poco. |
-| Señalando | Curiosa | El dedo señala la pieza, no a quien juega. La cara no cambia. |
-| Pensando | Pensando | Cabeza un poco ladeada. Boca serena. La mano toca el broche. |
-| Contenta | Contenta | Sonrisa pequeña, sin dientes. Una palmada como mucho. |
-
-Pensando no es ceño, ni espalda vuelta, ni suspiro, ni cabeza gacha. Contenta no es un salto que tape las piezas. No existe pose de decepción, enfado ni tristeza, ni al fallar, ni al salir, ni al volver.
-
-### Bloque que se copia
-
-Se pega tal cual, en los tres generadores. No se parafrasea. No se añade «más expresiva», «más bonita», «estilo cuento» ni «ojos grandes».
-
-Español, fuente:
-
-> Estrella, aprendiz joven de magia de las luces, personaje original. Misma cara que la hoja de referencia: óvalo ancho, barbilla redonda, piel #C6866A, ojos marrones medianos #5A3A2E separados un ojo, cejas cortas casi rectas, nariz simple, boca pequeña cerrada, flequillo recto, media melena castaña #3F2A22 hasta la clavícula, raya a su izquierda. Capa corta #C45C4A, broche de tela en forma de estrella en el pecho, botas blandas. Sin corona, sin varita, sin diadema, sin pendientes, sin vestido de baile. Curiosa, contenta o pensando. Nunca triste, enfadada ni decepcionada. Formas grandes, poco detalle, luz cálida. No es una princesa de película.
-
-Inglés, copia del mismo bloque, no otro diseño:
-
-> Estrella, a young apprentice of light magic, original character. Same face as the reference sheet: wide oval, round chin, skin #C6866A, medium brown eyes #5A3A2E one eye apart, short nearly straight brows, simple nose, small closed mouth, straight bangs, warm-brown hair #3F2A22 ending at the collarbone, parting on her left. Short cape #C45C4A, cloth star brooch on the chest, soft boots. No crown, no wand, no tiara, no earrings, no ballgown. Curious, glad, or thinking. Never sad, angry, or disappointed. Large shapes, little detail, warm light. Not a movie princess.
-
-Si el generador solo acepta uno, se usa el español. La hoja de referencia va adjunta siempre. Un prompt sin la hoja no se lanza.
-
-### Gemini y Grok
-
-- Una cara por tanda. No una hoja de «variaciones».
-- La relación de aspecto de la cara de referencia no se recorta a un primer plano distinto: frente, a la altura de los ojos, misma distancia.
-- No pedir estilo de estudio de animación, ojos enormes, chispas en el iris ni «cute».
-- Si el resultado cambia el flequillo, el tono de piel, el tamaño del ojo o la edad, se descarta entero. No se corrige con otro generador.
-
-### Tripo
-
-- Solo vistas fijas. Esas vistas no entran como malla en el APK. Si hace falta un dibujo, se exporta un PNG y se compara con la hoja.
-- Cámaras cerradas: frente, tres cuartos izquierda, tres cuartos derecha. Misma distancia. Sin contrapicado.
-- No reestilizar. No pedir una expresión nueva. No cambiar el peinado para que «funcione en 3D».
-- Si la vista fija no coincide con la hoja, se tira. No se vuelve a generar «parecida» sin la misma referencia.
-
-### Lista de descarte
-
-Basta una para tirar la imagen:
-
-- Ojos más grandes o más separados que en la hoja.
-- Pelo más largo que la clavícula, de otro color, o sin el flequillo recto.
-- Piel de otro tono.
-- Corona, varita, diadema, alas, pendientes, vestido de cola.
-- Ceño, lágrima, boca hacia abajo, cabeza gacha, dedo que niega.
-- Parecido reconocible a una princesa de película o a un castillo de parque.
-- Confeti, temblor o un rojo usado como fallo.
-- Un detalle menor de 24 px que sea la única pista de algo.
-
-## Prohibido
-
-- Confeti, lluvia de estrellas, explosión más grande si va deprisa.
-- Temblor de pantalla, de sprite o de cámara, en el fallo y en el acierto.
-- Rojo de error, aspa, flash de fallo, zumbido, botón gris muerto.
-- Detalle pequeño. Nada que informe por debajo de 24 px. Nada importante por debajo de 48 px si no se toca, ni por debajo de 88 px si se arrastra.
-- Estilo Disney y cualquier princesa o castillo con marca. Ojos de un tercio de la cara. Vestido de baile. Chispas de hada.
-- Corona. Varita. Diadema. Alas.
-- Estrellas vacías, vidas, marcador, cronómetro, vela que se apaga, cielo que anochece para meter prisa.
-- Niebla con ojos, boca o manos. Monstruo. Villano.
-- Cara triste, enfadada o decepcionada. Lágrima. Ceño. Suspiro dibujado.
-- Foto de una niña real. Nombre real. Vídeo dentro del APK. 3D en la tableta.
-- Huecos vacíos de salas cerradas. Candados. Semáforo sobre el saber.
-
-## Sustituto
-
-Si falta un dibujo, una forma de color del mismo tamaño, con el hex de su sala o de su pieza. La forma conserva el tamaño de la tabla de escala. Un sustituto no es una excusa para bajar de 88 px una pieza que se arrastra.
-
-Estrella, si falta el dibujo, es un óvalo `#C6866A` de la altura dicha, con un rectángulo de capa `#C45C4A`. No se le pone una cara improvisada.
-
-## Primer jugable, solo esto
-
-- Estrella, curiosa o pensando, sin corona ni varita. Contenta solo al encender.
-- Patio con llama de casa ya encendida. Torre a la derecha. Ala de niebla en un solo bulto.
-- Piedras de luz: nido de dos filas de cinco. La décima enciende. Una de más, si el gesto era llenar diez, no enciende y vuelve en silencio.
-- Acertijo: piedra, estrella, piedra, estrella. Ella cuelga la siguiente desde un arcón.
-- Un farol que ella coloca en la torre. El farol no es una puntuación.
-- El pulso de 1,2 s, igual siempre. Sin confeti y sin temblor.
-
-No entra la llevada, ni el euro, ni un problema con historia, ni el resto de salas como sitios donde entrar. Esas puertas, si se ven, son niebla.
+- Tiene más de dos tonos por forma.
+- Tiene brillo, degradado o textura.
+- La silueta no se reconoce a tamaño de juego.
+- La línea se cierra mal o tiene grosor distinto al de su tamaño.
+- Cambia el pelo, la piel, los ojos o la boca de Estrella.
+- Pone un número, una letra o un texto dentro de una pieza.
+- Dibuja lo que todavía no existe, aunque sea en gris.
+- Necesita que alguien explique qué es.
